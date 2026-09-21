@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet-async';
 
 const DEFAULTS = {
   siteName: 'Aarogya Seva',
-  siteUrl: 'https://www.aarogyasewa.com',
-  title: 'Aarogya Seva - Buy Authentic Ayurvedic Supplements Online in India',
+  siteUrl: 'https://aarogya-seva.vercel.app',
+  title: 'Aarogya Seva | Ayurvedic Wellness Products Online in India',
   description:
-    'Buy premium Ayurvedic supplements online at Aarogya Seva - Ashwagandha, Shilajit, Giloy, Arjuna capsules & more. 100% natural, AYUSH certified, Free shipping, COD available across India. Aapki Sehat, Hamari Seva.',
+    'Aarogya Seva offers Ayurvedic wellness products including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products, with online ordering across India.',
   keywords:
-    'ayurvedic supplements India, buy ashwagandha online, shilajit capsules India, giloy tablets, arjuna capsules heart health, authentic ayurveda, natural immunity booster, herbal supplements, ayush certified, aarogya seva, ayurvedic medicine online, digestive health ayurveda, mens wellness capsules, stress relief supplements, ayurvedic tablets India, ayurvedic doctor consultation',
+    'Aarogya Seva, Ayurvedic wellness products India, Ayurvedic products online, Ashwagandha online India, Shilajit online India, Giloy capsules, Arjuna capsules, digestive wellness, Ayurvedic wellness',
   image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png',
   type: 'website',
 };
@@ -33,7 +33,6 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <meta name="geo.placename" content="India" />
       <link rel="canonical" href={u} />
 
-      {/* Open Graph */}
       <meta property="og:type" content={tp} />
       <meta property="og:site_name" content={DEFAULTS.siteName} />
       <meta property="og:title" content={t} />
@@ -42,7 +41,6 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <meta property="og:url" content={u} />
       <meta property="og:locale" content="en_IN" />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={t} />
       <meta name="twitter:description" content={d} />
@@ -57,7 +55,6 @@ export const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Aarogya Seva',
-  legalName: 'Aarogya Seva',
   url: DEFAULTS.siteUrl,
   logo: DEFAULTS.image,
   description: DEFAULTS.description,
