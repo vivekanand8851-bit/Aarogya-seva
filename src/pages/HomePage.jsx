@@ -184,6 +184,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Herbal guides */}
+      <section className="max-w-7xl mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Learn Before You Buy</span>
+          <h2 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-2">Ayurvedic Wellness Guides</h2>
+          <p className="text-sm text-[#6a6a6a] max-w-2xl mx-auto mt-3">Simple, evidence-aware guides to help you understand popular herbs and compare supplements responsibly.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+          <Link to="/ayurvedic/ashwagandha" className="bg-white border border-[#ede4cf] rounded-xl p-6 hover:shadow-lg transition group">
+            <span className="text-[11px] tracking-widest uppercase text-[#8a7a5a]">Guide</span>
+            <h3 className="font-serif text-2xl text-[#0f3d2e] mt-2 group-hover:text-[#1a5c40]">Ashwagandha: Uses & Buying Guide</h3>
+            <p className="text-sm text-[#6a6a6a] mt-2">Learn what to check on an Ashwagandha supplement label and how traditional use differs from modern marketing claims.</p>
+            <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#0f3d2e] mt-4">Read guide <ArrowRight size={15} /></span>
+          </Link>
+          <Link to="/ayurvedic/shilajit" className="bg-white border border-[#ede4cf] rounded-xl p-6 hover:shadow-lg transition group">
+            <span className="text-[11px] tracking-widest uppercase text-[#8a7a5a]">Guide</span>
+            <h3 className="font-serif text-2xl text-[#0f3d2e] mt-2 group-hover:text-[#1a5c40]">Shilajit: Quality & Buying Guide</h3>
+            <p className="text-sm text-[#6a6a6a] mt-2">Understand Shilajit formats, labeling, sourcing and the questions worth asking before buying.</p>
+            <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#0f3d2e] mt-4">Read guide <ArrowRight size={15} /></span>
+          </Link>
+        </div>
+      </section>
+
       {/* Blog preview */}
       <section className="max-w-7xl mx-auto px-4 py-16">
         <div className="flex items-end justify-between mb-10">
