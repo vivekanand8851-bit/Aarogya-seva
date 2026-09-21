@@ -83,15 +83,19 @@ export function BlogDetailPage() {
           <span className="flex items-center gap-1"><Clock size={14} />{post.readTime}</span>
         </div>
         <img src={post.image} alt={post.title} className="w-full aspect-[16/9] object-cover rounded-2xl mt-8" />
-        <div className="prose prose-lg max-w-none mt-8 text-[#3a3a3a] leading-relaxed space-y-5">
+        <div className="prose prose-lg max-w-none mt-8 text-[#3a3a3a] leading-relaxed space-y-6">
           <p className="text-xl text-[#0f3d2e] font-serif italic">{post.excerpt}</p>
-          <p>Ayurveda, the 5,000-year-old system of natural healing that has its origins in the Vedic culture of India, is more than just a system of medicine. It is a way of living, a science of life that focuses on prevention, wellness, and the healing of the body, mind, and spirit through natural means.</p>
-          <p>At Aarogya Seva, we bring you formulations that respect this ancient wisdom while meeting modern quality standards. Every product is manufactured in AYUSH-certified facilities, tested for purity, and packaged to preserve potency.</p>
-          <h2 className="font-serif text-2xl text-[#0f3d2e] mt-8">Why This Matters</h2>
-          <p>Modern lifestyles often disconnect us from our natural rhythms. Stress, poor diet, environmental toxins, and lack of sleep are all contributing to a rise in chronic conditions. Ayurvedic supplements offer a gentle, sustainable path back to balance.</p>
-          <p>Whether you are looking to boost immunity, improve digestion, or increase energy, our range of authentic supplements can support your journey. Consult with our Ayurvedic experts for a personalized recommendation.</p>
-          <blockquote className="border-l-4 border-[#e6b64c] pl-4 italic text-[#0f3d2e]">“Let food be thy medicine and medicine be thy food.”</blockquote>
-          <p>Explore our collection today and take the first step toward a healthier, more balanced life.</p>
+          {(post.sections || []).map(([heading, text]) => (
+            <section key={heading}>
+              <h2 className="font-serif text-2xl text-[#0f3d2e] mt-8">{heading}</h2>
+              <p>{text}</p>
+            </section>
+          ))}
+          <div className="border-t border-[#ede4cf] pt-6">
+            <p className="text-sm text-[#6a6a6a]">
+              <strong>Educational note:</strong> This article is general information, not medical advice. Evidence can differ by herb, preparation, dose and person. If you have a medical condition or take medicines, speak with a qualified healthcare professional before using supplements.
+            </p>
+          </div>
         </div>
       </div>
     </div>
