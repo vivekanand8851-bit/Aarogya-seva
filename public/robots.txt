@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aarogya-seva.vercel.app/sitemap.xml
