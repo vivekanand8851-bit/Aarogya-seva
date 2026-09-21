@@ -27,8 +27,8 @@ export default function HomePage() {
   return (
     <div className="bg-[#fbf7ec]">
       <SEO
-        title="Buy Authentic Ayurvedic Supplements Online"
-        description="Buy premium Ayurvedic supplements online — Ashwagandha, Shilajit, Giloy, Arjuna capsules. 100% natural, AYUSH certified, Free shipping across India. Aapki Sehat, Hamari Seva."
+        title="Ayurvedic Wellness Products Online in India"
+        description="Explore Ayurvedic wellness products from Aarogya Seva, including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products. Shop online across India."
         url="/"
         jsonLd={organizationJsonLd}
       />
