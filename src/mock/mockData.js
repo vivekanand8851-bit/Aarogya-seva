@@ -118,9 +118,57 @@ export const TESTIMONIALS = [
 ];
 
 export const BLOG_POSTS = [
-  { id: 'ashwagandha-benefits', title: '7 Science-Backed Benefits of Ashwagandha', excerpt: 'Discover why this ancient herb is called the King of Ayurveda and how it transforms your body from the inside out.', date: 'July 3, 2025', readTime: '6 min read', author: 'Dr. Meera Kapoor', image: IMG_SHIL_ASHWA, category: 'Herbal Wellness' },
-  { id: 'shilajit-guide', title: 'The Complete Guide to Himalayan Shilajeet', excerpt: 'How this black mineral resin from the Himalayas became one of the most sought-after supplements in modern wellness.', date: 'June 25, 2025', readTime: '8 min read', author: 'Vaidya Ramesh', image: IMG_SHIL_ASHWA, category: 'Ancient Ayurveda' },
-  { id: 'arjuna-heart', title: 'Arjuna: The Ayurvedic Herb for a Strong Heart', excerpt: 'Simple wisdom from Ayurveda that can support cardiovascular health for generations.', date: 'June 18, 2025', readTime: '5 min read', author: 'Nutritionist Aditi', image: IMG_ARJUNA, category: 'Heart Wellness' },
+  {
+    id: 'ashwagandha-benefits',
+    title: 'Ashwagandha: Traditional Uses, Evidence & Buying Guide',
+    excerpt: 'A practical guide to Ashwagandha covering traditional Ayurvedic use, modern research questions, supplement labels and responsible buying.',
+    date: 'July 3, 2025',
+    readTime: '7 min read',
+    author: 'Aarogya Seva Editorial Team',
+    image: IMG_SHIL_ASHWA,
+    category: 'Herbal Wellness',
+    sections: [
+      ['What is Ashwagandha?', 'Ashwagandha (Withania somnifera) is a botanical used in Ayurvedic traditions. Modern supplements can contain root powder, root extract or other preparations, so two products with the same herb name are not necessarily equivalent.'],
+      ['Traditional use and modern evidence are not the same thing', 'Traditional use provides historical context, while clinical research evaluates specific preparations and outcomes. Research findings should not be generalized to every Ashwagandha product or to every person.'],
+      ['What to check on the label', 'Look for the botanical name, plant part, serving size, amount per serving, manufacturer information, batch details and directions for use. If a product makes a specific health claim, consider whether the claim is supported by credible evidence and permitted for the product category.'],
+      ['How to use supplements responsibly', 'Follow the label and avoid assuming that a larger serving is better. People who are pregnant or breastfeeding, take prescription medicines, or have a medical condition should discuss supplement use with a qualified healthcare professional.'],
+      ['Bottom line', 'A good buying decision starts with transparent labeling and realistic expectations. Ashwagandha can be part of a broader wellness routine, but a supplement should not replace professional medical care.'],
+    ],
+  },
+  {
+    id: 'shilajit-guide',
+    title: 'Shilajit Guide: What It Is, Quality Checks & How to Compare Products',
+    excerpt: 'Understand Shilajit, purification, common product formats, label checks and the difference between traditional use and modern marketing claims.',
+    date: 'June 25, 2025',
+    readTime: '8 min read',
+    author: 'Aarogya Seva Editorial Team',
+    image: IMG_SHIL_ASHWA,
+    category: 'Ayurvedic Wellness',
+    sections: [
+      ['What is Shilajit?', 'Shilajit is a naturally occurring, resin-like substance associated with mountainous regions. It has a long history in traditional Ayurvedic preparations and is sold today in resin, powder, capsule and extract formats.'],
+      ['Why purification and sourcing matter', 'Raw material and finished supplements are not automatically interchangeable. When comparing products, look for clear sourcing, purification or processing information, manufacturer details and batch-level quality information where available.'],
+      ['Common marketing claims', 'Shilajit is often marketed for energy, stamina, testosterone, minerals or performance. These claims can vary substantially in evidence and may not apply to every preparation. Avoid choosing a product solely because of a dramatic promise.'],
+      ['What should a buyer check?', 'Compare the actual ingredient amount, serving size, form, ingredient list, manufacturer, batch information, storage instructions and customer-support details. A transparent label makes products easier to compare.'],
+      ['Safety and professional advice', 'Follow the product directions. If you take prescription medicines, have a medical condition, or are unsure whether a supplement is appropriate for you, ask a qualified healthcare professional before use.'],
+    ],
+  },
+  {
+    id: 'arjuna-heart',
+    title: 'Arjuna in Ayurveda: Traditional Context & Heart-Wellness Questions',
+    excerpt: 'Learn about Arjuna (Terminalia arjuna), its traditional Ayurvedic context and the questions to ask before choosing an Arjuna supplement.',
+    date: 'June 18, 2025',
+    readTime: '6 min read',
+    author: 'Aarogya Seva Editorial Team',
+    image: IMG_ARJUNA,
+    category: 'Herbal Wellness',
+    sections: [
+      ['What is Arjuna?', 'Arjuna (Terminalia arjuna) is a tree traditionally used in Ayurvedic formulations. Its bark is the part most commonly discussed in classical Ayurvedic contexts and in modern supplements.'],
+      ['Traditional context', 'Arjuna has a long history in Ayurvedic practice, but traditional use should not be presented as proof that a supplement can diagnose, treat or prevent a medical condition.'],
+      ['What research questions are being studied?', 'Modern research has investigated Arjuna preparations in cardiovascular and related contexts, but study results depend on the preparation, dose, population and outcome measured. A consumer should not assume that research on one preparation applies to every product.'],
+      ['Choosing an Arjuna supplement', 'Check the botanical name, plant part, amount per serving, manufacturer details, batch information, directions and any available testing documentation. Be cautious with claims that promise to replace prescribed heart medicines or medical treatment.'],
+      ['If you have a heart condition', 'Do not use an Ayurvedic supplement as a substitute for prescribed care. Discuss any supplement with your doctor or another qualified healthcare professional, especially if you take cardiovascular medicines.'],
+    ],
+  },
 ];
 
 export const FEATURES = [
