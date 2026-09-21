@@ -1,0 +1,139 @@
+// Mock data for Aarogya Seva - with GENUINE brand assets
+
+const LOGO = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png';
+
+// Genuine product bottle photos
+const IMG_ARJUNA = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/9nl7yn4a_Arjuna.png';
+const IMG_PILES_GILOY = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png';
+const IMG_PILES_DIGUP = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png';
+const IMG_SHIL_ASHWA = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png';
+
+export const BRAND_LOGO = LOGO;
+
+export const CATEGORIES = [
+  { id: 'heart-health', name: 'Heart Health', slug: 'heart-health', image: IMG_ARJUNA, description: 'Arjuna & cardiovascular wellness' },
+  { id: 'immunity', name: 'Immunity Boosters', slug: 'immunity-boosters', image: IMG_PILES_GILOY, description: 'Giloy & natural defense' },
+  { id: 'digestion', name: 'Digestive Health', slug: 'digestive-health', image: IMG_PILES_DIGUP, description: 'Gut & digestive support' },
+  { id: 'mens-wellness', name: "Men's Wellness", slug: 'mens-wellness', image: IMG_SHIL_ASHWA, description: 'Strength, stamina, vitality' },
+  { id: 'stress-relief', name: 'Stress & Sleep', slug: 'stress-sleep', image: IMG_SHIL_ASHWA, description: 'Ashwagandha & calm mind' },
+  { id: 'specialty', name: 'Specialty Care', slug: 'specialty', image: IMG_PILES_GILOY, description: 'Targeted Ayurvedic solutions' },
+];
+
+export const PRODUCTS = [
+  {
+    id: 'arjuna-capsules', name: 'Arjuna Capsules', slug: 'arjuna-capsules', category: 'heart-health',
+    price: 899, mrp: 2999, discount: 70, rating: 4.7, reviews: 1284, inStock: true, isBestseller: true, isNew: false, badge: 'BESTSELLER',
+    shortDesc: 'Supports heart health naturally — 100% pure Arjuna bark extract, 1000mg per capsule.',
+    description: 'Aarogya Seva Arjuna Capsules are made from premium Terminalia arjuna bark, a legendary Ayurvedic herb documented in classical texts for cardiovascular support. Each capsule contains 1000mg of pure Arjuna extract to help maintain healthy cholesterol levels, support cardiac function and improve circulation.',
+    benefits: ['Supports healthy heart function', 'Helps maintain cholesterol balance', 'Improves circulation & stamina', 'Rich in antioxidants (Co-Q10 like effect)', '100% Natural, AYUSH-certified'],
+    ingredients: 'Arjuna (Terminalia arjuna) Bark Extract 1000mg, Vegetarian Capsule Shell', dosage: '1 capsule twice daily with warm water after meals.', images: [IMG_ARJUNA, IMG_ARJUNA],
+  },
+  {
+    id: 'shilajeet-caps', name: 'Shilajeet Capsules 1000mg', slug: 'shilajeet-capsules', category: 'mens-wellness',
+    price: 1399, mrp: 4998, discount: 72, rating: 4.8, reviews: 2156, inStock: true, isBestseller: true, isNew: false, badge: 'TOP SELLER',
+    shortDesc: 'Pure Himalayan Shilajeet — authentic, potent Rasayan for energy & vitality.',
+    description: 'Sourced from pristine Himalayan altitudes above 16,000 ft. Purified using traditional Ayurvedic Shodhana methods. Each capsule delivers 1000mg of pure Shilajeet resin extract loaded with 85+ minerals and fulvic acid.',
+    benefits: ['Boosts energy & stamina', 'Rich in 85+ trace minerals & fulvic acid', 'Enhances testosterone & vitality', 'Supports brain & cognitive health', 'Authentic Ayurvedic Rasayan'],
+    ingredients: 'Purified Shilajeet Extract 1000mg (100% pure)', dosage: '1 capsule daily with warm milk or water.', images: [IMG_SHIL_ASHWA, IMG_SHIL_ASHWA],
+  },
+  {
+    id: 'ashwagandha-caps', name: 'Ashwagandha Extract Capsules', slug: 'ashwagandha-extract-capsules', category: 'stress-relief',
+    price: 799, mrp: 2799, discount: 71, rating: 4.6, reviews: 1420, inStock: true, isBestseller: true, isNew: false, badge: 'BESTSELLER',
+    shortDesc: 'Relieves stress & anxiety, supports vitality, boosts strength & stamina.',
+    description: 'Aarogya Seva Ashwagandha Extract Capsules feature premium Withania somnifera root extract. Clinically proven adaptogen that helps reduce cortisol, calm the mind, improve sleep and boost overall strength.',
+    benefits: ['Helps relieve stress & anxiety', 'Supports vitality & energy', 'Boosts strength & stamina', 'Improves sleep quality', '100% Natural, Pure & Potent'],
+    ingredients: 'Ashwagandha Root Extract 1000mg, Vegetarian Capsule Shell', dosage: '1-2 capsules daily after meals.', images: [IMG_SHIL_ASHWA, IMG_SHIL_ASHWA],
+  },
+  {
+    id: 'giloy-extract', name: 'Giloy Extract Capsules', slug: 'giloy-extract-capsules', category: 'immunity',
+    price: 649, mrp: 2299, discount: 71, rating: 4.7, reviews: 986, inStock: true, isBestseller: true, isNew: false, badge: 'IMMUNITY',
+    shortDesc: 'Boosts immunity & stamina, supports liver health, detoxifies blood naturally.',
+    description: 'Giloy (Guduchi) is revered in Ayurveda as "Amrita" — the root of immortality. Our capsules contain concentrated Giloy stem extract that supports immunity, aids liver detoxification and helps manage healthy fever response.',
+    benefits: ['Boosts immunity & stamina', 'Supports liver health', 'Detoxifies blood naturally', 'Rich in antioxidants', 'Pure & Potent extract'],
+    ingredients: 'Giloy (Tinospora cordifolia) Stem Extract 1000mg', dosage: '1 capsule twice daily.', images: [IMG_PILES_GILOY, IMG_PILES_GILOY],
+  },
+  {
+    id: 'dig-up', name: 'DIG-UP Capsules', slug: 'dig-up-capsules', category: 'mens-wellness',
+    price: 849, mrp: 2998, discount: 72, rating: 4.5, reviews: 634, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
+    shortDesc: 'Natural male potency support — health, vitality & improved libido.',
+    description: 'A classical Ayurvedic formulation for men\u2019s wellness combining time-tested herbs to support natural male potency, health, vitality and libido. Non-habit forming, safe for daily use.',
+    benefits: ['Natural male potency support', 'Improves health & vitality', 'Supports libido naturally', '100% Ayurvedic formulation', 'Pure & Potent'],
+    ingredients: 'Proprietary Ayurvedic blend — Ashwagandha, Safed Musli, Shilajeet, Kaunch Beej, Gokshura', dosage: '1 capsule twice daily.', images: [IMG_PILES_DIGUP, IMG_PILES_DIGUP],
+  },
+  {
+    id: 'piles-norm', name: 'Piles Norm Capsules', slug: 'piles-norm-capsules', category: 'specialty',
+    price: 749, mrp: 2599, discount: 71, rating: 4.6, reviews: 512, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
+    shortDesc: 'Relief from hemorrhoids — reduces swelling & discomfort naturally.',
+    description: 'A gentle Ayurvedic formulation for the natural management of piles/hemorrhoids. Helps reduce swelling, discomfort and supports healthy anal-rectal function. 100% herbal, non-habit forming.',
+    benefits: ['Relief from hemorrhoids', 'Reduces swelling & discomfort', '100% Natural, Anti-Hemorrhoid herbs', 'Pure & Potent formulation', 'Safe for long-term use'],
+    ingredients: 'Nagkesar, Haritaki, Neem, Triphala, Rasont, Kutki', dosage: '1 capsule twice daily after meals.', images: [IMG_PILES_GILOY, IMG_PILES_DIGUP],
+  },
+  {
+    id: 'combo-shil-ashwa', name: 'Shilajeet + Ashwagandha Combo', slug: 'shilajeet-ashwagandha-combo', category: 'mens-wellness',
+    price: 1899, mrp: 6999, discount: 73, rating: 4.9, reviews: 428, inStock: true, isBestseller: true, isNew: false, badge: 'COMBO DEAL',
+    shortDesc: 'The ultimate men\u2019s vitality combo — Shilajeet + Ashwagandha at best price.',
+    description: 'Get the power of two legendary Ayurvedic Rasayans in one combo. Shilajeet for stamina and mineral replenishment + Ashwagandha for stress relief and strength. Perfect for busy men wanting complete wellness.',
+    benefits: ['Complete men\u2019s vitality support', 'Save \u20b91600 vs individual', 'Energy + Stress relief combo', '60 + 60 = 120 capsules', 'Trusted Aarogya Seva quality'],
+    ingredients: 'Shilajeet 1000mg + Ashwagandha 1000mg (60 caps each)', dosage: '1 of each daily.', images: [IMG_SHIL_ASHWA, IMG_SHIL_ASHWA],
+  },
+  {
+    id: 'combo-piles-digup', name: 'Piles Norm + DIG-UP Combo', slug: 'piles-digup-combo', category: 'specialty',
+    price: 1499, mrp: 5499, discount: 73, rating: 4.5, reviews: 218, inStock: true, isBestseller: false, isNew: true, badge: 'COMBO',
+    shortDesc: 'Complete wellness combo — men\u2019s health & digestive-anal comfort.',
+    description: 'Piles Norm + DIG-UP combo for men who want relief from hemorrhoids while also supporting overall male vitality and health.',
+    benefits: ['Two-in-one wellness pack', 'Save \u20b9500 combo pricing', 'Both 100% herbal', '120 capsules total', 'AYUSH-certified'],
+    ingredients: 'Piles Norm 1000mg + DIG-UP 1000mg (60 caps each)', dosage: '1 of each twice daily.', images: [IMG_PILES_DIGUP, IMG_PILES_DIGUP],
+  },
+];
+
+export const HERO_SLIDES = [
+  {
+    id: 1,
+    title: 'Aapki Sehat, Hamari Seva',
+    subtitle: 'Trusted Ayurvedic supplements crafted with 5000-year-old wisdom, made for modern India.',
+    cta: 'Shop Best Sellers', link: '/shop', tag: 'UP TO 72% OFF',
+    image: 'https://images.pexels.com/photos/18394078/pexels-photo-18394078.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  },
+  {
+    id: 2,
+    title: 'Heart Health, Naturally',
+    subtitle: 'Discover Arjuna Capsules — the classical Ayurvedic answer to cardiovascular wellness.',
+    cta: 'Try Arjuna Capsules', link: '/product/arjuna-capsules', tag: 'NEW LAUNCH',
+    image: 'https://images.unsplash.com/photo-1621176313593-89976c1f1bed?crop=entropy&cs=srgb&fm=jpg&w=1600&q=85',
+  },
+  {
+    id: 3,
+    title: 'Strength for Every Man',
+    subtitle: 'Shilajeet + Ashwagandha combo — vitality, stamina, stress relief in one pack.',
+    cta: 'Grab Combo Deal', link: '/product/shilajeet-ashwagandha-combo', tag: 'SAVE \u20b91600',
+    image: 'https://images.pexels.com/photos/12985803/pexels-photo-12985803.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  },
+];
+
+export const TESTIMONIALS = [
+  { id: 1, name: 'Rakesh Sharma', location: 'Delhi', rating: 5, text: 'Been using Ashwagandha for 3 months. My energy levels and sleep have transformed. Genuine product with authentic packaging.', product: 'Ashwagandha Extract', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rakesh' },
+  { id: 2, name: 'Priya Patel', location: 'Mumbai', rating: 5, text: 'Giloy tablets are amazing! My family catches fewer colds since we started. Delivery was fast and packaging excellent.', product: 'Giloy Extract Capsules', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Priya' },
+  { id: 3, name: 'Anil Verma', location: 'Bangalore', rating: 5, text: 'Shilajeet quality is top-notch. I can feel the difference in stamina during workouts. Will reorder for sure.', product: 'Shilajeet Capsules', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Anil' },
+  { id: 4, name: 'Meena Iyer', location: 'Chennai', rating: 5, text: 'Doctor recommended Arjuna for my father and results have been fantastic. His BP is well managed now.', product: 'Arjuna Capsules', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Meena' },
+];
+
+export const BLOG_POSTS = [
+  { id: 'ashwagandha-benefits', title: '7 Science-Backed Benefits of Ashwagandha', excerpt: 'Discover why this ancient herb is called the King of Ayurveda and how it transforms your body from the inside out.', date: 'July 3, 2025', readTime: '6 min read', author: 'Dr. Meera Kapoor', image: IMG_SHIL_ASHWA, category: 'Herbal Wellness' },
+  { id: 'shilajit-guide', title: 'The Complete Guide to Himalayan Shilajeet', excerpt: 'How this black mineral resin from the Himalayas became one of the most sought-after supplements in modern wellness.', date: 'June 25, 2025', readTime: '8 min read', author: 'Vaidya Ramesh', image: IMG_SHIL_ASHWA, category: 'Ancient Ayurveda' },
+  { id: 'arjuna-heart', title: 'Arjuna: The Ayurvedic Herb for a Strong Heart', excerpt: 'Simple wisdom from Ayurveda that can support cardiovascular health for generations.', date: 'June 18, 2025', readTime: '5 min read', author: 'Nutritionist Aditi', image: IMG_ARJUNA, category: 'Heart Wellness' },
+];
+
+export const FEATURES = [
+  { icon: 'Leaf', title: '100% Natural', desc: 'Sourced from certified organic farms' },
+  { icon: 'FlaskConical', title: 'Lab Tested', desc: 'Every batch triple-tested for purity' },
+  { icon: 'Truck', title: 'Free Shipping', desc: 'On all orders above \u20b9499 across India' },
+  { icon: 'ShieldCheck', title: 'AYUSH Certified', desc: 'Government approved formulations' },
+  { icon: 'BadgeIndianRupee', title: 'COD Available', desc: 'Cash on delivery pan-India' },
+  { icon: 'Undo2', title: 'Easy Returns', desc: '7-day hassle-free returns' },
+];
+
+export const ANNOUNCEMENT_MESSAGES = [
+  'Extra \u20b9400 OFF at checkout \u2022 Use code AAROGYA400',
+  'Sale is LIVE! Save min 50% on all orders + Free Shipping',
+  'Free consultation with Ayurvedic experts on orders above \u20b91499',
+];
