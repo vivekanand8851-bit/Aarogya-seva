@@ -3,9 +3,16 @@ import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../mock/mockData';
 import { useParams } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export function BlogListPage() {
   return (
+    <>
+      <SEO
+        title="Ayurveda & Wellness Blog"
+        description="Practical Ayurveda and wellness articles from Aarogya Seva covering Ashwagandha, Shilajit, digestion, daily wellness and herbal products."
+        url="/blog"
+      />
     <div className="bg-[#fbf7ec] py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
@@ -34,6 +41,7 @@ export function BlogListPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -42,8 +50,29 @@ export function BlogDetailPage() {
   const post = BLOG_POSTS.find((p) => p.id === id);
   if (!post) return <div className="py-16 text-center">Post not found</div>;
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    image: [post.image],
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { '@type': 'Organization', name: 'Aarogya Seva' },
+    publisher: { '@type': 'Organization', name: 'Aarogya Seva' },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://aarogya-seva.vercel.app/blog/${post.id}` },
+  };
+
   return (
-    <div className="bg-[#fbf7ec] py-10">
+    <>
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        image={post.image}
+        url={`/blog/${post.id}`}
+        jsonLd={articleJsonLd}
+      />
+      <div className="bg-[#fbf7ec] py-10">
       <div className="max-w-3xl mx-auto px-4">
         <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-[#0f3d2e] hover:text-[#1a5c40] mb-6"><ArrowLeft size={16} /> Back to Blog</Link>
         <span className="text-[11px] font-semibold tracking-widest text-[#8a7a5a] uppercase">{post.category}</span>
@@ -66,5 +95,6 @@ export function BlogDetailPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
