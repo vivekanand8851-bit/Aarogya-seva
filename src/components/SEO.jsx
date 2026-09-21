@@ -88,12 +88,7 @@ export const productJsonLd = (product) => ({
   image: product.images,
   sku: product.id,
   brand: { '@type': 'Brand', name: 'Aarogya Seva' },
-  aggregateRating: product.reviews > 0 ? {
-    '@type': 'AggregateRating',
-    ratingValue: product.rating,
-    reviewCount: product.reviews,
-  } : undefined,
-  offers: {
+  // Only publish review/rating structured data when reviews are backed by genuine, visible customer reviews.\n  offers: {
     '@type': 'Offer',
     url: `${DEFAULTS.siteUrl}/product/${product.slug}`,
     priceCurrency: 'INR',
