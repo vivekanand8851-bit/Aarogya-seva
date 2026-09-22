@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
+import SEO from '../components/SEO';
 
 export default function WishlistPage() {
   const { wishlist, getProduct } = useApp();
   const items = wishlist.map(getProduct).filter(Boolean);
 
   return (
+    <>
+      <SEO title="Wishlist | Aarogya Seva" description="Saved products" noindex />
     <div className="bg-[#fbf7ec] min-h-[60vh] py-10">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="font-serif text-3xl md:text-4xl text-[#0f3d2e]">My Wishlist</h1>
@@ -29,5 +32,6 @@ export default function WishlistPage() {
         )}
       </div>
     </div>
+    </>
   );
 }
