@@ -167,10 +167,10 @@ export const BLOG_POSTS = [
 ];
 
 export const FEATURES = [
-  { icon: 'Leaf', title: '100% Natural', desc: 'Sourced from certified organic farms' },
-  { icon: 'FlaskConical', title: 'Lab Tested', desc: 'Every batch triple-tested for purity' },
+  { icon: 'Leaf', title: 'Traditional Ingredients', desc: 'Product information shown clearly' },
+  { icon: 'FlaskConical', title: 'Quality Focus', desc: 'Clear ingredient and serving information' },
   { icon: 'Truck', title: 'Free Shipping', desc: 'On all orders above \u20b9499 across India' },
-  { icon: 'ShieldCheck', title: 'AYUSH Certified', desc: 'Government approved formulations' },
+  { icon: 'ShieldCheck', title: 'Ayurvedic Tradition', desc: 'Products rooted in traditional knowledge' },
   { icon: 'BadgeIndianRupee', title: 'COD Available', desc: 'Cash on delivery pan-India' },
   { icon: 'Undo2', title: 'Easy Returns', desc: '7-day hassle-free returns' },
 ];
