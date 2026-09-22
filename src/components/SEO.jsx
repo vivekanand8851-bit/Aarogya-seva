@@ -4,11 +4,11 @@ import { Helmet } from 'react-helmet-async';
 const DEFAULTS = {
   siteName: 'Aarogya Seva',
   siteUrl: 'https://aarogya-seva.vercel.app',
-  title: 'Aarogya Seva | Ayurvedic Wellness Products Online in India',
+  title: 'Aarogya Seva Ayurvedic Wellness | Products Online in India',
   description:
-    'Aarogya Seva offers Ayurvedic wellness products including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products, with online ordering across India.',
+    'Aarogya Seva is an Indian Ayurvedic wellness brand offering Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products online across India.',
   keywords:
-    'Aarogya Seva, Ayurvedic wellness products India, Ayurvedic products online, Ashwagandha online India, Shilajit online India, Giloy capsules, Arjuna capsules, digestive wellness, Ayurvedic wellness',
+    'Aarogya Seva, Aarogya Seva Ayurvedic, Ayurvedic wellness products India, Ayurvedic products online India, herbal supplements India, Ayurvedic capsules India, Ashwagandha capsules India, Ashwagandha online India, Shilajit capsules India, Shilajit online India, Giloy capsules India, Arjuna capsules India, digestive wellness products India, herbal products online India',
   image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png',
   type: 'website',
 };
@@ -45,6 +45,7 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <meta name="twitter:title" content={t} />
       <meta name="twitter:description" content={d} />
       <meta name="twitter:image" content={img} />
+      <meta name="twitter:image:alt" content={`${t} - Aarogya Seva`} />
 
       {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
     </Helmet>
@@ -55,6 +56,7 @@ export const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Aarogya Seva',
+  alternateName: 'Aarogya Seva Ayurvedic Wellness',
   url: DEFAULTS.siteUrl,
 };
 
@@ -81,6 +83,8 @@ export const organizationJsonLd = {
     areaServed: 'IN',
     availableLanguage: ['English', 'Hindi'],
   },
+  areaServed: 'IN',
+  knowsAbout: ['Ayurveda', 'Ashwagandha', 'Shilajit', 'Giloy', 'Arjuna', 'Herbal wellness products'],
   sameAs: [
     'https://www.facebook.com/profile.php?id=61574420841337',
     'https://www.instagram.com/aarogya.sevaa',
