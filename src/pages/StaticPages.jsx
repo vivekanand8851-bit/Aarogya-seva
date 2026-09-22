@@ -18,22 +18,22 @@ export function AboutPage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex items-center">
           <div>
             <span className="text-xs tracking-[4px] text-[#e6b64c] uppercase">About Us</span>
-            <h1 className="font-serif text-4xl md:text-6xl text-white mt-3">Rooted in Tradition,<br />Powered by Science</h1>
+            <h1 className="font-serif text-4xl md:text-6xl text-white mt-3">Rooted in Ayurvedic Tradition,<br />Clear About What We Offer</h1>
           </div>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 py-16">
-        <p className="text-lg text-[#3a3a3a] leading-relaxed">Aarogya Seva was born from a simple belief — that the healing wisdom of Ayurveda, refined over 5,000 years, deserves a place in every Indian home. In an age where synthetic supplements dominate, we are on a mission to bring back the purity and potency of nature's finest herbs.</p>
-        <p className="text-[#4a4a4a] leading-relaxed mt-4">Our products are formulated by experienced Vaidyas and manufactured in AYUSH-certified facilities. Every batch undergoes rigorous testing for purity, potency and safety. From sourcing raw herbs from certified organic farms to final packaging, we control every step to ensure you get authentic Ayurvedic supplements you can trust.</p>
+        <p className="text-lg text-[#3a3a3a] leading-relaxed">Aarogya Seva is built around a simple idea: make Ayurvedic wellness products easier to understand and compare. We focus on traditional herbal ingredients, clear product information and a straightforward online buying experience.</p>
+        <p className="text-[#4a4a4a] leading-relaxed mt-4">We aim to present each product with its ingredients, serving information and practical buying guidance clearly. Traditional use is described as traditional use, while modern health claims should be evaluated separately and responsibly.</p>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { icon: Leaf, num: '100%', label: 'Natural Ingredients' },
-          { icon: Users, num: '1L+', label: 'Happy Customers' },
-          { icon: Award, num: '50+', label: 'Ayurvedic Formulations' },
-          { icon: ShieldCheck, num: '15+', label: 'Certifications' },
+          { icon: Leaf, num: 'Ayurveda', label: 'Traditional knowledge' },
+          { icon: Users, num: 'Clear', label: 'Product information' },
+          { icon: Award, num: 'Online', label: 'Easy ordering' },
+          { icon: ShieldCheck, num: 'Support', label: 'Customer assistance' },
         ].map((s, i) => (
           <div key={i} className="bg-white border border-[#ede4cf] rounded-xl p-6 text-center">
             <s.icon size={28} className="text-[#e6b64c] mx-auto" />
@@ -50,9 +50,9 @@ export function AboutPage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { icon: Sparkles, title: 'Authenticity', desc: 'Every formulation is rooted in classical Ayurvedic texts and validated by experts.' },
-            { icon: ShieldCheck, title: 'Transparency', desc: 'Complete ingredient disclosure, third-party lab reports available on request.' },
-            { icon: Leaf, title: 'Sustainability', desc: 'Ethically sourced herbs, eco-conscious packaging and fair farmer partnerships.' },
+            { icon: Sparkles, title: 'Authenticity', desc: 'We respect traditional Ayurvedic knowledge while avoiding unsupported promises.' },
+            { icon: ShieldCheck, title: 'Transparency', desc: 'We aim to provide clear ingredient, serving and product information.' },
+            { icon: Leaf, title: 'Sustainability', desc: 'We continue to improve sourcing, packaging and product information as the brand grows.' },
           ].map((v, i) => (
             <div key={i} className="bg-white border border-[#ede4cf] rounded-xl p-6">
               <div className="w-12 h-12 rounded-full bg-[#faf1dc] flex items-center justify-center">
