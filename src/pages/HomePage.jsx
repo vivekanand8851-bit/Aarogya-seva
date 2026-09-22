@@ -7,15 +7,13 @@ import {
   ShieldCheck,
   BadgeIndianRupee,
   Undo2,
-  Quote,
-  Star,
   ArrowRight,
 } from 'lucide-react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
 import SEO, { organizationJsonLd, websiteJsonLd } from '../components/SEO';
 import { useApp } from '../context/AppContext';
-import { CATEGORIES, TESTIMONIALS, FEATURES, BLOG_POSTS } from '../mock/mockData';
+import { CATEGORIES, FEATURES, BLOG_POSTS } from '../mock/mockData';
 
 const ICONS = { Leaf, FlaskConical, Truck, ShieldCheck, BadgeIndianRupee, Undo2 };
 
