@@ -150,6 +150,8 @@ export default function CheckoutPage() {
   }
 
   return (
+    <>
+      <SEO title="Checkout | Aarogya Seva" description="Secure checkout" noindex />
     <div className="bg-[#fbf7ec] py-10">
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="font-serif text-3xl text-[#0f3d2e]">Checkout</h1>
@@ -275,5 +277,6 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
