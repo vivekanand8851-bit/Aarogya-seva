@@ -2,13 +2,13 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const DEFAULTS = {
-  siteName: 'Aarogya Seva Ayurveda',
+  siteName: 'Aarogya Seva',
   siteUrl: 'https://aarogya-seva.vercel.app',
-  title: 'Aarogya Seva Ayurveda | Ayurvedic Wellness Products in India',
+  title: 'Aarogya Seva | Ayurvedic Wellness Products in India',
   description:
-    'Aarogya Seva Ayurveda is the online home of Aarogya Seva Ayurvedic wellness products in India, including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.',
+    'Aarogya Seva is an Indian Ayurvedic wellness brand offering Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products online.',
   keywords:
-    'Aarogya Seva Ayurveda, Aarogya Seva Ayurvedic, Aarogya Seva India, Ayurvedic wellness products India, Ayurvedic products online India, herbal supplements India, Ayurvedic capsules India, Ashwagandha capsules India, Ashwagandha online India, Shilajit capsules India, Shilajit online India, Giloy capsules India, Arjuna capsules India, digestive wellness products India, herbal products online India',
+    'Aarogya Seva, Aarogya Seva Ayurveda, Aarogya Seva Ayurvedic, Aarogya Seva India, Aarogya Seva products, Aarogya Seva official, Ayurvedic wellness products India, Ayurvedic products online India, Ashwagandha capsules India, Shilajit capsules India, Giloy capsules India, Arjuna capsules India',
   image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png',
   type: 'website',
 };
@@ -55,8 +55,8 @@ export default function SEO({ title, description, keywords, image, type, url, js
 export const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Aarogya Seva Ayurveda',
-  alternateName: ['Aarogya Seva Ayurvedic Wellness', 'Aarogya Seva', 'aarogya-seva.vercel.app'],
+  name: 'Aarogya Seva',
+  alternateName: ['Aarogya Seva Ayurveda', 'Aarogya Seva Ayurvedic Wellness'],
   url: DEFAULTS.siteUrl,
 };
 
@@ -100,7 +100,6 @@ export const productJsonLd = (product) => ({
   image: product.images,
   sku: product.id,
   brand: { '@type': 'Brand', name: 'Aarogya Seva' },
-  // Only publish review/rating structured data when reviews are backed by genuine, visible customer reviews.
   offers: {
     '@type': 'Offer',
     url: `${DEFAULTS.siteUrl}/product/${product.slug}`,
