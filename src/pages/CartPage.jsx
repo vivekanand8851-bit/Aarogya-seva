@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash2, ShoppingBag, Tag, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import SEO from '../components/SEO';
 
 export default function CartPage() {
   const { cartItems, cartSubtotal, cartMrpTotal, cartSavings, updateQty, removeFromCart } = useApp();
