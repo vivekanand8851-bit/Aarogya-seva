@@ -33,7 +33,7 @@ FRONTEND_URLS = [u.strip().rstrip('/') for u in os.environ.get('FRONTEND_URL', '
 RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', '')
 RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', '')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@aarogyaseva.com')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'Aarogya@2025')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '')
 
 client = AsyncIOMotorClient(MONGO_URL)
 db = client[DB_NAME]
@@ -476,6 +476,8 @@ async def _seed_data():
     """Seed products & admin user if empty. Safe to call from startup."""
     # Admin user
     existing_admin = await db.users.find_one({"email": ADMIN_EMAIL})
+    if not ADMIN_PASSWORD and not existing_admin:
+        raise RuntimeError("ADMIN_PASSWORD must be configured before creating the admin account.")
     if not existing_admin:
         await db.users.insert_one({
             "id": make_id(),
