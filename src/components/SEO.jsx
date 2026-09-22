@@ -13,7 +13,7 @@ const DEFAULTS = {
   type: 'website',
 };
 
-export default function SEO({ title, description, keywords, image, type, url, jsonLd }) {
+export default function SEO({ title, description, keywords, image, type, url, jsonLd, noindex = false }) {
   const t = title ? `${title} | ${DEFAULTS.siteName}` : DEFAULTS.title;
   const d = description || DEFAULTS.description;
   const k = keywords || DEFAULTS.keywords;
@@ -26,7 +26,7 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <title>{t}</title>
       <meta name="description" content={d} />
       <meta name="keywords" content={k} />
-      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       <meta name="author" content="Aarogya Seva" />
       <meta name="language" content="en-IN" />
       <meta name="geo.region" content="IN" />
@@ -50,6 +50,13 @@ export default function SEO({ title, description, keywords, image, type, url, js
     </Helmet>
   );
 }
+
+export const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Aarogya Seva',
+  url: DEFAULTS.siteUrl,
+};
 
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
