@@ -7,6 +7,7 @@ import {
 import { useApp } from '../context/AppContext';
 import { api } from '../lib/api';
 import { toast } from '../hooks/use-toast';
+import SEO from '../components/SEO';
 
 const STATUSES = ['placed', 'packed', 'shipped', 'out_for_delivery', 'delivered', 'cancelled'];
 const CATEGORIES = [
@@ -89,6 +90,8 @@ function ProductFormModal({ product, onClose, onSaved }) {
   };
 
   return (
+    <>
+      <SEO title="Admin | Aarogya Seva" description="Admin dashboard" noindex />
     <div className="fixed inset-0 z-50 bg-black/60 flex items-start justify-center overflow-y-auto py-8 px-4" onClick={onClose}>
       <div className="bg-white rounded-2xl max-w-3xl w-full my-8" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between p-5 border-b border-[#ede4cf] sticky top-0 bg-white rounded-t-2xl">
@@ -594,5 +597,6 @@ export default function AdminPage() {
       )}
       {detailOrder && <OrderDetailModal order={detailOrder} onClose={() => setDetailOrder(null)} onStatusUpdate={updateStatus} />}
     </div>
+    </>
   );
 }
