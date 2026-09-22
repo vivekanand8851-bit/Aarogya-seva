@@ -41,7 +41,8 @@ export default function ShopPage() {
       <SEO
         title={q ? `Search: ${q}` : (activeCategory === 'all' ? 'All Products' : (CATEGORIES.find((c) => c.id === activeCategory)?.name || 'Shop'))}
         description={`Shop ${activeCategory === 'all' ? 'authentic Ayurvedic supplements' : (CATEGORIES.find((c) => c.id === activeCategory)?.description || 'Ayurvedic products')} online at Aarogya Seva. Best prices, free shipping, AYUSH certified.`}
-        url={`/shop${activeCategory !== 'all' ? '?category=' + activeCategory : ''}`}
+        url="/shop"
+        noindex={Boolean(q) || activeCategory !== "all"}
       />
       <div className="bg-white border-b border-[#ede4cf]">
         <div className="max-w-7xl mx-auto px-4 py-8">
