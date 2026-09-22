@@ -71,17 +71,17 @@ export const PRODUCTS = [
   {
     id: 'combo-shil-ashwa', name: 'Shilajeet + Ashwagandha Combo', slug: 'shilajeet-ashwagandha-combo', category: 'mens-wellness',
     price: 1899, mrp: 6999, discount: 73, rating: 0, reviews: 0, inStock: true, isBestseller: true, isNew: false, badge: 'COMBO DEAL',
-    shortDesc: 'The ultimate men\u2019s vitality combo — Shilajeet + Ashwagandha at best price.',
+    shortDesc: 'Shilajeet + Ashwagandha combo for traditional Ayurvedic wellness and everyday vitality.',
     description: 'This combo pairs purified Shilajeet extract with Ashwagandha root extract. Both ingredients have a history of traditional Ayurvedic use; product claims can vary by preparation, so review the label and serving directions.',
-    benefits: ['Complete men\u2019s vitality support', 'Save \u20b91600 vs individual', 'Energy + Stress relief combo', '60 + 60 = 120 capsules', 'Trusted Aarogya Seva quality'],
+    benefits: ['Two traditional Ayurvedic ingredients', 'Supports everyday wellness', 'Shilajeet + Ashwagandha combination', 'Convenient combo pack', 'Clear serving information'],
     ingredients: 'Shilajeet 1000mg + Ashwagandha 1000mg (60 caps each)', dosage: '1 of each daily.', images: [IMG_SHIL_ASHWA, IMG_SHIL_ASHWA],
   },
   {
     id: 'combo-piles-digup', name: 'Piles Norm + DIG-UP Combo', slug: 'piles-digup-combo', category: 'specialty',
     price: 1499, mrp: 5499, discount: 73, rating: 0, reviews: 0, inStock: true, isBestseller: false, isNew: true, badge: 'COMBO',
-    shortDesc: 'Complete wellness combo — men\u2019s health & digestive-anal comfort.',
+    shortDesc: 'Piles Norm + DIG-UP combo for general digestive and men's wellness.',
     description: 'This combo pairs two Ayurvedic herbal formulations for general wellness. Review each product's ingredients and label directions before use.',
-    benefits: ['Two-in-one wellness pack', 'Save \u20b9500 combo pricing', 'Both 100% herbal', '120 capsules total', 'AYUSH-certified'],
+    benefits: ['Two Ayurvedic herbal formulations', 'General wellness support', 'Convenient combo pack', 'Clear ingredient information', 'Use according to label directions'],
     ingredients: 'Piles Norm 1000mg + DIG-UP 1000mg (60 caps each)', dosage: '1 of each twice daily.', images: [IMG_PILES_DIGUP, IMG_PILES_DIGUP],
   },
 ];
@@ -110,12 +110,7 @@ export const HERO_SLIDES = [
   },
 ];
 
-export const TESTIMONIALS = [
-  { id: 1, name: 'Rakesh Sharma', location: 'Delhi', rating: 5, text: 'Been using Ashwagandha for 3 months. My energy levels and sleep have transformed. Genuine product with authentic packaging.', product: 'Ashwagandha Extract', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rakesh' },
-  { id: 2, name: 'Priya Patel', location: 'Mumbai', rating: 5, text: 'Giloy tablets are amazing! My family catches fewer colds since we started. Delivery was fast and packaging excellent.', product: 'Giloy Extract Capsules', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Priya' },
-  { id: 3, name: 'Anil Verma', location: 'Bangalore', rating: 5, text: 'Shilajeet quality is top-notch. I can feel the difference in stamina during workouts. Will reorder for sure.', product: 'Shilajeet Capsules', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Anil' },
-  { id: 4, name: 'Meena Iyer', location: 'Chennai', rating: 5, text: 'Doctor recommended Arjuna for my father and results have been fantastic. His BP is well managed now.', product: 'Arjuna Capsules', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Meena' },
-];
+export const TESTIMONIALS = [];
 
 export const BLOG_POSTS = [
   {
