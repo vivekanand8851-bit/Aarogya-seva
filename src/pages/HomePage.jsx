@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
-import SEO, { organizationJsonLd } from '../components/SEO';
+import SEO, { organizationJsonLd, websiteJsonLd } from '../components/SEO';
 import { useApp } from '../context/AppContext';
 import { CATEGORIES, TESTIMONIALS, FEATURES, BLOG_POSTS } from '../mock/mockData';
 
@@ -30,7 +30,7 @@ export default function HomePage() {
         title="Ayurvedic Wellness Products Online in India"
         description="Explore Ayurvedic wellness products from Aarogya Seva, including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products. Shop online across India."
         url="/"
-        jsonLd={organizationJsonLd}
+        jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
       <Hero />
 
