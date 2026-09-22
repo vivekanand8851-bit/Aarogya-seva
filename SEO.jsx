@@ -2,19 +2,19 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const DEFAULTS = {
-  siteName: 'Aarogya Seva',
-  siteUrl: 'https://www.aarogyasewa.com',
-  title: 'Aarogya Seva - Buy Authentic Ayurvedic Supplements Online in India',
+  siteName: 'Aarogya Seva Ayurveda',
+  siteUrl: 'https://aarogya-seva.vercel.app',
+  title: 'Aarogya Seva Ayurveda | Ayurvedic Wellness Products in India',
   description:
-    'Buy premium Ayurvedic supplements online at Aarogya Seva - Ashwagandha, Shilajit, Giloy, Arjuna capsules & more. 100% natural, AYUSH certified, Free shipping, COD available across India. Aapki Sehat, Hamari Seva.',
+    'Aarogya Seva Ayurveda is the online home of Aarogya Seva Ayurvedic wellness products in India, including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.',
   keywords:
-    'ayurvedic supplements India, buy ashwagandha online, shilajit capsules India, giloy tablets, arjuna capsules heart health, authentic ayurveda, natural immunity booster, herbal supplements, ayush certified, aarogya seva, ayurvedic medicine online, digestive health ayurveda, mens wellness capsules, stress relief supplements, ayurvedic tablets India, ayurvedic doctor consultation',
+    'Aarogya Seva Ayurveda, Aarogya Seva Ayurvedic, Aarogya Seva India, Ayurvedic wellness products India, Ayurvedic products online India, herbal supplements India, Ayurvedic capsules India, Ashwagandha capsules India, Ashwagandha online India, Shilajit capsules India, Shilajit online India, Giloy capsules India, Arjuna capsules India, digestive wellness products India, herbal products online India',
   image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png',
   type: 'website',
 };
 
-export default function SEO({ title, description, keywords, image, type, url, jsonLd }) {
-  const t = title ? `${title} | ${DEFAULTS.siteName}` : DEFAULTS.title;
+export default function SEO({ title, description, keywords, image, type, url, jsonLd, noindex = false }) {
+  const t = title ? (title.includes(DEFAULTS.siteName) ? title : `${title} | ${DEFAULTS.siteName}`) : DEFAULTS.title;
   const d = description || DEFAULTS.description;
   const k = keywords || DEFAULTS.keywords;
   const img = image || DEFAULTS.image;
@@ -26,14 +26,13 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <title>{t}</title>
       <meta name="description" content={d} />
       <meta name="keywords" content={k} />
-      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
       <meta name="author" content="Aarogya Seva" />
       <meta name="language" content="en-IN" />
       <meta name="geo.region" content="IN" />
       <meta name="geo.placename" content="India" />
       <link rel="canonical" href={u} />
 
-      {/* Open Graph */}
       <meta property="og:type" content={tp} />
       <meta property="og:site_name" content={DEFAULTS.siteName} />
       <meta property="og:title" content={t} />
@@ -42,22 +41,30 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <meta property="og:url" content={u} />
       <meta property="og:locale" content="en_IN" />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={t} />
       <meta name="twitter:description" content={d} />
       <meta name="twitter:image" content={img} />
+      <meta name="twitter:image:alt" content={`${t} - Aarogya Seva`} />
 
       {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
     </Helmet>
   );
 }
 
+export const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Aarogya Seva Ayurveda',
+  alternateName: ['Aarogya Seva Ayurvedic Wellness', 'Aarogya Seva', 'aarogya-seva.vercel.app'],
+  url: DEFAULTS.siteUrl,
+};
+
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'OnlineStore',
   name: 'Aarogya Seva',
-  legalName: 'Aarogya Seva',
+  alternateName: 'Aarogya Seva Ayurveda',
   url: DEFAULTS.siteUrl,
   logo: DEFAULTS.image,
   description: DEFAULTS.description,
@@ -77,6 +84,8 @@ export const organizationJsonLd = {
     areaServed: 'IN',
     availableLanguage: ['English', 'Hindi'],
   },
+  areaServed: 'IN',
+  knowsAbout: ['Ayurveda', 'Ashwagandha', 'Shilajit', 'Giloy', 'Arjuna', 'Herbal wellness products'],
   sameAs: [
     'https://www.facebook.com/profile.php?id=61574420841337',
     'https://www.instagram.com/aarogya.sevaa',
@@ -91,11 +100,6 @@ export const productJsonLd = (product) => ({
   image: product.images,
   sku: product.id,
   brand: { '@type': 'Brand', name: 'Aarogya Seva' },
-  aggregateRating: product.reviews > 0 ? {
-    '@type': 'AggregateRating',
-    ratingValue: product.rating,
-    reviewCount: product.reviews,
-  } : undefined,
   offers: {
     '@type': 'Offer',
     url: `${DEFAULTS.siteUrl}/product/${product.slug}`,
