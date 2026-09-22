@@ -25,7 +25,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
-            <Route path="/ayurvedic" element={<HerbalLandingPage type="ashwagandha" />} />
+            <Route path="/ayurvedic" element={<HerbalLandingPage type="hub" />} />
             <Route path="/ayurvedic/ashwagandha" element={<HerbalLandingPage type="ashwagandha" />} />
             <Route path="/ayurvedic/shilajit" element={<HerbalLandingPage type="shilajit" />} />
             <Route path="/product/:slug" element={<ProductDetailPage />} />
