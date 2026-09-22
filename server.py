@@ -26,7 +26,10 @@ load_dotenv(ROOT_DIR / '.env')
 # Config
 MONGO_URL = os.environ['MONGO_URL']
 DB_NAME = os.environ['DB_NAME']
-JWT_SECRET = os.environ.get('JWT_SECRET', 'change-me')
+JWT_SECRET = os.environ.get('JWT_SECRET', '')
+if len(JWT_SECRET.encode('utf-8')) < 32:
+    raise RuntimeError('JWT_SECRET must be configured with at least 32 bytes.')
+FRONTEND_URLS = [u.strip().rstrip('/') for u in os.environ.get('FRONTEND_URL', 'http://localhost:3000').split(',') if u.strip()]
 RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', '')
 RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', '')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@aarogyaseva.com')
@@ -241,13 +244,21 @@ async def delete_product(pid: str, admin=Depends(get_admin)):
 # ============ ORDERS & PAYMENT ============
 async def _calc_totals(items: List[CartItem], points_redeemed: int = 0):
     """Compute totals from DB prices (never trust client)."""
+    if not items:
+        raise HTTPException(status_code=400, detail='Cart is empty')
+    if points_redeemed < 0:
+        raise HTTPException(status_code=400, detail='Invalid reward points')
     line_items = []
     subtotal = 0
     mrp_total = 0
     for c in items:
+        if c.qty < 1 or c.qty > 100:
+            raise HTTPException(status_code=400, detail='Invalid quantity')
         p = await db.products.find_one({"id": c.productId})
         if not p:
             raise HTTPException(status_code=400, detail=f"Product {c.productId} not found")
+        if p.get("stock") is not None and c.qty > int(p.get("stock", 0)):
+            raise HTTPException(status_code=400, detail=f"Only {int(p.get('stock', 0))} units available for {p['name']}")
         line = {
             "productId": p["id"],
             "name": p["name"],
@@ -286,6 +297,8 @@ async def preview_order(body: OrderCreate, user=Depends(get_current_user)):
 
 @api.post("/orders")
 async def create_order(body: OrderCreate, user=Depends(get_current_user)):
+    if body.paymentMethod not in {"cod", "razorpay"}:
+        raise HTTPException(status_code=400, detail="Invalid payment method")
     if body.pointsRedeemed > user.get("rewardPoints", 0):
         raise HTTPException(status_code=400, detail="Insufficient reward points")
     totals = await _calc_totals(body.items, body.pointsRedeemed)
@@ -355,6 +368,11 @@ async def verify_payment(body: PaymentVerify, user=Depends(get_current_user)):
     order = await db.orders.find_one({"id": body.orderId, "userId": user["id"]})
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
+
+    if order.get("paymentMethod") != "razorpay" or order.get("razorpayOrderId") != body.razorpay_order_id:
+        raise HTTPException(status_code=400, detail="Payment order mismatch")
+    if order.get("paymentStatus") == "paid":
+        raise HTTPException(status_code=400, detail="Payment already verified")
 
     # Verify signature
     msg = f"{body.razorpay_order_id}|{body.razorpay_payment_id}"
@@ -454,9 +472,8 @@ async def update_order_status(order_id: str, status: str = Query(...), admin=Dep
 
 
 # ============ SEED DATA ============
-@api.post("/seed")
-async def seed_data():
-    """Seed products & admin user if empty. Safe to call multiple times."""
+async def _seed_data():
+    """Seed products & admin user if empty. Safe to call from startup."""
     # Admin user
     existing_admin = await db.users.find_one({"email": ADMIN_EMAIL})
     if not existing_admin:
@@ -496,8 +513,49 @@ async def seed_data():
     return {"ok": True, "seeded": len(seed_products)}
 
 
+@api.post("/seed")
+async def seed_data(admin=Depends(get_admin)):
+    """Admin-only manual seed endpoint."""
+    return await _seed_data()
+
+
+
+
+# ============ DATA HARDENING ============
+LEGACY_PRODUCT_COPY = {
+        "arjuna-capsules": {"shortDesc": "Arjuna bark extract for traditional Ayurvedic wellness and everyday vitality.", "description": "Aarogya Seva Arjuna Capsules use Terminalia arjuna bark extract, an herb with a long history of use in Ayurveda. Product information should be read together with the label, ingredient details and recommended directions.", "benefits": ["Traditional Ayurvedic herbal ingredient","Supports a balanced wellness routine","Made with Arjuna bark extract","Vegetarian capsule","Clear ingredient and dosage information"]},
+        "shilajeet-capsules": {"shortDesc": "Purified Shilajeet extract for traditional Ayurvedic vitality and everyday wellness.", "description": "Aarogya Seva Shilajeet Capsules contain purified Shilajeet extract. Shilajeet has a long history of traditional Ayurvedic use; modern supplement claims can vary by preparation, so compare the ingredient amount, processing and label information.", "benefits": ["Traditional Ayurvedic ingredient","Supports everyday vitality","Purified extract","Vegetarian capsule","Clear serving information"]},
+        "ashwagandha-extract-capsules": {"shortDesc": "Ashwagandha root extract for traditional Ayurvedic wellness and a balanced daily routine.", "description": "Aarogya Seva Ashwagandha Extract Capsules contain Withania somnifera root extract. Ashwagandha has a long history of use in Ayurveda; evidence and outcomes can vary by preparation and person.", "benefits": ["Traditional Ayurvedic herb","Supports everyday wellness","Root extract","Vegetarian capsule","Clear serving information"]},
+        "giloy-extract-capsules": {"shortDesc": "Giloy (Guduchi) extract for traditional Ayurvedic wellness and everyday vitality.", "description": "Aarogya Seva Giloy Extract Capsules contain Giloy (Guduchi) stem extract, an herb traditionally used in Ayurveda. Product use should follow the label and should not be treated as a substitute for medical care.", "benefits": ["Traditional Ayurvedic herb","Supports everyday wellness","Stem extract","Vegetarian capsule","Clear ingredient information"]},
+        "dig-up-capsules": {"shortDesc": "Ayurvedic herbal blend formulated for men's general wellness and vitality.", "description": "DIG-UP is an Ayurvedic herbal blend for men's general wellness. The formulation combines commonly used Ayurvedic herbs; individual ingredients, serving size and label directions should be reviewed before use.", "benefits": ["Men's general wellness support","Ayurvedic herbal blend","Supports a balanced daily routine","Vegetarian capsule","Clear ingredient information"]},
+        "piles-norm-capsules": {"shortDesc": "Ayurvedic herbal formulation for digestive and personal wellness.", "description": "Piles Norm is an Ayurvedic herbal formulation. Product information and directions should be read carefully, and persistent or concerning symptoms should be discussed with a qualified healthcare professional.", "benefits": ["Ayurvedic herbal formulation","Supports digestive and personal wellness","Plant-based ingredients","Clear ingredient information","Use according to label directions"]},
+        "shilajeet-ashwagandha-combo": {"shortDesc": "Shilajeet + Ashwagandha combo for traditional Ayurvedic wellness and everyday vitality.", "description": "This combo pairs purified Shilajeet extract with Ashwagandha root extract. Both ingredients have a history of traditional Ayurvedic use; product claims can vary by preparation, so review the label and serving directions.", "benefits": ["Two traditional Ayurvedic ingredients","Supports everyday wellness","Shilajeet + Ashwagandha combination","Convenient combo pack","Clear serving information"]},
+        "piles-digup-combo": {"shortDesc": "Piles Norm + DIG-UP combo for general digestive and men's wellness.", "description": "This combo pairs two Ayurvedic herbal formulations for general wellness. Review each product's ingredients and label directions before use.", "benefits": ["Two Ayurvedic herbal formulations","General wellness support","Convenient combo pack","Clear ingredient information","Use according to label directions"]},
+}
+
+async def harden_legacy_product_copy():
+    marker = await db.settings.find_one({"key": "legacy_product_copy_hardened_v1"})
+    if marker:
+        return
+    for slug, copy in LEGACY_PRODUCT_COPY.items():
+        await db.products.update_one(
+            {"slug": slug},
+            {"$set": {**copy, "rating": 0, "reviews": 0}},
+        )
+    await db.settings.update_one(
+        {"key": "legacy_product_copy_hardened_v1"},
+        {"$set": {"key": "legacy_product_copy_hardened_v1", "appliedAt": now_iso()}},
+        upsert=True,
+    )
+
 app.include_router(api)
-app.add_middleware(CORSMiddleware, allow_credentials=True, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=FRONTEND_URLS,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -510,8 +568,9 @@ async def startup_seed():
         count = await db.products.count_documents({})
         admin = await db.users.find_one({"email": ADMIN_EMAIL})
         if count == 0 or not admin:
-            await seed_data()
+            await _seed_data()
             logger.info("Seed complete")
+        await harden_legacy_product_copy()
     except Exception as e:
         logger.error(f"Startup seed failed: {e}")
 
