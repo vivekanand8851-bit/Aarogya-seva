@@ -80,7 +80,7 @@ export const PRODUCTS = [
     id: 'combo-piles-digup', name: 'Piles Norm + DIG-UP Combo', slug: 'piles-digup-combo', category: 'specialty',
     price: 1499, mrp: 5499, discount: 73, rating: 0, reviews: 0, inStock: true, isBestseller: false, isNew: true, badge: 'COMBO',
     shortDesc: 'Complete wellness combo — men\u2019s health & digestive-anal comfort.',
-    description: 'This combo pairs two Ayurvedic herbal formulations for general wellness. Review each product's ingredients and label directions before use.',
+    description: 'This combo pairs two Ayurvedic herbal formulations for general wellness. Review each product\u2019s ingredients and label directions before use.',
     benefits: ['Two-in-one wellness pack', 'Save \u20b9500 combo pricing', 'Both 100% herbal', '120 capsules total', 'AYUSH-certified'],
     ingredients: 'Piles Norm 1000mg + DIG-UP 1000mg (60 caps each)', dosage: '1 of each twice daily.', images: [IMG_PILES_DIGUP, IMG_PILES_DIGUP],
   },
