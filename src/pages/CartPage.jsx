@@ -28,6 +28,8 @@ export default function CartPage() {
   const total = cartSubtotal + shipping;
 
   return (
+    <>
+      <SEO title="Cart | Aarogya Seva" description="Shopping cart" noindex />
     <div className="bg-[#fbf7ec] py-10">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="font-serif text-3xl md:text-4xl text-[#0f3d2e]">Your Bag ({cartItems.length})</h1>
@@ -85,5 +87,6 @@ export default function CartPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
