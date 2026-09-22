@@ -69,6 +69,14 @@ export default function HerbalLandingPage({ type }) {
       <SEO
         title={data.title}
         description={data.description}
+        keywords={
+          type === 'hub'
+            ? 'Aarogya Seva Ayurvedic, Ayurvedic wellness products India, Ayurvedic products online India, herbal supplements India, Ashwagandha, Shilajit, Giloy, Arjuna'
+            : type === 'ashwagandha'
+              ? 'Ashwagandha capsules India, Ashwagandha online India, Ashwagandha root extract, Ayurvedic Ashwagandha supplement, herbal wellness India'
+              : 'Shilajit capsules India, Shilajit online India, Shilajeet capsules, purified Shilajit supplement, Ayurvedic Shilajit'
+            : 'Ayurvedic wellness products India'
+        }
         url={`/ayurvedic/${type}`}
         image={data.image}
         jsonLd={breadcrumbJsonLd(type, data.title)}
