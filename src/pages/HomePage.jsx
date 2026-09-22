@@ -82,6 +82,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Brand relevance */}
+      <section className="max-w-7xl mx-auto px-4 pb-10">
+        <div className="bg-white border border-[#ede4cf] rounded-2xl p-6 md:p-8">
+          <span className="text-xs tracking-[3px] text-[#8a7a5a] uppercase">Aarogya Seva Ayurvedic Wellness</span>
+          <h2 className="font-serif text-2xl md:text-3xl text-[#0f3d2e] mt-2">Ayurvedic & Herbal Wellness Products in India</h2>
+          <p className="text-[#4a4a4a] leading-relaxed mt-3 max-w-4xl">
+            Explore Ayurvedic wellness products online in India, including Ashwagandha capsules, Shilajit capsules, Giloy capsules, Arjuna capsules and digestive wellness products. Aarogya Seva focuses on traditional herbal ingredients, clear labels and straightforward product information so you can compare products before buying.
+          </p>
+          <div className="flex flex-wrap gap-3 mt-5">
+            <Link to="/ayurvedic/ashwagandha" className="text-sm font-semibold text-[#0f3d2e] underline">Ashwagandha guide</Link>
+            <Link to="/ayurvedic/shilajit" className="text-sm font-semibold text-[#0f3d2e] underline">Shilajit guide</Link>
+            <Link to="/shop" className="text-sm font-semibold text-[#0f3d2e] underline">Ayurvedic products</Link>
+          </div>
+        </div>
+      </section>
+
       {/* Bestsellers */}
       <section className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-end justify-between mb-8">
