@@ -4,6 +4,20 @@ import SEO from '../components/SEO';
 import { ArrowRight, ShieldCheck, Leaf, BookOpen } from 'lucide-react';
 
 const DATA = {
+  hub: {
+    title: 'Aarogya Seva Ayurvedic Wellness Products & Herbal Guides',
+    description: 'Explore Aarogya Seva Ayurvedic wellness products in India, with practical guides for Ashwagandha, Shilajit and herbal supplement buying.',
+    image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
+    product: '/shop',
+    productName: 'Explore Ayurvedic Products',
+    intro: 'Aarogya Seva is an Indian Ayurvedic wellness brand focused on traditional herbal ingredients, clear product information and a straightforward online shopping experience.',
+    sections: [
+      ['Ayurvedic wellness products in India', 'Explore herbal wellness products including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products. Compare ingredients, serving information and label details before buying.'],
+      ['Ashwagandha and Shilajit guides', 'Learn about traditional Ayurvedic context, common supplement formats and practical quality checks before choosing a product.'],
+      ['How to choose a herbal supplement', 'Look for transparent ingredient information, botanical names, serving size, manufacturer details, batch information and clear directions. Avoid choosing a product solely because of exaggerated health promises or discounts.'],
+      ['About Aarogya Seva', 'Use the About, Contact, Policies and individual product pages to verify the brand, product information, customer support and ordering details.'],
+    ],
+  },
   ashwagandha: {
     title: 'Ashwagandha: Uses, Traditional Ayurvedic Context & Buying Guide',
     description: 'Learn about Ashwagandha, its traditional Ayurvedic context, common supplement formats, quality checks and practical questions to consider before buying.',
@@ -61,7 +75,7 @@ export default function HerbalLandingPage({ type }) {
       />
 
       <div className="max-w-6xl mx-auto px-4 py-4 text-xs text-[#8a7a5a]">
-        <Link to="/">Home</Link> / <Link to="/shop">Ayurvedic Wellness Guides</Link> / <span className="text-[#0f3d2e]">{data.title}</span>
+        <Link to="/">Home</Link> / <Link to="/ayurvedic">Ayurvedic Wellness Guides</Link> / <span className="text-[#0f3d2e]">{data.title}</span>
       </div>
 
       <header className="max-w-6xl mx-auto px-4 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
@@ -74,7 +88,7 @@ export default function HerbalLandingPage({ type }) {
           </Link>
         </div>
         <div className="bg-white rounded-2xl border border-[#ede4cf] p-8 flex items-center justify-center">
-          <img src={data.image} alt={type === 'ashwagandha' ? 'Ashwagandha wellness product' : 'Shilajit and Ashwagandha wellness products'} className="max-h-80 object-contain" />
+          <img src={data.image} alt={type === 'ashwagandha' ? 'Ashwagandha wellness product' : type === 'shilajit' ? 'Shilajit and Ashwagandha wellness products' : 'Aarogya Seva Ayurvedic wellness products'} className="max-h-80 object-contain" />
         </div>
       </header>
 
