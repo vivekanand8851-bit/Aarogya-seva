@@ -35,9 +35,15 @@ export default function Hero() {
             <span className="inline-block bg-[#e6b64c] text-[#0f3d2e] font-bold text-xs tracking-widest px-3 py-1.5 rounded">
               {slide.tag}
             </span>
-            <h1 className="font-serif text-4xl md:text-6xl font-semibold text-white mt-5 leading-[1.05]">
-              {slide.title}
-            </h1>
+            {idx === 0 ? (
+              <h1 className="font-serif text-4xl md:text-6xl font-semibold text-white mt-5 leading-[1.05]">
+                Aarogya Seva — {slide.title}
+              </h1>
+            ) : (
+              <h2 className="font-serif text-4xl md:text-6xl font-semibold text-white mt-5 leading-[1.05]">
+                {slide.title}
+              </h2>
+            )}
             <p className="text-[#e8dcc0] mt-5 text-base md:text-lg leading-relaxed max-w-md">
               {slide.subtitle}
             </p>
