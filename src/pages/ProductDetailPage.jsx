@@ -36,6 +36,16 @@ export default function ProductDetailPage() {
     );
   }
 
+  const keywordMap = {
+    'arjuna-capsules': 'Arjuna capsules India, Arjuna herbal capsules, Arjuna Ayurvedic product, Arjuna wellness capsules',
+    'shilajeet-capsules': 'Shilajit capsules India, Shilajeet capsules India, purified Shilajit supplement, Ayurvedic Shilajit',
+    'ashwagandha-extract-capsules': 'Ashwagandha capsules India, Ashwagandha root extract, Ayurvedic Ashwagandha supplement, Ashwagandha wellness',
+    'giloy-extract-capsules': 'Giloy capsules India, Guduchi capsules, Ayurvedic Giloy supplement, Giloy herbal product',
+    'dig-up-capsules': 'Ayurvedic men wellness capsules India, herbal wellness capsules for men, DIG-UP capsules',
+    'piles-norm-capsules': 'Ayurvedic digestive wellness capsules India, herbal digestive wellness, Piles Norm capsules',
+    'shilajeet-ashwagandha-combo': 'Shilajit Ashwagandha combo India, Shilajeet Ashwagandha capsules, Ayurvedic wellness combo',
+    'piles-digup-combo': 'Ayurvedic wellness combo India, digestive wellness combo, herbal wellness combo',
+  };
   const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const wished = isInWishlist(product.id);
 
@@ -59,6 +69,7 @@ export default function ProductDetailPage() {
       <SEO
         title={product.name}
         description={product.shortDesc}
+        keywords={`Aarogya Seva, ${keywordMap[product.slug] || 'Ayurvedic wellness products India, herbal supplements India'}`}
         image={product.images?.[0]}
         type="product"
         url={`/product/${product.slug}`}
