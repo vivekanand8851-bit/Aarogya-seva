@@ -7,15 +7,13 @@ import {
   ShieldCheck,
   BadgeIndianRupee,
   Undo2,
-  Quote,
-  Star,
   ArrowRight,
 } from 'lucide-react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
 import SEO, { organizationJsonLd, websiteJsonLd } from '../components/SEO';
 import { useApp } from '../context/AppContext';
-import { CATEGORIES, TESTIMONIALS, FEATURES, BLOG_POSTS } from '../mock/mockData';
+import { CATEGORIES, FEATURES, BLOG_POSTS } from '../mock/mockData';
 
 const ICONS = { Leaf, FlaskConical, Truck, ShieldCheck, BadgeIndianRupee, Undo2 };
 
@@ -146,43 +144,7 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Testimonials */}
-      <section className="bg-[#f4ead2] py-16 mt-14">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Testimonials</span>
-            <h2 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-2">Trusted by 100,000+ Customers</h2>
-            <div className="w-16 h-[3px] bg-[#e6b64c] mx-auto mt-4 rounded" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.id}
-                className="bg-white rounded-xl p-6 border border-[#e8dcc0] hover:shadow-lg transition"
-              >
-                <Quote size={22} className="text-[#e6b64c]" />
-                <div className="flex mt-3 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={14}
-                      className={i < t.rating ? 'fill-[#e6b64c] text-[#e6b64c]' : 'text-[#e0d3b0]'}
-                    />
-                  ))}
-                </div>
-                <p className="text-sm text-[#3a3a3a] leading-relaxed line-clamp-5">“{t.text}”</p>
-                <div className="flex items-center gap-3 mt-5 pt-4 border-t border-[#f0e5cf]">
-                  <img src={t.avatar} alt={t.name} className="w-11 h-11 rounded-full bg-[#faf1dc]" />
-                  <div className="leading-tight">
-                    <div className="font-semibold text-[#0f3d2e] text-sm">{t.name}</div>
-                    <div className="text-[11px] text-[#8a7a5a]">{t.location} • {t.product}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Verified customer reviews can be added here when review data is connected. */}
 
       {/* Herbal guides */}
       <section className="max-w-7xl mx-auto px-4 py-12">
