@@ -4,6 +4,7 @@ import { CheckCircle2, CreditCard, Truck, Wallet, Gift, Loader2 } from 'lucide-r
 import { useApp } from '../context/AppContext';
 import { toast } from '../hooks/use-toast';
 import { api } from '../lib/api';
+import SEO from '../components/SEO';
 
 function loadRazorpayScript() {
   return new Promise((resolve) => {
