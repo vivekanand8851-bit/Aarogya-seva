@@ -213,6 +213,8 @@ export function LoginPage() {
   }
 
   return (
+    <>
+      <SEO title="Login | Aarogya Seva" description="Customer account area for Aarogya Seva." noindex />
     <div className="bg-[#fbf7ec] py-16 min-h-[70vh]">
       <div className="max-w-md mx-auto px-4">
         <div className="bg-white border border-[#ede4cf] rounded-xl p-8">
@@ -241,6 +243,7 @@ export function LoginPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -256,6 +259,8 @@ export function AccountPage() {
   }, [user]);
   if (!user) return <LoginPage />;
   return (
+    <>
+      <SEO title="My Account | Aarogya Seva" description="Customer account area for Aarogya Seva." noindex />
     <div className="bg-[#fbf7ec] py-10 min-h-[70vh]">
       <div className="max-w-5xl mx-auto px-4">
         <div className="bg-white border border-[#ede4cf] rounded-xl p-6 flex flex-wrap items-center gap-4">
@@ -303,6 +308,7 @@ export function AccountPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -323,6 +329,8 @@ export function TrackOrderPage() {
     }
   };
   return (
+    <>
+      <SEO title="Track Order | Aarogya Seva" description="Customer account area for Aarogya Seva." noindex />
     <div className="bg-[#fbf7ec] py-12 min-h-[60vh]">
       <div className="max-w-2xl mx-auto px-4">
         <h1 className="font-serif text-3xl text-[#0f3d2e] text-center">Track Your Order</h1>
@@ -351,6 +359,7 @@ export function TrackOrderPage() {
         )}
       </div>
     </div>
+    </>
   );
 }
 
