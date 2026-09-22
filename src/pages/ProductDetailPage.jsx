@@ -13,6 +13,7 @@ import {
   Plus,
   Check,
 } from 'lucide-react';
+import { PRODUCTS } from '../mock/mockData';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
 import SEO, { productJsonLd } from '../components/SEO';
@@ -100,21 +101,19 @@ export default function ProductDetailPage() {
             </span>
           )}
           <h1 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-3">{product.name}</h1>
-          {product.reviews > 0 && product.rating > 0 && (
-            <div className="flex items-center gap-2 mt-3">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className={i < Math.floor(product.rating) ? 'fill-[#e6b64c] text-[#e6b64c]' : 'text-[#e0d3b0]'}
-                  />
-                ))}
-              </div>
-              <span className="text-sm text-[#0f3d2e] font-semibold">{product.rating}</span>
-              <span className="text-sm text-[#8a7a5a]">({product.reviews.toLocaleString()} reviews)</span>
+          <div className="flex items-center gap-2 mt-3">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  size={16}
+                  className={i < Math.floor(product.rating) ? 'fill-[#e6b64c] text-[#e6b64c]' : 'text-[#e0d3b0]'}
+                />
+              ))}
             </div>
-          )}
+            <span className="text-sm text-[#0f3d2e] font-semibold">{product.rating}</span>
+            <span className="text-sm text-[#8a7a5a]">({product.reviews.toLocaleString()} reviews)</span>
+          </div>
 
           <p className="text-[#4a4a4a] mt-4 leading-relaxed">{product.shortDesc}</p>
 
@@ -170,7 +169,7 @@ export default function ProductDetailPage() {
               { icon: Truck, label: 'Free Shipping' },
               { icon: BadgeIndianRupee, label: 'COD Available' },
               { icon: Undo2, label: '7-day Returns' },
-              { icon: ShieldCheck, label: 'Quality & Care' },
+              { icon: ShieldCheck, label: 'Lab Tested' },
             ].map((f, i) => (
               <div key={i} className="flex flex-col items-center text-center bg-[#faf1dc] p-3 rounded-lg">
                 <f.icon size={20} className="text-[#0f3d2e]" />
