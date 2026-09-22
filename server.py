@@ -476,19 +476,27 @@ async def _seed_data():
     """Seed products & admin user if empty. Safe to call from startup."""
     # Admin user
     existing_admin = await db.users.find_one({"email": ADMIN_EMAIL})
-    if not ADMIN_PASSWORD and not existing_admin:
-        raise RuntimeError("ADMIN_PASSWORD must be configured before creating the admin account.")
-    if not existing_admin:
-        await db.users.insert_one({
-            "id": make_id(),
-            "name": "Admin",
-            "email": ADMIN_EMAIL,
-            "phone": "+918470807059",
+    if not ADMIN_PASSWORD:
+        if not existing_admin:
+            raise RuntimeError("ADMIN_PASSWORD must be configured before creating the admin account.")
+    else:
+        admin_update = {
             "password": hash_password(ADMIN_PASSWORD),
             "isAdmin": True,
-            "rewardPoints": 0,
-            "createdAt": now_iso(),
-        })
+        }
+        if existing_admin:
+            await db.users.update_one({"email": ADMIN_EMAIL}, {"$set": admin_update})
+        else:
+            await db.users.insert_one({
+                "id": make_id(),
+                "name": "Admin",
+                "email": ADMIN_EMAIL,
+                "phone": "+918470807059",
+                "password": admin_update["password"],
+                "isAdmin": True,
+                "rewardPoints": 0,
+                "createdAt": now_iso(),
+            })
 
     # Products
     count = await db.products.count_documents({})
