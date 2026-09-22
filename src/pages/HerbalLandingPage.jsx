@@ -77,7 +77,7 @@ export default function HerbalLandingPage({ type }) {
               : 'Shilajit capsules India, Shilajit online India, Shilajeet capsules, purified Shilajit supplement, Ayurvedic Shilajit'
             : 'Ayurvedic wellness products India'
         }
-        url={`/ayurvedic/${type}`}
+        url={type === "hub" ? "/ayurvedic" : `/ayurvedic/${type}`}
         image={data.image}
         jsonLd={breadcrumbJsonLd(type, data.title)}
       />
