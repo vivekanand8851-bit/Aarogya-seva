@@ -81,7 +81,6 @@ export default function HerbalLandingPage({ type }) {
             : type === 'ashwagandha'
               ? 'Ashwagandha capsules India, Ashwagandha online India, Ashwagandha root extract, Ayurvedic Ashwagandha supplement, herbal wellness India'
               : 'Shilajit capsules India, Shilajit online India, Shilajeet capsules, purified Shilajit supplement, Ayurvedic Shilajit'
-            : 'Ayurvedic wellness products India'
         }
         url={type === "hub" ? "/ayurvedic" : `/ayurvedic/${type}`}
         image={data.image}
