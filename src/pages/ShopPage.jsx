@@ -40,7 +40,7 @@ export default function ShopPage() {
     <div className="bg-[#fbf7ec] min-h-screen">
       <SEO
         title={q ? `Search: ${q}` : (activeCategory === 'all' ? 'All Products' : (CATEGORIES.find((c) => c.id === activeCategory)?.name || 'Shop'))}
-        description={`Shop ${activeCategory === 'all' ? 'authentic Ayurvedic supplements' : (CATEGORIES.find((c) => c.id === activeCategory)?.description || 'Ayurvedic products')} online at Aarogya Seva. Best prices, free shipping, AYUSH certified.`}
+        description={`Shop ${activeCategory === 'all' ? 'Ayurvedic wellness products and herbal supplements' : (CATEGORIES.find((c) => c.id === activeCategory)?.description || 'Ayurvedic wellness products')} online in India from Aarogya Seva. Compare ingredients, product information and pricing before buying.`}
         url="/shop"
         noindex={Boolean(q) || activeCategory !== "all"}
       />
