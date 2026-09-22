@@ -86,8 +86,8 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Loved by 1L+ customers</span>
-            <h2 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-2">Best Sellers</h2>
+            <span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Featured selection</span>
+            <h2 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-2">Featured Products</h2>
           </div>
           <Link to="/shop" className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-[#0f3d2e] hover:text-[#e6b64c]">
             View All <ArrowRight size={16} />
