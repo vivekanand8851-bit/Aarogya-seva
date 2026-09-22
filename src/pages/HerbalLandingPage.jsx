@@ -19,7 +19,7 @@ const DATA = {
     ],
   },
   brand: {
-    title: 'Aarogya Seva Ayurveda | Official Ayurvedic Wellness Products in India',
+    title: 'Aarogya Seva Ayurveda | Ayurvedic Wellness Products in India',
     description: 'Aarogya Seva Ayurveda is the online home of Aarogya Seva Ayurvedic wellness products in India. Explore Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.',
     image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
     product: '/shop',
