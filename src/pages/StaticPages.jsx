@@ -5,9 +5,12 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { toast } from '../hooks/use-toast';
+import SEO from '../components/SEO';
 
 export function AboutPage() {
   return (
+    <>
+      <SEO title="About Aarogya Seva" description="Learn about Aarogya Seva, our Ayurvedic wellness approach, product transparency and customer support." url="/about" />
     <div className="bg-[#fbf7ec]">
       <section className="relative h-[380px] overflow-hidden">
         <img src="https://images.unsplash.com/photo-1492552296703-4ec0a2fb3715?crop=entropy&cs=srgb&fm=jpg&w=1600&q=85" alt="herbs" className="absolute inset-0 w-full h-full object-cover" />
@@ -62,6 +65,7 @@ export function AboutPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 
@@ -72,6 +76,8 @@ export function ContactPage() {
     toast({ title: 'Message sent!', description: 'Our team will reach out within 24 hours.' });
   };
   return (
+    <>
+      <SEO title="Contact Aarogya Seva" description="Contact Aarogya Seva for product questions, order support and customer assistance across India." url="/contact" />
     <div className="bg-[#fbf7ec] py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
@@ -117,12 +123,15 @@ export function ContactPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
 export function ConsultPage() {
   const submit = (e) => { e.preventDefault(); e.currentTarget.reset(); toast({ title: 'Consultation Booked!', description: 'Our Vaidya will call you within 2 hours.' }); };
   return (
+    <>
+      <SEO title="Ayurvedic Wellness Consultation | Aarogya Seva" description="Learn more about Aarogya Seva Ayurvedic wellness consultation and product guidance." url="/consult" />
     <div className="bg-[#fbf7ec] py-12">
       <div className="max-w-3xl mx-auto px-4">
         <div className="text-center mb-8">
@@ -152,6 +161,7 @@ export function ConsultPage() {
         </form>
       </div>
     </div>
+    </>
   );
 }
 
@@ -346,6 +356,8 @@ export function TrackOrderPage() {
 
 export function PoliciesPage() {
   return (
+    <>
+      <SEO title="Aarogya Seva Policies" description="Read Aarogya Seva shipping, returns, privacy and customer policies." url="/policies" />
     <div className="bg-[#fbf7ec] py-12">
       <div className="max-w-3xl mx-auto px-4 prose text-[#3a3a3a]">
         <h1 className="font-serif text-4xl text-[#0f3d2e]">Policies</h1>
@@ -359,5 +371,6 @@ export function PoliciesPage() {
         <p>By purchasing from Aarogya Seva, you agree to our terms. Products are dietary supplements and not intended to diagnose, treat, cure or prevent any disease.</p>
       </div>
     </div>
+    </>
   );
 }
