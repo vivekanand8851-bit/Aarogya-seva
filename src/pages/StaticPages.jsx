@@ -72,8 +72,17 @@ export function AboutPage() {
 export function ContactPage() {
   const submit = (e) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const text = [
+      'Aarogya Seva Contact Request',
+      `Name: ${data.get('name') || ''}`,
+      `Email: ${data.get('email') || ''}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Message: ${data.get('message') || ''}`,
+    ].join('\\n');
+    window.open(`https://wa.me/918470807059?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    toast({ title: 'WhatsApp opened', description: 'Please send the pre-filled message to contact Aarogya Seva.' });
     e.currentTarget.reset();
-    toast({ title: 'Message sent!', description: 'Our team will reach out within 24 hours.' });
   };
   return (
     <>
@@ -91,12 +100,12 @@ export function ContactPage() {
               {['Name', 'Email', 'Phone'].map((f) => (
                 <div key={f}>
                   <label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">{f}</label>
-                  <input required type={f === 'Email' ? 'email' : 'text'} className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" />
+                  <input required name={f.toLowerCase()} type={f === 'Email' ? 'email' : 'text'} className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" />
                 </div>
               ))}
               <div>
                 <label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Message</label>
-                <textarea required rows={5} className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" />
+                <textarea required name="message" rows={5} className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" />
               </div>
               <button type="submit" className="w-full bg-[#0f3d2e] hover:bg-[#0a2a20] text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2"><Send size={16} /> Send Message</button>
             </form>
@@ -128,7 +137,21 @@ export function ContactPage() {
 }
 
 export function ConsultPage() {
-  const submit = (e) => { e.preventDefault(); e.currentTarget.reset(); toast({ title: 'Consultation Booked!', description: 'Our Vaidya will call you within 2 hours.' }); };
+  const submit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const text = [
+      'Aarogya Seva Wellness Consultation Request',
+      `Name: ${data.get('name') || ''}`,
+      `Phone: ${data.get('phone') || ''}`,
+      `Age: ${data.get('age') || ''}`,
+      `Concern: ${data.get('concern') || ''}`,
+      `Details: ${data.get('details') || ''}`,
+    ].join('\\n');
+    window.open(`https://wa.me/918470807059?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    toast({ title: 'WhatsApp opened', description: 'Please send the pre-filled request to continue.' });
+    e.currentTarget.reset();
+  };
   return (
     <>
       <SEO title="Ayurvedic Wellness Consultation | Aarogya Seva" description="Learn more about Aarogya Seva Ayurvedic wellness consultation and product guidance." url="/consult" />
@@ -137,15 +160,15 @@ export function ConsultPage() {
         <div className="text-center mb-8">
           <span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Free Consultation</span>
           <h1 className="font-serif text-4xl text-[#0f3d2e] mt-2">Talk to an Ayurvedic Expert</h1>
-          <p className="text-[#6a6a6a] mt-3">Get personalized advice from certified Vaidyas at no cost.</p>
+          <p className="text-[#6a6a6a] mt-3">Share your wellness questions and product-related concerns with the Aarogya Seva team via WhatsApp.</p>
         </div>
         <form onSubmit={submit} className="bg-white border border-[#ede4cf] rounded-xl p-6 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Full Name</label><input required className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
-            <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Phone</label><input required type="tel" className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
-            <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Age</label><input required type="number" className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
+            <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Full Name</label><input required name="name" className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
+            <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Phone</label><input required name="phone" type="tel" className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
+            <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Age</label><input required name="age" type="number" className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
             <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Primary Concern</label>
-              <select required className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]">
+              <select required name="concern" className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]">
                 <option value="">Select...</option>
                 <option>Immunity</option>
                 <option>Digestion</option>
@@ -156,7 +179,7 @@ export function ConsultPage() {
               </select>
             </div>
           </div>
-          <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Describe your concern</label><textarea rows={4} className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
+          <div><label className="text-xs font-semibold text-[#4a4a4a] mb-1 block">Describe your concern</label><textarea name="details" rows={4} className="w-full border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec]" /></div>
           <button type="submit" className="w-full bg-[#e6b64c] hover:bg-[#d4a238] text-[#0f3d2e] font-bold py-3.5 rounded-lg">Book Free Consultation</button>
         </form>
       </div>
