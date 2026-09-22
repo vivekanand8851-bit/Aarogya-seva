@@ -90,8 +90,6 @@ function ProductFormModal({ product, onClose, onSaved }) {
   };
 
   return (
-    <>
-      <SEO title="Admin | Aarogya Seva" description="Admin dashboard" noindex />
     <div className="fixed inset-0 z-50 bg-black/60 flex items-start justify-center overflow-y-auto py-8 px-4" onClick={onClose}>
       <div className="bg-white rounded-2xl max-w-3xl w-full my-8" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between p-5 border-b border-[#ede4cf] sticky top-0 bg-white rounded-t-2xl">
@@ -281,7 +279,8 @@ function OrderDetailModal({ order, onClose, onStatusUpdate }) {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 
@@ -358,7 +357,9 @@ export default function AdminPage() {
   ];
 
   return (
-    <div className="bg-[#fbf7ec] min-h-[80vh]">
+    <>
+      <SEO title="Admin | Aarogya Seva" description="Admin dashboard" noindex />
+      <div className="bg-[#fbf7ec] min-h-[80vh]">
       {/* Admin header */}
       <div className="bg-[#0f3d2e] text-white">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-3">
