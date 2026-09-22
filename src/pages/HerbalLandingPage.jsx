@@ -49,14 +49,20 @@ const DATA = {
 };
 
 function breadcrumbJsonLd(slug, title) {
+  const isHub = slug === 'hub';
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogya-seva.vercel.app/' },
-      { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogya-seva.vercel.app/ayurvedic' },
-      { '@type': 'ListItem', position: 3, name: title, item: `https://aarogya-seva.vercel.app/ayurvedic/${slug}` },
-    ],
+    itemListElement: isHub
+      ? [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogya-seva.vercel.app/' },
+          { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogya-seva.vercel.app/ayurvedic' },
+        ]
+      : [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogya-seva.vercel.app/' },
+          { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogya-seva.vercel.app/ayurvedic' },
+          { '@type': 'ListItem', position: 3, name: title, item: `https://aarogya-seva.vercel.app/ayurvedic/${slug}` },
+        ],
   };
 }
 
