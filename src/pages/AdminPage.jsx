@@ -280,7 +280,6 @@ function OrderDetailModal({ order, onClose, onStatusUpdate }) {
         </div>
       </div>
       </div>
-    </>
   );
 }
 
