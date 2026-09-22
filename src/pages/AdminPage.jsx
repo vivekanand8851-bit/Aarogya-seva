@@ -256,6 +256,7 @@ function OrderDetailModal({ order, onClose, onStatusUpdate }) {
               ))}
             </div>
           </div>
+          </div>
 
           <div>
             <div className="text-xs font-semibold text-[#8a7a5a] uppercase mb-2">Status Timeline</div>
