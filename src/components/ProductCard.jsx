@@ -64,11 +64,13 @@ export default function ProductCard({ product }) {
         <h3 className="font-medium text-[#0f3d2e] leading-snug line-clamp-2 min-h-[44px]">
           {product.name}
         </h3>
-        <div className="flex items-center gap-1.5 mt-1.5 text-xs text-[#8a7a5a]">
-          <Star size={13} className="fill-[#e6b64c] text-[#e6b64c]" />
-          <span className="font-semibold text-[#0f3d2e]">{product.rating}</span>
-          <span>({product.reviews.toLocaleString()})</span>
-        </div>
+        {product.reviews > 0 && product.rating > 0 && (
+          <div className="flex items-center gap-1.5 mt-1.5 text-xs text-[#8a7a5a]">
+            <Star size={13} className="fill-[#e6b64c] text-[#e6b64c]" />
+            <span className="font-semibold text-[#0f3d2e]">{product.rating}</span>
+            <span>({product.reviews.toLocaleString()})</span>
+          </div>
+        )}
 
         <div className="flex items-baseline gap-2 mt-3">
           <span className="text-lg font-bold text-[#0f3d2e]">₹{product.price.toLocaleString()}</span>
