@@ -55,7 +55,7 @@ export const PRODUCTS = [
   {
     id: 'dig-up', name: 'DIG-UP Capsules', slug: 'dig-up-capsules', category: 'mens-wellness',
     price: 849, mrp: 2998, discount: 72, rating: 0, reviews: 0, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
-    shortDesc: 'Ayurvedic herbal blend formulated for men's general wellness and vitality.',
+    shortDesc: 'Ayurvedic herbal blend formulated for men\u2019s general wellness and vitality.',
     description: 'A classical Ayurvedic formulation for men\u2019s wellness combining time-tested herbs to support natural male potency, health, vitality and libido. Non-habit forming, safe for daily use.',
     benefits: ['Men\'s general wellness support', 'Ayurvedic herbal blend', 'Supports a balanced daily routine', 'Vegetarian capsule', 'Clear ingredient information'],
     ingredients: 'Proprietary Ayurvedic blend — Ashwagandha, Safed Musli, Shilajeet, Kaunch Beej, Gokshura', dosage: '1 capsule twice daily.', images: [IMG_PILES_DIGUP, IMG_PILES_DIGUP],
