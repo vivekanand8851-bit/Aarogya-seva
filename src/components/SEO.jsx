@@ -14,7 +14,7 @@ const DEFAULTS = {
 };
 
 export default function SEO({ title, description, keywords, image, type, url, jsonLd, noindex = false }) {
-  const t = title ? `${title} | ${DEFAULTS.siteName}` : DEFAULTS.title;
+  const t = title ? (title.includes(DEFAULTS.siteName) ? title : `${title} | ${DEFAULTS.siteName}`) : DEFAULTS.title;
   const d = description || DEFAULTS.description;
   const k = keywords || DEFAULTS.keywords;
   const img = image || DEFAULTS.image;
@@ -62,7 +62,7 @@ export const websiteJsonLd = {
 
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'OnlineStore',
   name: 'Aarogya Seva',
   alternateName: 'Aarogya Seva Ayurveda',
   url: DEFAULTS.siteUrl,
