@@ -22,7 +22,7 @@ export const CATEGORIES = [
 export const PRODUCTS = [
   {
     id: 'arjuna-capsules', name: 'Arjuna Capsules', slug: 'arjuna-capsules', category: 'heart-health',
-    price: 899, mrp: 2999, discount: 70, rating: 4.7, reviews: 1284, inStock: true, isBestseller: true, isNew: false, badge: 'BESTSELLER',
+    price: 899, mrp: 2999, discount: 70, rating: 0, reviews: 0, inStock: true, isBestseller: true, isNew: false, badge: 'BESTSELLER',
     shortDesc: 'Arjuna bark extract for traditional Ayurvedic wellness and everyday vitality.',
     description: 'Aarogya Seva Arjuna Capsules use Terminalia arjuna bark extract, an herb with a long history of use in Ayurveda. Review the label, ingredient details and recommended directions before use.',
     benefits: ['Traditional Ayurvedic herbal ingredient', 'Supports a balanced wellness routine', 'Made with Arjuna bark extract', 'Vegetarian capsule', 'Clear ingredient and dosage information'],
@@ -30,7 +30,7 @@ export const PRODUCTS = [
   },
   {
     id: 'shilajeet-caps', name: 'Shilajeet Capsules 1000mg', slug: 'shilajeet-capsules', category: 'mens-wellness',
-    price: 1399, mrp: 4998, discount: 72, rating: 4.8, reviews: 2156, inStock: true, isBestseller: true, isNew: false, badge: 'TOP SELLER',
+    price: 1399, mrp: 4998, discount: 72, rating: 0, reviews: 0, inStock: true, isBestseller: true, isNew: false, badge: 'TOP SELLER',
     shortDesc: 'Purified Shilajeet extract for traditional Ayurvedic vitality and everyday wellness.',
     description: 'Aarogya Seva Shilajeet Capsules contain purified Shilajeet extract. Shilajeet has a long history of traditional Ayurvedic use; modern supplement claims can vary by preparation, so compare the ingredient amount, processing and label information.',
     benefits: ['Traditional Ayurvedic ingredient', 'Supports everyday vitality', 'Purified extract', 'Vegetarian capsule', 'Clear serving information'],
@@ -38,7 +38,7 @@ export const PRODUCTS = [
   },
   {
     id: 'ashwagandha-caps', name: 'Ashwagandha Extract Capsules', slug: 'ashwagandha-extract-capsules', category: 'stress-relief',
-    price: 799, mrp: 2799, discount: 71, rating: 4.6, reviews: 1420, inStock: true, isBestseller: true, isNew: false, badge: 'BESTSELLER',
+    price: 799, mrp: 2799, discount: 71, rating: 0, reviews: 0, inStock: true, isBestseller: true, isNew: false, badge: 'BESTSELLER',
     shortDesc: 'Ashwagandha root extract for traditional Ayurvedic wellness and a balanced daily routine.',
     description: 'Aarogya Seva Ashwagandha Extract Capsules contain Withania somnifera root extract. Ashwagandha has a long history of use in Ayurveda; evidence and outcomes can vary by preparation and person.',
     benefits: ['Traditional Ayurvedic herb', 'Supports everyday wellness', 'Root extract', 'Vegetarian capsule', 'Clear serving information'],
@@ -46,7 +46,7 @@ export const PRODUCTS = [
   },
   {
     id: 'giloy-extract', name: 'Giloy Extract Capsules', slug: 'giloy-extract-capsules', category: 'immunity',
-    price: 649, mrp: 2299, discount: 71, rating: 4.7, reviews: 986, inStock: true, isBestseller: true, isNew: false, badge: 'IMMUNITY',
+    price: 649, mrp: 2299, discount: 71, rating: 0, reviews: 0, inStock: true, isBestseller: true, isNew: false, badge: 'IMMUNITY',
     shortDesc: 'Giloy (Guduchi) extract for traditional Ayurvedic wellness and everyday vitality.',
     description: 'Aarogya Seva Giloy Extract Capsules contain Giloy (Guduchi) stem extract, an herb traditionally used in Ayurveda. Product use should follow the label and should not be treated as a substitute for medical care.',
     benefits: ['Traditional Ayurvedic herb', 'Supports everyday wellness', 'Stem extract', 'Vegetarian capsule', 'Clear ingredient information'],
@@ -54,7 +54,7 @@ export const PRODUCTS = [
   },
   {
     id: 'dig-up', name: 'DIG-UP Capsules', slug: 'dig-up-capsules', category: 'mens-wellness',
-    price: 849, mrp: 2998, discount: 72, rating: 4.5, reviews: 634, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
+    price: 849, mrp: 2998, discount: 72, rating: 0, reviews: 0, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
     shortDesc: 'Ayurvedic herbal blend formulated for men's general wellness and vitality.',
     description: 'A classical Ayurvedic formulation for men\u2019s wellness combining time-tested herbs to support natural male potency, health, vitality and libido. Non-habit forming, safe for daily use.',
     benefits: ['Men\'s general wellness support', 'Ayurvedic herbal blend', 'Supports a balanced daily routine', 'Vegetarian capsule', 'Clear ingredient information'],
@@ -62,7 +62,7 @@ export const PRODUCTS = [
   },
   {
     id: 'piles-norm', name: 'Piles Norm Capsules', slug: 'piles-norm-capsules', category: 'specialty',
-    price: 749, mrp: 2599, discount: 71, rating: 4.6, reviews: 512, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
+    price: 749, mrp: 2599, discount: 71, rating: 0, reviews: 0, inStock: true, isBestseller: false, isNew: true, badge: 'NEW',
     shortDesc: 'Ayurvedic herbal formulation for digestive and personal wellness.',
     description: 'Piles Norm is an Ayurvedic herbal formulation. Product information and directions should be read carefully, and persistent or concerning symptoms should be discussed with a qualified healthcare professional.',
     benefits: ['Ayurvedic herbal formulation', 'Supports digestive and personal wellness', 'Plant-based ingredients', 'Clear ingredient information', 'Use according to label directions'],
@@ -70,7 +70,7 @@ export const PRODUCTS = [
   },
   {
     id: 'combo-shil-ashwa', name: 'Shilajeet + Ashwagandha Combo', slug: 'shilajeet-ashwagandha-combo', category: 'mens-wellness',
-    price: 1899, mrp: 6999, discount: 73, rating: 4.9, reviews: 428, inStock: true, isBestseller: true, isNew: false, badge: 'COMBO DEAL',
+    price: 1899, mrp: 6999, discount: 73, rating: 0, reviews: 0, inStock: true, isBestseller: true, isNew: false, badge: 'COMBO DEAL',
     shortDesc: 'The ultimate men\u2019s vitality combo — Shilajeet + Ashwagandha at best price.',
     description: 'This combo pairs purified Shilajeet extract with Ashwagandha root extract. Both ingredients have a history of traditional Ayurvedic use; product claims can vary by preparation, so review the label and serving directions.',
     benefits: ['Complete men\u2019s vitality support', 'Save \u20b91600 vs individual', 'Energy + Stress relief combo', '60 + 60 = 120 capsules', 'Trusted Aarogya Seva quality'],
@@ -78,7 +78,7 @@ export const PRODUCTS = [
   },
   {
     id: 'combo-piles-digup', name: 'Piles Norm + DIG-UP Combo', slug: 'piles-digup-combo', category: 'specialty',
-    price: 1499, mrp: 5499, discount: 73, rating: 4.5, reviews: 218, inStock: true, isBestseller: false, isNew: true, badge: 'COMBO',
+    price: 1499, mrp: 5499, discount: 73, rating: 0, reviews: 0, inStock: true, isBestseller: false, isNew: true, badge: 'COMBO',
     shortDesc: 'Complete wellness combo — men\u2019s health & digestive-anal comfort.',
     description: 'This combo pairs two Ayurvedic herbal formulations for general wellness. Review each product's ingredients and label directions before use.',
     benefits: ['Two-in-one wellness pack', 'Save \u20b9500 combo pricing', 'Both 100% herbal', '120 capsules total', 'AYUSH-certified'],
