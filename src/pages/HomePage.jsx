@@ -25,8 +25,8 @@ export default function HomePage() {
   return (
     <div className="bg-[#fbf7ec]">
       <SEO
-        title="Ayurvedic Wellness Products Online in India"
-        description="Explore Ayurvedic wellness products from Aarogya Seva, including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products. Shop online across India."
+        title="Aarogya Seva Ayurvedic Wellness Products Online in India"
+        description="Aarogya Seva is an Indian Ayurvedic wellness brand. Explore Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products and shop online across India."
         url="/"
         jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
