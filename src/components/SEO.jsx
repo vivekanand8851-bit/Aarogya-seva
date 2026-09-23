@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getProductSeoPath } from '../data/productSeo';
 
 const DEFAULTS = {
   siteName: 'Aarogya Seva',
@@ -92,7 +93,7 @@ export const organizationJsonLd = {
   ],
 };
 
-export const productJsonLd = (product) => ({
+export const productJsonLd = (product, seoPath = getProductSeoPath(product.slug)) => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: product.name,
@@ -102,7 +103,7 @@ export const productJsonLd = (product) => ({
   brand: { '@type': 'Brand', name: 'Aarogya Seva' },
   offers: {
     '@type': 'Offer',
-    url: `${DEFAULTS.siteUrl}/product/${product.slug}`,
+    url: `${DEFAULTS.siteUrl}${seoPath}`,
     priceCurrency: 'INR',
     price: product.price,
     priceValidUntil: '2026-12-31',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, Navigate } from 'react-router-dom';
 import {
   Star,
   Heart,
@@ -17,29 +17,22 @@ import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
 import SEO, { productJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
-import { getProductSeo } from '../data/productSeo';
-
-const SEO_SLUGS = {
-  'arjuna-capsules-india': 'arjuna-capsules',
-  'shilajit-capsules-1000mg': 'shilajeet-capsules',
-  'ashwagandha-extract-capsules-india': 'ashwagandha-extract-capsules',
-  'giloy-extract-capsules-india': 'giloy-extract-capsules',
-  'dig-up-men-wellness-capsules': 'dig-up-capsules',
-  'piles-norm-ayurvedic-capsules': 'piles-norm-capsules',
-  'shilajit-ashwagandha-combo': 'shilajeet-ashwagandha-combo',
-  'piles-norm-dig-up-combo': 'piles-digup-combo',
-};
+import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
 import { toast } from '../hooks/use-toast';
 
 export default function ProductDetailPage({ seoUrl = false }) {
   const { slug, seoSlug } = useParams();
-  const productSlug = seoUrl ? SEO_SLUGS[seoSlug] : slug;
+  const productSlug = seoUrl ? PRODUCT_SEO_SLUGS[seoSlug] : slug;
   const { products, addToCart, toggleWishlist, isInWishlist, user } = useApp();
   const product = products.find((p) => p.slug === productSlug);
   const [imgIdx, setImgIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState('description');
   const navigate = useNavigate();
+
+  if (product && !seoUrl) {
+    return <Navigate to={getProductSeoPath(product.slug)} replace />;
+  }
 
   if (!product) {
     return (
@@ -77,8 +70,8 @@ export default function ProductDetailPage({ seoUrl = false }) {
         keywords={`Aarogya Seva, Aarogya Sewa, ${seo.keywords}`}
         image={normalizeImageUrl(product.images?.[0])}
         type="product"
-        url={seoUrl ? `/ayurvedic-products/${Object.keys(SEO_SLUGS).find((k) => SEO_SLUGS[k] === product.slug)}` : `/product/${product.slug}`} 
-        jsonLd={productJsonLd(product)}
+        url={getProductSeoPath(product.slug)}
+        jsonLd={productJsonLd(product, getProductSeoPath(product.slug))}
       />
       <div className="max-w-7xl mx-auto px-4 py-4 text-xs text-[#8a7a5a]">
         <Link to="/">Home</Link> / <Link to="/shop">Shop</Link> /{' '}

@@ -543,6 +543,80 @@ LEGACY_PRODUCT_COPY = {
         "piles-digup-combo": {"shortDesc": "Piles Norm + DIG-UP combo for general digestive and men's wellness.", "description": "This combo pairs two Ayurvedic herbal formulations for general wellness. Review each product's ingredients and label directions before use.", "benefits": ["Two Ayurvedic herbal formulations","General wellness support","Convenient combo pack","Clear ingredient information","Use according to label directions"]},
 }
 
+
+NEW_CATALOG_PRODUCTS = [
+    {
+        "id": make_id(),
+        "name": "COUGH-YOG Capsules",
+        "slug": "cough-yog-capsules",
+        "category": "immunity",
+        "price": 1200,
+        "mrp": 1715,
+        "discount": 30,
+        "rating": 0,
+        "reviews": 0,
+        "inStock": True,
+        "isBestseller": False,
+        "isNew": True,
+        "badge": "NEW",
+        "shortDesc": "COUGH-YOG Capsules — food supplement labelled as a fever & cold relief formula with cough support.",
+        "description": "Aarogya Seva COUGH-YOG Capsules are a food supplement labelled as a Fever & Cold Relief Formula. The pack states 60 capsules and 1000 mg, and presents cough support on the front label. Check the full label, ingredients and directions before use.",
+        "benefits": [
+            "Fever & cold relief formula as stated on the label",
+            "Cough-support positioning on the pack",
+            "60 capsules per bottle",
+            "1000 mg stated on the label",
+            "Food supplement format",
+        ],
+        "ingredients": "As per product label",
+        "dosage": "Use only as directed on the product label.",
+        "images": ["/products/cough-yog-500.webp"],
+        "stock": 300,
+        "keywords": "COUGH-YOG capsules, Cough Yog capsules India, cough support capsules, fever cold relief formula, cold care capsules, Aarogya Seva Cough Yog, Cough Yog India",
+        "hashtags": ["#CoughYog", "#AarogyaSeva", "#CoughCare", "#ColdCare", "#HerbalWellness", "#WellnessIndia", "#FoodSupplement"],
+        "createdAt": now_iso(),
+    },
+    {
+        "id": make_id(),
+        "name": "GASS OFF Churan",
+        "slug": "gass-off-churan",
+        "category": "digestion",
+        "price": 299,
+        "mrp": 429,
+        "discount": 30,
+        "rating": 0,
+        "reviews": 0,
+        "inStock": True,
+        "isBestseller": False,
+        "isNew": True,
+        "badge": "NEW",
+        "shortDesc": "GASS OFF Churan 100 gm — tasty digestive food supplement labelled for gas & bloating support.",
+        "description": "Aarogya Seva GASS OFF Churan is a 100 gm food supplement. The pack describes it as a tasty & digestive churan and states “Relieves Gas & Bloating | Supports Digestion.” Review the ingredient panel and directions on the pack before use.",
+        "benefits": [
+            "Tasty & digestive churan format",
+            "Gas & bloating support as stated on the label",
+            "Supports digestion as stated on the label",
+            "100 gm pack",
+            "Food supplement format",
+        ],
+        "ingredients": "As per product label",
+        "dosage": "Use only as directed on the product label.",
+        "images": ["/products/gass-off-500.webp"],
+        "stock": 500,
+        "keywords": "GASS OFF churan, Gass Off 100g, gas and bloating churan, digestive churan India, digestion support churan, gas relief churan, Aarogya Seva Gass Off",
+        "hashtags": ["#GassOff", "#AarogyaSeva", "#Churan", "#DigestiveWellness", "#GasBloating", "#DigestionSupport", "#HerbalWellness", "#WellnessIndia"],
+        "createdAt": now_iso(),
+    },
+]
+
+async def ensure_new_catalog_products():
+    for product in NEW_CATALOG_PRODUCTS:
+        await db.products.update_one(
+            {"slug": product["slug"]},
+            {"$setOnInsert": product},
+            upsert=True,
+        )
+
 async def harden_legacy_product_copy():
     marker = await db.settings.find_one({"key": "legacy_product_copy_hardened_v1"})
     if marker:
@@ -581,6 +655,7 @@ async def startup_seed():
             await _seed_data()
             logger.info("Seed complete")
         await harden_legacy_product_copy()
+        await ensure_new_catalog_products()
     except Exception as e:
         logger.error(f"Startup seed failed: {e}")
 
