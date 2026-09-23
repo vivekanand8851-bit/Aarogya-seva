@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
-import SEO, { productJsonLd } from '../components/SEO';
+import SEO, { productJsonLd, breadcrumbJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
 import { toast } from '../hooks/use-toast';
@@ -71,7 +71,7 @@ export default function ProductDetailPage({ seoUrl = false }) {
         image={normalizeImageUrl(product.images?.[0])}
         type="product"
         url={getProductSeoPath(product.slug)}
-        jsonLd={productJsonLd(product, getProductSeoPath(product.slug))}
+        jsonLd={[\n          productJsonLd(product, getProductSeoPath(product.slug)),\n          breadcrumbJsonLd([\n            { name: 'Home', url: '/' },\n            { name: 'Shop', url: '/shop' },\n            { name: product.name, url: getProductSeoPath(product.slug) },\n          ]),\n        ]}
       />
       <div className="max-w-7xl mx-auto px-4 py-4 text-xs text-[#8a7a5a]">
         <Link to="/">Home</Link> / <Link to="/shop">Shop</Link> /{' '}
