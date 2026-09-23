@@ -50,7 +50,8 @@ export default function ProductDetailPage({ seoUrl = false }) {
     );
   }
 
-  const seo = getProductSeo(product.slug, product);\n  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
+  const seo = getProductSeo(product.slug, product);
+  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const wished = isInWishlist(product.id);
 
   const handleAdd = () => {
