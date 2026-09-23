@@ -98,14 +98,14 @@ export const HERO_SLIDES = [
     id: 2,
     title: 'Arjuna Wellness, Traditionally',
     subtitle: 'Explore Arjuna Capsules and learn about this traditionally used Ayurvedic herb.',
-    cta: 'Try Arjuna Capsules', link: '/product/arjuna-capsules', tag: 'NEW LAUNCH',
+    cta: 'Try Arjuna Capsules', link: '/ayurvedic-products/arjuna-capsules-india', tag: 'NEW LAUNCH',
     image: 'https://images.unsplash.com/photo-1621176313593-89976c1f1bed?crop=entropy&cs=srgb&fm=jpg&w=1600&q=85',
   },
   {
     id: 3,
     title: "Men's Daily Vitality",
     subtitle: 'Shilajeet + Ashwagandha combo for a simple Ayurvedic wellness routine.',
-    cta: 'Grab Combo Deal', link: '/product/shilajeet-ashwagandha-combo', tag: 'SAVE \u20b91600',
+    cta: 'Grab Combo Deal', link: '/ayurvedic-products/shilajit-ashwagandha-combo', tag: 'SAVE \u20b91600',
     image: 'https://images.pexels.com/photos/12985803/pexels-photo-12985803.jpeg?auto=compress&cs=tinysrgb&w=1600',
   },
 ];
