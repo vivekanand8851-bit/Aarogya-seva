@@ -30,6 +30,7 @@ export default function App() {
             <Route path="/ayurvedic/ashwagandha" element={<HerbalLandingPage type="ashwagandha" />} />
             <Route path="/ayurvedic/shilajit" element={<HerbalLandingPage type="shilajit" />} />
             <Route path="/product/:slug" element={<ProductDetailPage />} />
+            <Route path="/ayurvedic-products/:seoSlug" element={<ProductDetailPage seoUrl />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/wishlist" element={<WishlistPage />} />
