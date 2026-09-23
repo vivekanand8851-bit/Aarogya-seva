@@ -56,6 +56,23 @@ export const PRODUCT_SEO = {
     hindi: ['दो Ayurvedic herbal formulations का combo', 'individual ingredients और serving details उपलब्ध', 'label-based responsible use information'],
     english: ['Two Ayurvedic herbal formulations', 'Individual ingredient details', 'Clear serving and label guidance'],
   },
+  'cough-yog-capsules': {
+    title: 'COUGH-YOG Capsules India | Aarogya Seva',
+    description: 'Aarogya Seva COUGH-YOG Capsules are a food supplement labelled as a Fever & Cold Relief Formula. The pack states 60 capsules and 1000 mg and presents cough support on the front label. Check the full label, ingredients and directions before use.',
+    keywords: 'COUGH-YOG capsules, Cough Yog capsules India, cough support capsules, fever cold relief formula, cold care capsules, Aarogya Seva Cough Yog, Cough Yog India, food supplement',
+    hashtags: ['#CoughYog', '#AarogyaSeva', '#CoughCare', '#ColdCare', '#HerbalWellness', '#WellnessIndia', '#FoodSupplement'],
+    hindi: ['COUGH-YOG को food supplement और Fever & Cold Relief Formula के रूप में label किया गया है', 'पैक पर 60 capsules और 1000 mg की जानकारी दी गई है', 'खरीदने से पहले ingredient panel और label directions देखें'],
+    english: ['Food supplement with label-led product positioning', '60 capsules and 1000 mg stated on the pack', 'Review ingredients and directions before use'],
+  },
+  'gass-off-churan': {
+    title: 'GASS OFF Churan 100g | Aarogya Seva',
+    description: 'Aarogya Seva GASS OFF Churan is a 100 gm food supplement. The pack describes it as a tasty & digestive churan and states “Relieves Gas & Bloating | Supports Digestion.” Review the ingredient panel and directions before use.',
+    keywords: 'GASS OFF churan, Gass Off 100g, gas and bloating churan, digestive churan India, digestion support churan, gas relief churan, Aarogya Seva Gass Off, digestive wellness',
+    hashtags: ['#GassOff', '#AarogyaSeva', '#Churan', '#DigestiveWellness', '#GasBloating', '#DigestionSupport', '#HerbalWellness', '#WellnessIndia'],
+    hindi: ['GASS OFF को tasty & digestive churan के रूप में label किया गया है', 'पैक पर 100 gm और gas & bloating support की जानकारी दी गई है', 'उपयोग से पहले ingredient panel और label directions देखें'],
+    english: ['Tasty & digestive churan format', '100 gm pack with label-led gas & bloating positioning', 'Review ingredients and directions before use'],
+  },
+
 };
 
 
@@ -87,22 +104,3 @@ export const getProductSeo = (slug, product) => {
     english: base.english || [],
     hashtags: base.hashtags || [],
   };
-
-  'cough-yog-capsules': {
-    title: 'COUGH-YOG Capsules India | Aarogya Seva',
-    description: 'Aarogya Seva COUGH-YOG Capsules are a food supplement labelled as a Fever & Cold Relief Formula. The pack states 60 capsules and 1000 mg and presents cough support on the front label. Check the full label, ingredients and directions before use.',
-    keywords: 'COUGH-YOG capsules, Cough Yog capsules India, cough support capsules, fever cold relief formula, cold care capsules, Aarogya Seva Cough Yog, Cough Yog India, food supplement',
-    hashtags: ['#CoughYog', '#AarogyaSeva', '#CoughCare', '#ColdCare', '#HerbalWellness', '#WellnessIndia', '#FoodSupplement'],
-    hindi: ['COUGH-YOG को food supplement और Fever & Cold Relief Formula के रूप में label किया गया है', 'पैक पर 60 capsules और 1000 mg की जानकारी दी गई है', 'खरीदने से पहले ingredient panel और label directions देखें'],
-    english: ['Food supplement with label-led product positioning', '60 capsules and 1000 mg stated on the pack', 'Review ingredients and directions before use'],
-  },
-  'gass-off-churan': {
-    title: 'GASS OFF Churan 100g | Aarogya Seva',
-    description: 'Aarogya Seva GASS OFF Churan is a 100 gm food supplement. The pack describes it as a tasty & digestive churan and states “Relieves Gas & Bloating | Supports Digestion.” Review the ingredient panel and directions before use.',
-    keywords: 'GASS OFF churan, Gass Off 100g, gas and bloating churan, digestive churan India, digestion support churan, gas relief churan, Aarogya Seva Gass Off, digestive wellness',
-    hashtags: ['#GassOff', '#AarogyaSeva', '#Churan', '#DigestiveWellness', '#GasBloating', '#DigestionSupport', '#HerbalWellness', '#WellnessIndia'],
-    hindi: ['GASS OFF को tasty & digestive churan के रूप में label किया गया है', 'पैक पर 100 gm और gas & bloating support की जानकारी दी गई है', 'उपयोग से पहले ingredient panel और label directions देखें'],
-    english: ['Tasty & digestive churan format', '100 gm pack with label-led gas & bloating positioning', 'Review ingredients and directions before use'],
-  },
-
-};
