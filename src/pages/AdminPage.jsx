@@ -8,6 +8,7 @@ import { useApp } from '../context/AppContext';
 import { api } from '../lib/api';
 import { toast } from '../hooks/use-toast';
 import SEO from '../components/SEO';
+import { normalizeImageUrl } from '../lib/imageUrl';
 
 const STATUSES = ['placed', 'packed', 'shipped', 'out_for_delivery', 'delivered', 'cancelled'];
 const CATEGORIES = [
@@ -101,7 +102,7 @@ function ProductFormModal({ product, onClose, onSaved }) {
           {imagesText.trim() && (
             <div className="flex gap-2 overflow-x-auto pb-2">
               {imagesText.split('\n').filter((s) => s.trim()).map((url, i) => (
-                <img key={i} src={url.trim()} alt={`preview ${i}`}
+                <img key={i} src={normalizeImageUrl(url.trim())} alt={`preview ${i}`}
                   className="w-24 h-24 object-contain bg-[#faf6ec] rounded-lg border border-[#ede4cf] flex-shrink-0" />
               ))}
             </div>
@@ -460,7 +461,7 @@ export default function AdminPage() {
               {filtered(products, ['name', 'category', 'slug']).map((p) => (
                 <div key={p.id} className="bg-white border border-[#ede4cf] rounded-xl overflow-hidden">
                   <div className="aspect-video bg-gradient-to-br from-white to-[#faf6ec] flex items-center justify-center p-4">
-                    <img src={p.images?.[0]} alt={p.name} className="max-w-full max-h-full object-contain" />
+                    <img src={normalizeImageUrl(p.images?.[0])} alt={p.name} className="max-w-full max-h-full object-contain" />
                   </div>
                   <div className="p-4">
                     <div className="flex items-start justify-between gap-2">
