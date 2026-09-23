@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
-import SEO, { productJsonLd, breadcrumbJsonLd } from '../components/SEO';
+import SEO, { productJsonLd, breadcrumbJsonLd, faqJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
 import { toast } from '../hooks/use-toast';
@@ -44,6 +44,24 @@ export default function ProductDetailPage({ seoUrl = false }) {
   }
 
   const seo = getProductSeo(product.slug, product);
+  const faqItems = [
+    {
+      question: `What is ${product.name}?`,
+      answer: seo.description,
+    },
+    {
+      question: `What are the ingredients in ${product.name}?`,
+      answer: product.ingredients || 'Please check the product label for the complete ingredient list.',
+    },
+    {
+      question: `How should I use ${product.name}?`,
+      answer: product.dosage || 'Follow the dosage and directions printed on the product label.',
+    },
+    {
+      question: `Is ${product.name} suitable for everyone?`,
+      answer: 'Check the product label before use. If you are pregnant, nursing, taking medicines, have a medical condition, or have concerns about suitability, consult a qualified healthcare professional.',
+    },
+  ];
   const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const wished = isInWishlist(product.id);
 
@@ -73,6 +91,7 @@ export default function ProductDetailPage({ seoUrl = false }) {
         url={getProductSeoPath(product.slug)}
         jsonLd={[
           productJsonLd(product, getProductSeoPath(product.slug)),
+          faqJsonLd(faqItems, getProductSeoPath(product.slug)),
           breadcrumbJsonLd([
             { name: 'Home', url: '/' },
             { name: 'Shop', url: '/shop' },
@@ -229,6 +248,21 @@ export default function ProductDetailPage({ seoUrl = false }) {
           {tab === 'ingredients' && <p><span className="font-semibold">Ingredients:</span> {product.ingredients}</p>}
           {tab === 'dosage' && <p><span className="font-semibold">Recommended Dosage:</span> {product.dosage}</p>}
         </div>
+      </div>
+
+      {/* FAQs */}
+      <div className="max-w-7xl mx-auto px-4 mt-12">
+        <section aria-labelledby="product-faqs" className="max-w-3xl">
+          <h2 id="product-faqs" className="font-serif text-2xl md:text-3xl text-[#0f3d2e] mb-5">Frequently Asked Questions</h2>
+          <div className="space-y-3">
+            {faqItems.map((item) => (
+              <details key={item.question} className="bg-white border border-[#ede4cf] rounded-xl p-4">
+                <summary className="cursor-pointer font-semibold text-[#0f3d2e]">{item.question}</summary>
+                <p className="mt-3 text-sm text-[#4a4a4a] leading-relaxed">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
       </div>
 
       {/* Related */}
