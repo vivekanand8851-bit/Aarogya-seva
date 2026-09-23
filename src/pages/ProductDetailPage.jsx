@@ -18,12 +18,24 @@ import ProductCard from '../components/ProductCard';
 import SEO, { productJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeo } from '../data/productSeo';
+
+const SEO_SLUGS = {
+  'arjuna-capsules-india': 'arjuna-capsules',
+  'shilajit-capsules-1000mg': 'shilajeet-capsules',
+  'ashwagandha-extract-capsules-india': 'ashwagandha-extract-capsules',
+  'giloy-extract-capsules-india': 'giloy-extract-capsules',
+  'dig-up-men-wellness-capsules': 'dig-up-capsules',
+  'piles-norm-ayurvedic-capsules': 'piles-norm-capsules',
+  'shilajit-ashwagandha-combo': 'shilajeet-ashwagandha-combo',
+  'piles-norm-dig-up-combo': 'piles-digup-combo',
+};
 import { toast } from '../hooks/use-toast';
 
-export default function ProductDetailPage() {
-  const { slug } = useParams();
+export default function ProductDetailPage({ seoUrl = false }) {
+  const { slug, seoSlug } = useParams();
+  const productSlug = seoUrl ? SEO_SLUGS[seoSlug] : slug;
   const { products, addToCart, toggleWishlist, isInWishlist, user } = useApp();
-  const product = products.find((p) => p.slug === slug);
+  const product = products.find((p) => p.slug === productSlug);
   const [imgIdx, setImgIdx] = useState(0);
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState('description');
@@ -64,7 +76,7 @@ export default function ProductDetailPage() {
         keywords={`Aarogya Seva, Aarogya Sewa, ${seo.keywords}`}
         image={normalizeImageUrl(product.images?.[0])}
         type="product"
-        url={`/product/${product.slug}`}
+        url={seoUrl ? `/ayurvedic-products/${Object.keys(SEO_SLUGS).find((k) => SEO_SLUGS[k] === product.slug)}` : `/product/${product.slug}`} 
         jsonLd={productJsonLd(product)}
       />
       <div className="max-w-7xl mx-auto px-4 py-4 text-xs text-[#8a7a5a]">
