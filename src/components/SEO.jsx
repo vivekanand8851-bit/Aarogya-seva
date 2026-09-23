@@ -4,7 +4,7 @@ import { getProductSeoPath } from '../data/productSeo';
 
 const DEFAULTS = {
   siteName: 'Aarogya Seva',
-  siteUrl: 'https://aarogya-seva.vercel.app',
+  siteUrl: 'https://aarogyaseva.vercel.app',
   title: 'Aarogya Seva | Ayurvedic Wellness Products in India',
   description:
     'Aarogya Seva is an Indian Ayurvedic wellness brand offering Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products online. Also searchable as Aarogya Sewa.',
