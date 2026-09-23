@@ -60,7 +60,7 @@ export function BlogDetailPage() {
     dateModified: post.date,
     author: { '@type': 'Organization', name: 'Aarogya Seva' },
     publisher: { '@type': 'Organization', name: 'Aarogya Seva' },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://aarogya-seva.vercel.app/blog/${post.id}` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://aarogyaseva.vercel.app/blog/${post.id}` },
   };
 
   return (
