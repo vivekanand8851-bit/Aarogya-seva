@@ -164,6 +164,21 @@ export const productJsonLd = (product, seoPath = getProductSeoPath(product.slug)
   return schema;
 };
 
+
+export const faqJsonLd = (items, pageUrl) => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${absoluteUrl(pageUrl)}#faq`,
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+});
+
 export const breadcrumbJsonLd = (items) => ({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
