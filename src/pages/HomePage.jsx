@@ -88,7 +88,7 @@ export default function HomePage() {
           <span className="text-xs tracking-[3px] text-[#8a7a5a] uppercase">Aarogya Seva Ayurveda — Ayurvedic Wellness</span>
           <h2 className="font-serif text-2xl md:text-3xl text-[#0f3d2e] mt-2">Aarogya Seva Ayurveda — Ayurvedic & Herbal Wellness Products in India</h2>
           <p className="text-[#4a4a4a] leading-relaxed mt-3 max-w-4xl">
-            Aarogya Seva Ayurveda is the dedicated online destination for Aarogya Seva Ayurvedic wellness products in India. Explore Ashwagandha capsules, Shilajit capsules, Giloy capsules, Arjuna capsules and digestive wellness products with clear ingredient and product information before buying.
+            Aarogya Seva Ayurveda is the dedicated online destination for Aarogya Seva Ayurvedic wellness products in India. Customers may also search for the brand as “Aarogya Sewa” or “Aarogya Sewa Ayurveda”; these spellings refer to the same Aarogya Seva brand on this website. Explore Ashwagandha capsules, Shilajit capsules, Giloy capsules, Arjuna capsules and digestive wellness products with clear ingredient and product information before buying.
           </p>
           <div className="flex flex-wrap gap-3 mt-5">
             <Link to="/aarogya-seva-ayurveda" className="text-sm font-semibold text-[#0f3d2e] underline">About Aarogya Seva Ayurveda</Link><Link to="/ayurvedic/ashwagandha" className="text-sm font-semibold text-[#0f3d2e] underline">Ashwagandha guide</Link>
