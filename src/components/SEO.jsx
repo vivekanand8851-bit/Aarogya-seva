@@ -14,22 +14,46 @@ const DEFAULTS = {
   type: 'website',
 };
 
+const absoluteUrl = (value) => {
+  if (!value) return DEFAULTS.siteUrl;
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${DEFAULTS.siteUrl}${value.startsWith('/') ? value : `/${value}`}`;
+};
+
 export default function SEO({ title, description, keywords, image, type, url, jsonLd, noindex = false }) {
-  const t = title ? (title.includes(DEFAULTS.siteName) ? title : `${title} | ${DEFAULTS.siteName}`) : DEFAULTS.title;
+  const t = title
+    ? (title.includes(DEFAULTS.siteName) ? title : `${title} | ${DEFAULTS.siteName}`)
+    : DEFAULTS.title;
   const d = description || DEFAULTS.description;
   const k = keywords || DEFAULTS.keywords;
-  const img = image || DEFAULTS.image;
+  const img = absoluteUrl(image || DEFAULTS.image);
   const tp = type || DEFAULTS.type;
-  const u = url ? `${DEFAULTS.siteUrl}${url}` : DEFAULTS.siteUrl;
+  const u = absoluteUrl(url);
+  const robots = noindex
+    ? 'noindex, nofollow'
+    : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+  const webPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${u}#webpage`,
+    url: u,
+    name: t,
+    description: d,
+    isPartOf: { '@id': `${DEFAULTS.siteUrl}#website` },
+    inLanguage: 'en-IN',
+  };
 
   return (
     <Helmet>
       <title>{t}</title>
       <meta name="description" content={d} />
       <meta name="keywords" content={k} />
-      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+      <meta name="robots" content={robots} />
+      <meta name="googlebot" content={robots} />
       <meta name="author" content="Aarogya Seva" />
       <meta name="language" content="en-IN" />
+      <meta name="content-language" content="en-IN" />
       <meta name="geo.region" content="IN" />
       <meta name="geo.placename" content="India" />
       <link rel="canonical" href={u} />
@@ -39,6 +63,8 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <meta property="og:title" content={t} />
       <meta property="og:description" content={d} />
       <meta property="og:image" content={img} />
+      <meta property="og:image:alt" content={`${t} - Aarogya Seva Ayurveda`} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:url" content={u} />
       <meta property="og:locale" content="en_IN" />
 
@@ -48,6 +74,7 @@ export default function SEO({ title, description, keywords, image, type, url, js
       <meta name="twitter:image" content={img} />
       <meta name="twitter:image:alt" content={`${t} - Aarogya Seva Ayurveda`} />
 
+      <script type="application/ld+json">{JSON.stringify(webPageJsonLd)}</script>
       {jsonLd && <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>}
     </Helmet>
   );
@@ -56,14 +83,22 @@ export default function SEO({ title, description, keywords, image, type, url, js
 export const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${DEFAULTS.siteUrl}#website`,
   name: 'Aarogya Seva',
   alternateName: ['Aarogya Seva Ayurveda', 'Aarogya Seva Ayurvedic Wellness', 'Aarogya Sewa', 'Aarogya Sewa Ayurveda'],
   url: DEFAULTS.siteUrl,
+  inLanguage: 'en-IN',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${DEFAULTS.siteUrl}/shop?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'OnlineStore',
+  '@id': `${DEFAULTS.siteUrl}#organization`,
   name: 'Aarogya Seva',
   alternateName: ['Aarogya Seva Ayurveda', 'Aarogya Sewa', 'Aarogya Sewa Ayurveda'],
   url: DEFAULTS.siteUrl,
@@ -93,21 +128,49 @@ export const organizationJsonLd = {
   ],
 };
 
-export const productJsonLd = (product, seoPath = getProductSeoPath(product.slug)) => ({
+export const productJsonLd = (product, seoPath = getProductSeoPath(product.slug)) => {
+  const productUrl = absoluteUrl(seoPath);
+  const images = (product.images || []).map(absoluteUrl).filter(Boolean);
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `${productUrl}#product`,
+    name: product.name,
+    description: product.shortDesc || product.description,
+    image: images,
+    sku: product.id,
+    brand: { '@type': 'Brand', name: 'Aarogya Seva' },
+    url: productUrl,
+    offers: {
+      '@type': 'Offer',
+      url: productUrl,
+      priceCurrency: 'INR',
+      price: product.price,
+      availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+      itemCondition: 'https://schema.org/NewCondition',
+    },
+  };
+
+  if (product.rating > 0 && product.reviews > 0) {
+    schema.aggregateRating = {
+      '@type': 'AggregateRating',
+      ratingValue: product.rating,
+      reviewCount: product.reviews,
+      bestRating: 5,
+      worstRating: 1,
+    };
+  }
+
+  return schema;
+};
+
+export const breadcrumbJsonLd = (items) => ({
   '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: product.name,
-  description: product.shortDesc || product.description,
-  image: product.images,
-  sku: product.id,
-  brand: { '@type': 'Brand', name: 'Aarogya Seva' },
-  offers: {
-    '@type': 'Offer',
-    url: `${DEFAULTS.siteUrl}${seoPath}`,
-    priceCurrency: 'INR',
-    price: product.price,
-    priceValidUntil: '2026-12-31',
-    availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-    itemCondition: 'https://schema.org/NewCondition',
-  },
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: absoluteUrl(item.url),
+  })),
 });
