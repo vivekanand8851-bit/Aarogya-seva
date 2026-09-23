@@ -17,6 +17,7 @@ import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
 import SEO, { productJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
+import { getProductSeo } from '../data/productSeo';
 import { toast } from '../hooks/use-toast';
 
 export default function ProductDetailPage() {
@@ -37,17 +38,7 @@ export default function ProductDetailPage() {
     );
   }
 
-  const keywordMap = {
-    'arjuna-capsules': 'Arjuna capsules India, Arjuna herbal capsules, Arjuna Ayurvedic product, Arjuna wellness capsules',
-    'shilajeet-capsules': 'Shilajit capsules India, Shilajeet capsules India, purified Shilajit supplement, Ayurvedic Shilajit',
-    'ashwagandha-extract-capsules': 'Ashwagandha capsules India, Ashwagandha root extract, Ayurvedic Ashwagandha supplement, Ashwagandha wellness',
-    'giloy-extract-capsules': 'Giloy capsules India, Guduchi capsules, Ayurvedic Giloy supplement, Giloy herbal product',
-    'dig-up-capsules': 'Ayurvedic men wellness capsules India, herbal wellness capsules for men, DIG-UP capsules',
-    'piles-norm-capsules': 'Ayurvedic digestive wellness capsules India, herbal digestive wellness, Piles Norm capsules',
-    'shilajeet-ashwagandha-combo': 'Shilajit Ashwagandha combo India, Shilajeet Ashwagandha capsules, Ayurvedic wellness combo',
-    'piles-digup-combo': 'Ayurvedic wellness combo India, digestive wellness combo, herbal wellness combo',
-  };
-  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
+  const seo = getProductSeo(product.slug, product);\n  const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const wished = isInWishlist(product.id);
 
   const handleAdd = () => {
@@ -68,9 +59,9 @@ export default function ProductDetailPage() {
   return (
     <div className="bg-[#fbf7ec] pb-16">
       <SEO
-        title={product.name}
-        description={product.shortDesc}
-        keywords={`Aarogya Seva, ${keywordMap[product.slug] || 'Ayurvedic wellness products India, herbal supplements India'}`}
+        title={seo.title}
+        description={seo.description}
+        keywords={`Aarogya Seva, Aarogya Sewa, ${seo.keywords}`}
         image={normalizeImageUrl(product.images?.[0])}
         type="product"
         url={`/product/${product.slug}`}
@@ -98,7 +89,7 @@ export default function ProductDetailPage() {
                 onClick={() => setImgIdx(i)}
                 className={`w-20 h-20 rounded-lg overflow-hidden border-2 bg-white flex items-center justify-center p-1.5 ${imgIdx === i ? 'border-[#0f3d2e]' : 'border-[#ede4cf]'}`}
               >
-                <img src={img} alt={`view ${i + 1}`} className="w-full h-full object-contain" />
+                <img src={normalizeImageUrl(img)} alt={`${product.name} image ${i + 1}`} className="w-full h-full object-contain" />
               </button>
             ))}
           </div>
@@ -165,6 +156,7 @@ export default function ProductDetailPage() {
 
           {/* Benefits */}
           <div className="mt-6 bg-white border border-[#ede4cf] rounded-xl p-5">
+            <p className="text-xs text-[#8a7a5a] mb-3">Aarogya Seva Ayurveda • {seo.title}</p>
             <h4 className="font-semibold text-[#0f3d2e] mb-3">Key Benefits</h4>
             <ul className="space-y-2">
               {product.benefits.map((b, i) => (
@@ -207,7 +199,20 @@ export default function ProductDetailPage() {
           ))}
         </div>
         <div className="py-6 text-[#3a3a3a] leading-relaxed max-w-3xl">
-          {tab === 'description' && <p>{product.description}</p>}
+          {tab === 'description' && (
+            <div className="space-y-6">
+              <p>{seo.description}</p>
+              <section>
+                <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">Key Points in Hindi</h2>
+                <ul className="list-disc pl-5 space-y-2">{seo.hindi.map((x) => <li key={x}>{x}</li>)}</ul>
+              </section>
+              <section>
+                <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">Key Points in English</h2>
+                <ul className="list-disc pl-5 space-y-2">{seo.english.map((x) => <li key={x}>{x}</li>)}</ul>
+              </section>
+              <p className="text-sm text-[#6b6253]">Traditional Ayurvedic context is provided for information only. Follow the product label and seek qualified healthcare advice for medical concerns.</p>
+            </div>
+          )}
           {tab === 'ingredients' && <p><span className="font-semibold">Ingredients:</span> {product.ingredients}</p>}
           {tab === 'dosage' && <p><span className="font-semibold">Recommended Dosage:</span> {product.dosage}</p>}
         </div>
