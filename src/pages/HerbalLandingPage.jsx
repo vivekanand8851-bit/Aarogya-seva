@@ -20,13 +20,13 @@ const DATA = {
   },
   brand: {
     title: 'Aarogya Seva Ayurveda | Ayurvedic Wellness Products in India',
-    description: 'Aarogya Seva Ayurveda is the online home of Aarogya Seva Ayurvedic wellness products in India. Explore Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.',
+    description: 'Aarogya Seva Ayurveda (also searched as Aarogya Sewa Ayurveda) is the online home of Aarogya Seva Ayurvedic wellness products in India. Explore Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.',
     image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
     product: '/shop',
     productName: 'Shop Aarogya Seva Ayurvedic Products',
     intro: 'Aarogya Seva Ayurveda is the brand identity used on this website for Aarogya Seva Ayurvedic wellness products in India. This page helps customers distinguish the store from other organizations or websites that may use similar words in their names.',
     sections: [
-      ['About Aarogya Seva Ayurveda', 'Aarogya Seva Ayurveda brings the Aarogya Seva product catalogue, product information, wellness guides and online shopping experience together in one website. The catalogue includes Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.'],
+      ['About Aarogya Seva Ayurveda', 'Aarogya Seva Ayurveda (also searched as Aarogya Sewa) brings the Aarogya Seva product catalogue, product information, wellness guides and online shopping experience together in one website. The catalogue includes Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.'],
       ['Aarogya Seva products online in India', 'Browse the Aarogya Seva catalogue to compare product names, ingredients, serving information, prices and availability. Product pages provide the most specific information for each formulation.'],
       ['Ayurvedic and herbal wellness focus', 'The website focuses on Ayurvedic and herbal wellness products rather than presenting supplements as replacements for prescription medicines. Educational guides explain traditional context and practical label checks without promising disease treatment.'],
       ['How to identify this website', 'The canonical website address is https://aarogya-seva.vercel.app/. On this site, the brand is presented as Aarogya Seva Ayurveda and Aarogya Seva. Use the About, Contact, Policies and product pages to verify information before ordering.'],
@@ -99,7 +99,7 @@ export default function HerbalLandingPage({ type }) {
           type === 'hub'
             ? 'Aarogya Seva Ayurvedic, Ayurvedic wellness products India, Ayurvedic products online India, herbal supplements India, Ashwagandha, Shilajit, Giloy, Arjuna'
             : type === 'brand'
-              ? 'Aarogya Seva Ayurveda, Aarogya Seva India, Aarogya Seva Ayurvedic, Aarogya Seva products online, Aarogya Seva wellness products, official Aarogya Seva website, Ayurvedic products India'
+              ? 'Aarogya Seva, Aarogya Sewa, Aarogya Seva Ayurveda, Aarogya Sewa Ayurveda, Aarogya Seva India, Aarogya Sewa India, Aarogya Seva Ayurvedic, Aarogya Sewa Ayurvedic, Aarogya Seva products online, Aarogya Sewa products online, official Aarogya Seva website, Ayurvedic products India'
               : type === 'ashwagandha'
               ? 'Ashwagandha capsules India, Ashwagandha online India, Ashwagandha root extract, Ayurvedic Ashwagandha supplement, herbal wellness India'
               : 'Shilajit capsules India, Shilajit online India, Shilajeet capsules, purified Shilajit supplement, Ayurvedic Shilajit'
