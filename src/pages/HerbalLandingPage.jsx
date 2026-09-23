@@ -29,7 +29,7 @@ const DATA = {
       ['About Aarogya Seva Ayurveda', 'Aarogya Seva Ayurveda (also searched as Aarogya Sewa) brings the Aarogya Seva product catalogue, product information, wellness guides and online shopping experience together in one website. The catalogue includes Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.'],
       ['Aarogya Seva products online in India', 'Browse the Aarogya Seva catalogue to compare product names, ingredients, serving information, prices and availability. Product pages provide the most specific information for each formulation.'],
       ['Ayurvedic and herbal wellness focus', 'The website focuses on Ayurvedic and herbal wellness products rather than presenting supplements as replacements for prescription medicines. Educational guides explain traditional context and practical label checks without promising disease treatment.'],
-      ['How to identify this website', 'The canonical website address is https://aarogya-seva.vercel.app/. On this site, the brand is presented as Aarogya Seva Ayurveda and Aarogya Seva. Use the About, Contact, Policies and product pages to verify information before ordering.'],
+      ['How to identify this website', 'The canonical website address is https://aarogyaseva.vercel.app/. On this site, the brand is presented as Aarogya Seva Ayurveda and Aarogya Seva. Use the About, Contact, Policies and product pages to verify information before ordering.'],
     ],
   },
   ashwagandha: {
@@ -70,18 +70,18 @@ function breadcrumbJsonLd(slug, title) {
     '@type': 'BreadcrumbList',
     itemListElement: isBrand
       ? [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogya-seva.vercel.app/' },
-          { '@type': 'ListItem', position: 2, name: 'Aarogya Seva Ayurveda', item: 'https://aarogya-seva.vercel.app/aarogya-seva-ayurveda' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogyaseva.vercel.app/' },
+          { '@type': 'ListItem', position: 2, name: 'Aarogya Seva Ayurveda', item: 'https://aarogyaseva.vercel.app/aarogya-seva-ayurveda' },
         ]
       : isHub
       ? [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogya-seva.vercel.app/' },
-          { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogya-seva.vercel.app/ayurvedic' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogyaseva.vercel.app/' },
+          { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogyaseva.vercel.app/ayurvedic' },
         ]
       : [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogya-seva.vercel.app/' },
-          { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogya-seva.vercel.app/ayurvedic' },
-          { '@type': 'ListItem', position: 3, name: title, item: `https://aarogya-seva.vercel.app/ayurvedic/${slug}` },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://aarogyaseva.vercel.app/' },
+          { '@type': 'ListItem', position: 2, name: 'Ayurvedic Wellness Guides', item: 'https://aarogyaseva.vercel.app/ayurvedic' },
+          { '@type': 'ListItem', position: 3, name: title, item: `https://aarogyaseva.vercel.app/ayurvedic/${slug}` },
         ],
   };
 }
