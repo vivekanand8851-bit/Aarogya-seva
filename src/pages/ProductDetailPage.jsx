@@ -16,6 +16,7 @@ import {
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
 import SEO, { productJsonLd } from '../components/SEO';
+import { normalizeImageUrl } from '../lib/imageUrl';
 import { toast } from '../hooks/use-toast';
 
 export default function ProductDetailPage() {
@@ -70,7 +71,7 @@ export default function ProductDetailPage() {
         title={product.name}
         description={product.shortDesc}
         keywords={`Aarogya Seva, ${keywordMap[product.slug] || 'Ayurvedic wellness products India, herbal supplements India'}`}
-        image={product.images?.[0]}
+        image={normalizeImageUrl(product.images?.[0])}
         type="product"
         url={`/product/${product.slug}`}
         jsonLd={productJsonLd(product)}
@@ -85,7 +86,7 @@ export default function ProductDetailPage() {
         <div>
           <div className="aspect-square bg-gradient-to-br from-white to-[#faf6ec] rounded-xl overflow-hidden border border-[#ede4cf] flex items-center justify-center p-8">
             <img
-              src={product.images[imgIdx]}
+              src={normalizeImageUrl(product.images?.[imgIdx])}
               alt={product.name}
               className="w-full h-full object-contain"
             />
