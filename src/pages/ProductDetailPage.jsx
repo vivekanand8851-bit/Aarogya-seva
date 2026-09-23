@@ -71,7 +71,14 @@ export default function ProductDetailPage({ seoUrl = false }) {
         image={normalizeImageUrl(product.images?.[0])}
         type="product"
         url={getProductSeoPath(product.slug)}
-        jsonLd={[\n          productJsonLd(product, getProductSeoPath(product.slug)),\n          breadcrumbJsonLd([\n            { name: 'Home', url: '/' },\n            { name: 'Shop', url: '/shop' },\n            { name: product.name, url: getProductSeoPath(product.slug) },\n          ]),\n        ]}
+        jsonLd={[
+          productJsonLd(product, getProductSeoPath(product.slug)),
+          breadcrumbJsonLd([
+            { name: 'Home', url: '/' },
+            { name: 'Shop', url: '/shop' },
+            { name: product.name, url: getProductSeoPath(product.slug) },
+          ]),
+        ]}
       />
       <div className="max-w-7xl mx-auto px-4 py-4 text-xs text-[#8a7a5a]">
         <Link to="/">Home</Link> / <Link to="/shop">Shop</Link> /{' '}
