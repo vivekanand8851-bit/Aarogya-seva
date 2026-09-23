@@ -104,3 +104,4 @@ export const getProductSeo = (slug, product) => {
     english: base.english || [],
     hashtags: base.hashtags || [],
   };
+};
