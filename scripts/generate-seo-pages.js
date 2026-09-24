@@ -24,6 +24,19 @@ const guidePages = [
   ['ayurvedic/shilajit','Shilajit: Quality Checks & Buying Guide','Learn what Shilajit is, how traditional use differs from modern marketing and what to check on a supplement label.'],
 ];
 
+const productCatalog = {
+  'arjuna-capsules-india': { name: 'Arjuna Capsules', price: 899 },
+  'shilajit-capsules-1000mg': { name: 'Shilajeet Capsules 1000mg', price: 1399 },
+  'ashwagandha-extract-capsules-india': { name: 'Ashwagandha Extract Capsules', price: 799 },
+  'giloy-extract-capsules-india': { name: 'Giloy Extract Capsules', price: 649 },
+  'dig-up-men-wellness-capsules': { name: 'DIG-UP Capsules', price: 849 },
+  'piles-norm-ayurvedic-capsules': { name: 'Piles Norm Capsules', price: 749 },
+  'shilajit-ashwagandha-combo': { name: 'Shilajeet + Ashwagandha Combo', price: 1899 },
+  'piles-norm-dig-up-combo': { name: 'Piles Norm + DIG-UP Combo', price: 1499 },
+  'cough-yog-capsules-india': { name: 'COUGH-YOG Capsules', price: 1200 },
+  'gass-off-churan-100g': { name: 'GASS OFF Churan', price: 299 },
+};
+
 const articlePages = [
   ['ashwagandha-benefits','Ashwagandha: Traditional Uses, Evidence & Buying Guide','A practical guide to Ashwagandha covering traditional Ayurvedic use, modern research questions, supplement labels and responsible buying.'],
   ['shilajit-guide','Shilajit Guide: What It Is, Quality Checks & How to Compare Products','Understand Shilajit, purification, common product formats, label checks and the difference between traditional use and modern marketing claims.'],
@@ -41,8 +54,26 @@ const escapeHtml = (value) => String(value)
 
 function writePage(route, title, description, type, heading, body) {
   const url = `${SITE}/${route}`;
+  const product = type === 'Product' ? productCatalog[route] : null;
   const schema = type === 'Product'
-    ? { '@context':'https://schema.org','@type':'Product','@id':`${url}#product`,name:heading,description,image:[LOGO],url }
+    ? {
+        '@context':'https://schema.org',
+        '@type':'Product',
+        '@id':`${url}#product`,
+        name: product.name,
+        description,
+        image:[LOGO],
+        brand:{'@type':'Brand',name:'Aarogya Seva'},
+        url,
+        offers:{
+          '@type':'Offer',
+          url,
+          priceCurrency:'INR',
+          price:product.price,
+          availability:'https://schema.org/InStock',
+          itemCondition:'https://schema.org/NewCondition'
+        }
+      }
     : { '@context':'https://schema.org','@type':type,'@id':`${url}#page`,name:title,description,url,publisher:{'@type':'Organization',name:'Aarogya Seva',logo:{'@type':'ImageObject',url:LOGO}} };
 
   const html = `<!doctype html>
@@ -69,8 +100,9 @@ ${scriptSrc ? `<script defer src="${scriptSrc}"></script>` : ''}</body></html>`;
 }
 
 for (const [slug,title,description] of productPages) {
-  writePage(`ayurvedic-products/${slug}`,title,description,'Product',title.split(' | ')[0],
-    '<p>Review the complete ingredient panel, serving directions, manufacturer information and product label before use. Supplements are not a substitute for professional medical advice.</p>');
+  const product = productCatalog[slug];
+  writePage(`ayurvedic-products/${slug}`,title,description,'Product',product.name,
+    `<p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is available for purchase online in India. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p><p>Review the complete ingredient panel, serving directions, manufacturer information and product label before use. Supplements are not a substitute for professional medical advice.</p><p><a href="/shop">Browse Aarogya Seva products</a> · <a href="/about">About Aarogya Seva</a> · <a href="/contact">Contact</a></p>`);
 }
 
 for (const [route,title,description] of guidePages) {
