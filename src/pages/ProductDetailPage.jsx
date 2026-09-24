@@ -18,6 +18,7 @@ import ProductCard from '../components/ProductCard';
 import SEO, { breadcrumbJsonLd, faqJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
+import PRODUCT_EDUCATION from '../data/productEducation';
 import { toast } from '../hooks/use-toast';
 
 export default function ProductDetailPage({ seoUrl = false }) {
@@ -62,6 +63,7 @@ export default function ProductDetailPage({ seoUrl = false }) {
       answer: 'Check the product label before use. If you are pregnant, nursing, taking medicines, have a medical condition, or have concerns about suitability, consult a qualified healthcare professional.',
     },
   ];
+  const education = PRODUCT_EDUCATION[product.slug] || {};
   const related = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4);
   const wished = isInWishlist(product.id);
 
@@ -242,6 +244,36 @@ export default function ProductDetailPage({ seoUrl = false }) {
                 <ul className="list-disc pl-5 space-y-2">{seo.english.map((x) => <li key={x}>{x}</li>)}</ul>
               </section>
               <p className="text-sm text-[#6b6253]">Traditional Ayurvedic context is provided for information only. Follow the product label and seek qualified healthcare advice for medical concerns.</p>
+              {education.classical && (
+                <section>
+                  <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">चरक संहिता और आयुर्वेदिक संदर्भ</h2>
+                  <p>{education.classical}</p>
+                </section>
+              )}
+              {education.why && (
+                <section>
+                  <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">यह क्या है और क्यों उपयोग किया जाता है?</h2>
+                  <p>{education.why}</p>
+                </section>
+              )}
+              {education.how && (
+                <section>
+                  <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">कैसे उपयोग करें?</h2>
+                  <p>{education.how}</p>
+                </section>
+              )}
+              {education.ways?.length > 0 && (
+                <section>
+                  <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">पारंपरिक रूप और उपयोग के तरीके</h2>
+                  <ul className="list-disc pl-5 space-y-2">{education.ways.map((x) => <li key={x}>{x}</li>)}</ul>
+                </section>
+              )}
+              {education.mantra && (
+                <section className="bg-[#faf1dc] rounded-xl p-5 border border-[#ede4cf]">
+                  <h2 className="font-serif text-2xl text-[#0f3d2e] mb-3">आयुर्वेदिक स्मरण मंत्र</h2>
+                  <p>{education.mantra}</p>
+                </section>
+              )}
             </div>
           )}
           {tab === 'ingredients' && <p><span className="font-semibold">Ingredients:</span> {product.ingredients}</p>}
