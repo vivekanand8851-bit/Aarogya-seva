@@ -120,14 +120,20 @@ for (const [slug,title,description] of productPages) {
   const education = PRODUCT_EDUCATION[routeToProductSlug[slug]] || {};
   const list = (items = []) => items.map((x) => `<li>${escapeHtml(x)}</li>`).join('');
   const body = `
-    <p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is available for purchase online in India. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p>
+    <p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is presented as an Ayurvedic wellness product for customers looking for clearly described botanical ingredients, traditional context and practical daily-use guidance. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p>
+    <section><h2>उत्पाद का परिचय</h2><p>${escapeHtml(education.intro || '')}</p></section>
+    <section><h2>मुख्य सामग्री और वनस्पति परिचय</h2><p>${escapeHtml(education.ingredients || '')}</p></section>
     <section><h2>चरक संहिता और आयुर्वेदिक संदर्भ</h2><p>${escapeHtml(education.classical || '')}</p></section>
-    <section><h2>यह क्या है और क्यों उपयोग किया जाता है?</h2><p>${escapeHtml(education.why || '')}</p></section>
-    <section><h2>कैसे उपयोग करें?</h2><p>${escapeHtml(education.how || '')}</p></section>
+    <section><h2>आयुर्वेद में इसके गुण और पारंपरिक उपयोग</h2><p>${escapeHtml(education.properties || '')}</p></section>
+    <section><h2>क्यों उपयोग किया जाता है?</h2><p>${escapeHtml(education.why || '')}</p></section>
+    <section><h2>दैनिक जीवन में उपयोग और सेवन की विधि</h2><p>${escapeHtml(education.how || '')}</p></section>
     <section><h2>पारंपरिक रूप और उपयोग के तरीके</h2><ul>${list(education.ways)}</ul></section>
+    <section><h2>किस प्रकार की गुणवत्ता पर ध्यान दें?</h2><p>${escapeHtml(education.quality || '')}</p></section>
+    <section><h2>आयुर्वेदिक दिनचर्या के साथ उपयोग</h2><p>${escapeHtml(education.routine || '')}</p></section>
+    <section><h2>महत्वपूर्ण सावधानियाँ</h2><p>${escapeHtml(education.cautions || '')}</p></section>
     <section><h2>आयुर्वेदिक स्मरण मंत्र</h2><p>${escapeHtml(education.mantra || '')}</p></section>
-    <section><h2>Product Label & Responsible Use</h2><p>Review the complete ingredient panel, serving directions, manufacturer information and product label before use. Supplements are not a substitute for professional medical advice.</p></section>
-    <p><a href="/shop">Browse Aarogya Seva products</a> · <a href="/ayurvedic">Ayurvedic guides</a> · <a href="/blog">Ayurveda articles</a> · <a href="/about">About Aarogya Seva</a> · <a href="/contact">Contact</a></p>
+    <section><h2>ज्ञान और जिम्मेदार उपयोग</h2><p>आयुर्वेदिक ग्रंथ किसी द्रव्य के गुण, कर्म और प्रयोग का पारंपरिक संदर्भ देते हैं; किसी आधुनिक branded product का परिणाम उसकी वास्तविक सामग्री, मात्रा, processing, गुणवत्ता और व्यक्ति की स्थिति पर निर्भर कर सकता है। इसलिए Aarogya Seva product page पर botanical identity, ingredient information, serving directions और traditional context को अलग-अलग समझना महत्वपूर्ण है। यह सामग्री सामान्य educational information के लिए है और व्यक्तिगत चिकित्सकीय परामर्श का विकल्प नहीं है।</p></section>
+    <p><a href="/shop">Aarogya Seva के सभी उत्पाद देखें</a> · <a href="/ayurvedic">आयुर्वेदिक ज्ञान पढ़ें</a> · <a href="/blog">Ayurveda articles</a> · <a href="/about">Aarogya Seva के बारे में</a> · <a href="/contact">संपर्क करें</a></p>
   `;
   writePage(`ayurvedic-products/${slug}`,title,description,'Product',product.name,body);
 }
