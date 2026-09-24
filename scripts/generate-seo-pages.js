@@ -25,6 +25,19 @@ const guidePages = [
   ['ayurvedic/shilajit','Shilajit: Quality Checks & Buying Guide','Learn what Shilajit is, how traditional use differs from modern marketing and what to check on a supplement label.'],
 ];
 
+const routeToProductSlug = {
+  'arjuna-capsules-india': 'arjuna-capsules',
+  'shilajit-capsules-1000mg': 'shilajeet-capsules',
+  'ashwagandha-extract-capsules-india': 'ashwagandha-extract-capsules',
+  'giloy-extract-capsules-india': 'giloy-extract-capsules',
+  'dig-up-men-wellness-capsules': 'dig-up-capsules',
+  'piles-norm-ayurvedic-capsules': 'piles-norm-capsules',
+  'shilajit-ashwagandha-combo': 'shilajeet-ashwagandha-combo',
+  'piles-norm-dig-up-combo': 'piles-digup-combo',
+  'cough-yog-capsules-india': 'cough-yog-capsules',
+  'gass-off-churan-100g': 'gass-off-churan',
+};
+
 const productCatalog = {
   'arjuna-capsules-india': { name: 'Arjuna Capsules', price: 899 },
   'shilajit-capsules-1000mg': { name: 'Shilajeet Capsules 1000mg', price: 1399 },
@@ -104,7 +117,7 @@ ${scriptSrc ? `<script defer src="${scriptSrc}"></script>` : ''}</body></html>`;
 
 for (const [slug,title,description] of productPages) {
   const product = productCatalog[slug];
-  const education = PRODUCT_EDUCATION[slug] || {};
+  const education = PRODUCT_EDUCATION[routeToProductSlug[slug]] || {};
   const list = (items = []) => items.map((x) => `<li>${escapeHtml(x)}</li>`).join('');
   const body = `
     <p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is available for purchase online in India. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p>
