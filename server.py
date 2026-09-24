@@ -35,6 +35,20 @@ RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', '')
 ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'admin@aarogyaseva.com')
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '')
 
+# Product image fallbacks keep order history/checkout visuals intact when an older
+# database product record has an empty images array.
+PRODUCT_IMAGE_FALLBACKS = {
+    "arjuna-capsules": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/9nl7yn4a_Arjuna.png",
+    "shilajeet-capsules": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png",
+    "ashwagandha-extract-capsules": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png",
+    "giloy-extract-capsules": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png",
+    "dig-up-capsules": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png",
+    "piles-norm-capsules": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png",
+    "shilajeet-ashwagandha-combo": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png",
+    "piles-norm-dig-up-combo": "https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png",
+}
+
+
 client = AsyncIOMotorClient(MONGO_URL)
 db = client[DB_NAME]
 
@@ -263,7 +277,7 @@ async def _calc_totals(items: List[CartItem], points_redeemed: int = 0):
             "productId": p["id"],
             "name": p["name"],
             "slug": p.get("slug", ""),
-            "image": (p.get("images") or [""])[0],
+            "image": (p.get("images") or [PRODUCT_IMAGE_FALLBACKS.get(p.get("slug", ""), "")])[0],
             "price": p["price"],
             "mrp": p["mrp"],
             "qty": c.qty,
