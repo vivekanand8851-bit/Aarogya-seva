@@ -42,7 +42,7 @@ const escapeHtml = (value) => String(value)
 function writePage(route, title, description, type, heading, body) {
   const url = `${SITE}/${route}`;
   const schema = type === 'Product'
-    ? { '@context':'https://schema.org','@type':'Product','@id':`${url}#product`,name:heading,description,image:[LOGO],brand:{'@type':'Brand',name:'Aarogya Seva'},url }
+    ? { '@context':'https://schema.org','@type':'Product','@id':`${url}#product`,name:heading,description,image:[LOGO],url }
     : { '@context':'https://schema.org','@type':type,'@id':`${url}#page`,name:title,description,url,publisher:{'@type':'Organization',name:'Aarogya Seva',logo:{'@type':'ImageObject',url:LOGO}} };
 
   const html = `<!doctype html>
