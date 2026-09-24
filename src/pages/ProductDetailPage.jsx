@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
-import SEO, { productJsonLd, breadcrumbJsonLd, faqJsonLd } from '../components/SEO';
+import SEO, { breadcrumbJsonLd, faqJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
 import { toast } from '../hooks/use-toast';
@@ -90,7 +90,6 @@ export default function ProductDetailPage({ seoUrl = false }) {
         type="product"
         url={getProductSeoPath(product.slug)}
         jsonLd={[
-          productJsonLd(product, getProductSeoPath(product.slug)),
           faqJsonLd(faqItems, getProductSeoPath(product.slug)),
           breadcrumbJsonLd([
             { name: 'Home', url: '/' },
