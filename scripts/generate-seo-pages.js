@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const PRODUCT_EDUCATION = require('../src/data/productEducation');
 
 const SITE = 'https://aarogyaseva.vercel.app';
 const LOGO = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png';
@@ -103,8 +104,19 @@ ${scriptSrc ? `<script defer src="${scriptSrc}"></script>` : ''}</body></html>`;
 
 for (const [slug,title,description] of productPages) {
   const product = productCatalog[slug];
-  writePage(`ayurvedic-products/${slug}`,title,description,'Product',product.name,
-    `<p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is available for purchase online in India. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p><p>Review the complete ingredient panel, serving directions, manufacturer information and product label before use. Supplements are not a substitute for professional medical advice.</p><p><a href="/shop">Browse Aarogya Seva products</a> · <a href="/about">About Aarogya Seva</a> · <a href="/contact">Contact</a></p>`);
+  const education = PRODUCT_EDUCATION[slug] || {};
+  const list = (items = []) => items.map((x) => `<li>${escapeHtml(x)}</li>`).join('');
+  const body = `
+    <p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is available for purchase online in India. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p>
+    <section><h2>चरक संहिता और आयुर्वेदिक संदर्भ</h2><p>${escapeHtml(education.classical || '')}</p></section>
+    <section><h2>यह क्या है और क्यों उपयोग किया जाता है?</h2><p>${escapeHtml(education.why || '')}</p></section>
+    <section><h2>कैसे उपयोग करें?</h2><p>${escapeHtml(education.how || '')}</p></section>
+    <section><h2>पारंपरिक रूप और उपयोग के तरीके</h2><ul>${list(education.ways)}</ul></section>
+    <section><h2>आयुर्वेदिक स्मरण मंत्र</h2><p>${escapeHtml(education.mantra || '')}</p></section>
+    <section><h2>Product Label & Responsible Use</h2><p>Review the complete ingredient panel, serving directions, manufacturer information and product label before use. Supplements are not a substitute for professional medical advice.</p></section>
+    <p><a href="/shop">Browse Aarogya Seva products</a> · <a href="/ayurvedic">Ayurvedic guides</a> · <a href="/blog">Ayurveda articles</a> · <a href="/about">About Aarogya Seva</a> · <a href="/contact">Contact</a></p>
+  `;
+  writePage(`ayurvedic-products/${slug}`,title,description,'Product',product.name,body);
 }
 
 for (const [route,title,description] of guidePages) {
