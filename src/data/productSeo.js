@@ -1,4 +1,5 @@
 // Product-specific SEO content. Keep claims factual, non-medical, and aligned with the visible product page.
+import PRODUCT_EDUCATION from './productEducation';
 export const PRODUCT_SEO = {
   'arjuna-capsules': {
     title: 'Arjuna Capsules India | Aarogya Seva Ayurvedic Arjuna',
@@ -99,7 +100,7 @@ export const getProductSeo = (slug, product) => {
   return {
     title: base.title || product?.name || 'Aarogya Seva Ayurvedic Wellness Product',
     description: base.description || product?.description || product?.shortDesc || '',
-    keywords: base.keywords || 'Aarogya Seva, Ayurvedic wellness products India, herbal products India',
+    keywords: [base.keywords || 'Aarogya Seva, Ayurvedic wellness products India, herbal products India', PRODUCT_EDUCATION[slug]?.search || ''].filter(Boolean).join(', '),
     hindi: base.hindi || [],
     english: base.english || [],
     hashtags: base.hashtags || [],
