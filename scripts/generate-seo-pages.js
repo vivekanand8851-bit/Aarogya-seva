@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const PRODUCT_EDUCATION = require('../src/data/productEducation');
+const { BLOG_POSTS } = require('../src/mock/mockData');
 
 const SITE = 'https://aarogyaseva.vercel.app';
 const LOGO = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png';
@@ -121,6 +122,7 @@ function writePage(route, title, description, type, heading, body) {
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escapeHtml(title)}">
 <meta name="twitter:description" content="${escapeHtml(description)}"><meta name="twitter:image" content="${type === 'Product' ? (PRODUCT_IMAGES[productSlug] || LOGO) : LOGO}">
 <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
+<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:SITE},{'@type':'ListItem',position:2,name:type==='Product'?'Ayurvedic Products':type==='Article'?'Blog':'Ayurvedic Guides',item:type==='Product'?SITE+'/shop':type==='Article'?SITE+'/blog':SITE+'/ayurvedic'},{'@type':'ListItem',position:3,name:title,item:url}]}).replace(/</g,'\\u003c')}</script>
 </head><body><main><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(description)}</p>${body}</main><div id="root"></div>
 ${cssLinks.map((href) => `<link href="${href}" rel="stylesheet">`).join('\n')}
 ${scriptSrc ? `<script defer src="${scriptSrc}"></script>` : ''}</body></html>`;
@@ -155,13 +157,19 @@ for (const [slug,title,description] of productPages) {
 }
 
 for (const [route,title,description] of guidePages) {
-  writePage(route,title,description,'WebPage',title,
-    '<p>Compare botanical names, plant parts, ingredient amounts, serving size, batch information, manufacturer details and product directions. Separate traditional Ayurvedic context from modern health claims.</p>');
+  const key = route.endsWith('ashwagandha') ? 'ashwagandha-extract-capsules' : route.endsWith('shilajit') ? 'shilajeet-capsules' : null;
+  const education = key ? PRODUCT_EDUCATION[key] || {} : {};
+  const parts = [education.intro, education.ingredients, education.classical, education.properties, education.why, education.how, education.quality, education.routine].filter(Boolean);
+  const labels = ['परिचय','मुख्य सामग्री','आयुर्वेदिक संदर्भ','पारंपरिक उपयोग','क्यों उपयोग किया जाता है','उपयोग की विधि','गुणवत्ता पर ध्यान','दैनिक दिनचर्या'];
+  const body = parts.map((p,i)=>'<section><h2>'+escapeHtml(labels[i])+'</h2><p>'+escapeHtml(p)+'</p></section>').join('');
+  writePage(route,title,description,'WebPage',title,body+'<p><a href="/shop">Aarogya Seva के उत्पाद देखें</a> · <a href="/blog">Ayurveda Articles पढ़ें</a></p>');
 }
 
 for (const [slug,title,description] of articlePages) {
-  writePage(`blog/${slug}`,title,description,'Article',title,
-    '<p>This educational article explains traditional context, supplement-label considerations and responsible buying. Evidence varies by herb, preparation, dose and person.</p><p>If you have a medical condition, are pregnant or breastfeeding, or take medicines, consult a qualified healthcare professional before using supplements.</p>');
+  const article = BLOG_POSTS.find(p => p.id === slug);
+  const sections = article?.sections || [];
+  const body = sections.map(([heading,content]) => '<section><h2>'+escapeHtml(heading)+'</h2><p>'+escapeHtml(content)+'</p></section>').join('');
+  writePage('blog/'+slug,title,description,'Article',title,body+'<p><a href="/ayurvedic">Ayurvedic Wellness Guides</a> · <a href="/shop">Aarogya Seva Products</a></p>');
 }
 
 console.log(`Generated ${productPages.length} product, ${guidePages.length} guide and ${articlePages.length} article SEO pages.`);
