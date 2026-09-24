@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { api } from '../lib/api';
+import { PRODUCTS as CATALOG_PRODUCTS } from '../mock/mockData';
 
 const AppContext = createContext(null);
 
@@ -39,7 +40,14 @@ export function AppProvider({ children }) {
     try {
       setLoadingProducts(true);
       const data = await api.listProducts();
-      setProducts(data);
+      // Keep storefront product imagery available even if an older DB record has no images.
+      // API data remains authoritative for price/stock; catalog data supplies only missing images.
+      const normalized = data.map((p) => {
+        const catalog = CATALOG_PRODUCTS.find((x) => x.slug === p.slug || x.id === p.slug || x.id === p.id);
+        const hasImages = Array.isArray(p.images) && p.images.some((img) => typeof img === 'string' && img.trim());
+        return hasImages || !catalog?.images?.length ? p : { ...p, images: catalog.images };
+      });
+      setProducts(normalized);
     } catch (e) {
       console.error('Load products failed', e);
     } finally {
