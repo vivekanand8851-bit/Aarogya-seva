@@ -54,7 +54,9 @@ const escapeHtml = (value) => String(value)
 
 function writePage(route, title, description, type, heading, body) {
   const url = `${SITE}/${route}`;
-  const product = type === 'Product' ? productCatalog[route] : null;
+  const productSlug = type === 'Product' ? route.replace(/^ayurvedic-products\//, '') : null;
+  const product = type === 'Product' ? productCatalog[productSlug] : null;
+  if (type === 'Product' && !product) throw new Error(`Missing product catalog entry for ${route}`);
   const schema = type === 'Product'
     ? {
         '@context':'https://schema.org',
