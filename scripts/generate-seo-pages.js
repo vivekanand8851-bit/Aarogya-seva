@@ -138,6 +138,7 @@ for (const [slug,title,description] of productPages) {
   const list = (items = []) => items.map((x) => `<li>${escapeHtml(x)}</li>`).join('');
   const body = `
     <p><strong>Aarogya Seva ${escapeHtml(product.name)}</strong> is presented as an Ayurvedic wellness product for customers looking for clearly described botanical ingredients, traditional context and practical daily-use guidance. Current listed price: ₹${product.price.toLocaleString('en-IN')}.</p>
+    <figure><img src="${PRODUCT_IMAGES[slug] || LOGO}" alt="${escapeHtml(product.name)} by Aarogya Seva Ayurvedic wellness product" width="600" height="600" loading="eager" decoding="async"><figcaption>${escapeHtml(product.name)} — Aarogya Seva</figcaption></figure>
     <section><h2>उत्पाद का परिचय</h2><p>${escapeHtml(education.intro || '')}</p></section>
     <section><h2>मुख्य सामग्री और वनस्पति परिचय</h2><p>${escapeHtml(education.ingredients || '')}</p></section>
     <section><h2>चरक संहिता और आयुर्वेदिक संदर्भ</h2><p>${escapeHtml(education.classical || '')}</p></section>
