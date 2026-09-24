@@ -5,6 +5,19 @@ const PRODUCT_EDUCATION = require('../src/data/productEducation');
 const SITE = 'https://aarogyaseva.vercel.app';
 const LOGO = 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/ws7ojtw3_aarogya%20seva%20logo.png';
 
+const PRODUCT_IMAGES = {
+  'arjuna-capsules-india': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/9nl7yn4a_Arjuna.png',
+  'shilajit-capsules-1000mg': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
+  'ashwagandha-extract-capsules-india': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
+  'giloy-extract-capsules-india': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png',
+  'dig-up-men-wellness-capsules': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png',
+  'piles-norm-ayurvedic-capsules': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png',
+  'shilajit-ashwagandha-combo': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
+  'piles-norm-dig-up-combo': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png',
+  'cough-yog-capsules-india': LOGO,
+  'gass-off-churan-100g': LOGO
+};
+
 const productPages = [
   ['arjuna-capsules-india','Arjuna Capsules India | Aarogya Seva Ayurvedic Arjuna','Aarogya Seva Arjuna Capsules with Terminalia arjuna bark extract. Learn about traditional Ayurvedic use, ingredients, serving information and responsible supplement buying.'],
   ['shilajit-capsules-1000mg','Shilajit Capsules 1000mg India | Aarogya Seva','Aarogya Seva Shilajeet Capsules 1000mg with purified Shilajeet extract. Compare ingredient amount, traditional Ayurvedic context, serving information and label details.'],
@@ -78,7 +91,9 @@ function writePage(route, title, description, type, heading, body) {
         '@id':`${url}#product`,
         name: product.name,
         description,
-        image:[LOGO],
+        image:[PRODUCT_IMAGES[productSlug] || LOGO],
+        sku: productSlug,
+        category: 'Ayurvedic Wellness Product',
         brand:{'@type':'Brand',name:'Aarogya Seva'},
         url,
         offers:{
@@ -102,9 +117,9 @@ function writePage(route, title, description, type, heading, body) {
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="${type === 'Product' ? 'product' : 'article'}"><meta property="og:site_name" content="Aarogya Seva">
 <meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}">
-<meta property="og:url" content="${url}"><meta property="og:image" content="${LOGO}">
+<meta property="og:url" content="${url}"><meta property="og:image" content="${type === 'Product' ? (PRODUCT_IMAGES[productSlug] || LOGO) : LOGO}">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${escapeHtml(title)}">
-<meta name="twitter:description" content="${escapeHtml(description)}"><meta name="twitter:image" content="${LOGO}">
+<meta name="twitter:description" content="${escapeHtml(description)}"><meta name="twitter:image" content="${type === 'Product' ? (PRODUCT_IMAGES[productSlug] || LOGO) : LOGO}">
 <script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>
 </head><body><main><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(description)}</p>${body}</main><div id="root"></div>
 ${cssLinks.map((href) => `<link href="${href}" rel="stylesheet">`).join('\n')}
@@ -133,7 +148,8 @@ for (const [slug,title,description] of productPages) {
     <section><h2>महत्वपूर्ण सावधानियाँ</h2><p>${escapeHtml(education.cautions || '')}</p></section>
     <section><h2>आयुर्वेदिक स्मरण मंत्र</h2><p>${escapeHtml(education.mantra || '')}</p></section>
     <section><h2>ज्ञान और जिम्मेदार उपयोग</h2><p>आयुर्वेदिक ग्रंथ किसी द्रव्य के गुण, कर्म और प्रयोग का पारंपरिक संदर्भ देते हैं; किसी आधुनिक branded product का परिणाम उसकी वास्तविक सामग्री, मात्रा, processing, गुणवत्ता और व्यक्ति की स्थिति पर निर्भर कर सकता है। इसलिए Aarogya Seva product page पर botanical identity, ingredient information, serving directions और traditional context को अलग-अलग समझना महत्वपूर्ण है। यह सामग्री सामान्य educational information के लिए है और व्यक्तिगत चिकित्सकीय परामर्श का विकल्प नहीं है।</p></section>
-    <p><a href="/shop">Aarogya Seva के सभी उत्पाद देखें</a> · <a href="/ayurvedic">आयुर्वेदिक ज्ञान पढ़ें</a> · <a href="/blog">Ayurveda articles</a> · <a href="/about">Aarogya Seva के बारे में</a> · <a href="/contact">संपर्क करें</a></p>
+    <section><h2>संबंधित आयुर्वेदिक ज्ञान</h2><p><a href="/ayurvedic">Ayurvedic Wellness Guides</a> · <a href="/ayurvedic/ashwagandha">Ashwagandha Guide</a> · <a href="/ayurvedic/shilajit">Shilajit Guide</a> · <a href="/blog">Ayurveda Articles</a></p></section>
+    <p><a href="/shop">Aarogya Seva के सभी उत्पाद देखें</a> · <a href="/about">Aarogya Seva के बारे में</a> · <a href="/contact">संपर्क करें</a></p>
   `;
   writePage(`ayurvedic-products/${slug}`,title,description,'Product',product.name,body);
 }
