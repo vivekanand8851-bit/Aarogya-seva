@@ -103,7 +103,40 @@ function writePage(route, title, description, type, heading, body) {
           priceCurrency:'INR',
           price:product.price,
           availability:'https://schema.org/InStock',
-          itemCondition:'https://schema.org/NewCondition'
+          itemCondition:'https://schema.org/NewCondition',
+          shippingDetails:{
+            '@type':'OfferShippingDetails',
+            shippingRate:{
+              '@type':'MonetaryAmount',
+              maxValue:49,
+              currency:'INR'
+            },
+            shippingDestination:{
+              '@type':'DefinedRegion',
+              addressCountry:'IN'
+            },
+            deliveryTime:{
+              '@type':'ShippingDeliveryTime',
+              handlingTime:{
+                '@type':'QuantitativeValue',
+                minValue:1,
+                maxValue:2,
+                unitCode:'DAY'
+              },
+              transitTime:{
+                '@type':'QuantitativeValue',
+                minValue:3,
+                maxValue:7,
+                unitCode:'DAY'
+              }
+            }
+          },
+          hasMerchantReturnPolicy:{
+            '@type':'MerchantReturnPolicy',
+            applicableCountry:'IN',
+            returnPolicyCategory:'https://schema.org/MerchantReturnFiniteReturnWindow',
+            merchantReturnDays:7
+          }
         }
       }
     : { '@context':'https://schema.org','@type':type,'@id':`${url}#page`,name:title,description,url,publisher:{'@type':'Organization',name:'Aarogya Seva',logo:{'@type':'ImageObject',url:LOGO}} };
