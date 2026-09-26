@@ -4,6 +4,7 @@ import { Heart, Star, ShoppingBag, Zap } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { toast } from '../hooks/use-toast';
 import { normalizeImageUrl } from '../lib/imageUrl';
+import { getProductSeoPath } from '../data/productSeo';
 
 export default function ProductCard({ product }) {
   const { addToCart, toggleWishlist, isInWishlist, user } = useApp();
@@ -37,7 +38,7 @@ export default function ProductCard({ product }) {
 
   return (
     <Link
-      to={`/product/${product.slug}`}
+      to={getProductSeoPath(product.slug)}
       className="group relative bg-white rounded-xl overflow-hidden border border-[#ede4cf] hover:border-[#c9b989] hover:shadow-[0_10px_30px_-10px_rgba(15,61,46,0.25)] transition-all duration-300"
     >
       <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-white to-[#faf6ec] flex items-center justify-center p-4">
