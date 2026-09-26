@@ -107,6 +107,7 @@ function writePage(route, title, description, type, heading, body) {
           shippingDetails:[
             {
               '@type':'OfferShippingDetails',
+              orderValue:{'@type':'MonetaryAmount',minValue:0,maxValue:498.99,currency:'INR'},
               shippingRate:{'@type':'MonetaryAmount',value:49,currency:'INR'},
               shippingDestination:{'@type':'DefinedRegion',addressCountry:'IN'},
               deliveryTime:{
@@ -117,6 +118,7 @@ function writePage(route, title, description, type, heading, body) {
             },
             {
               '@type':'OfferShippingDetails',
+              orderValue:{'@type':'MonetaryAmount',minValue:499,currency:'INR'},
               shippingRate:{'@type':'MonetaryAmount',value:0,currency:'INR'},
               shippingDestination:{'@type':'DefinedRegion',addressCountry:'IN'},
               deliveryTime:{
