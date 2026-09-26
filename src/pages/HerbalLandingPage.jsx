@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { getProductSeoPath } from '../data/productSeo';
 import { ArrowRight, ShieldCheck, Leaf, BookOpen } from 'lucide-react';
 
 const DATA = {
@@ -36,7 +37,7 @@ const DATA = {
     title: 'Ashwagandha: Uses, Traditional Ayurvedic Context & Buying Guide',
     description: 'Learn about Ashwagandha, its traditional Ayurvedic context, common supplement formats, quality checks and practical questions to consider before buying.',
     image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
-    product: '/product/ashwagandha-extract-capsules',
+    product: getProductSeoPath('ashwagandha-extract-capsules'),
     productName: 'Ashwagandha Extract Capsules',
     intro: 'Ashwagandha (Withania somnifera) is a well-known Ayurvedic herb traditionally used in formulations concerned with general vitality and everyday wellbeing. Modern supplements vary widely in extract type, dose, sourcing and quality, so the label matters.',
     sections: [
@@ -50,7 +51,7 @@ const DATA = {
     title: 'Shilajit: What It Is, Quality Checks & Buying Guide',
     description: 'Learn what Shilajit is, how traditional Ayurvedic use differs from modern supplement marketing, what to check on a label and how to compare products responsibly.',
     image: 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
-    product: '/product/shilajeet-capsules',
+    product: getProductSeoPath('shilajeet-capsules'),
     productName: 'Shilajeet Capsules 1000mg',
     intro: 'Shilajit is a mineral-rich substance found in mountainous regions and has a long history of use in traditional Ayurvedic formulations. Product quality can differ substantially, making sourcing, purification and transparent labeling important.',
     sections: [
