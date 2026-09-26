@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Heart, User, Search, Menu, X } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { BRAND_LOGO } from '../mock/mockData';
+import { getProductSeoPath } from '../data/productSeo';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -133,7 +134,7 @@ export default function Navbar() {
                 {filtered.map((p) => (
                   <Link
                     key={p.id}
-                    to={`/product/${p.slug}`}
+                    to={getProductSeoPath(p.slug)}
                     className="flex items-center gap-3 p-3 hover:bg-[#faf6ec] border-b last:border-0 border-[#e8e0d1]"
                     onClick={() => setSearchOpen(false)}
                   >
