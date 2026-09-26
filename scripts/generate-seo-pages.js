@@ -146,6 +146,7 @@ function writePage(route, title, description, type, heading, body) {
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="${url}">
+${type === 'Product' ? '<meta name="aarogya-seo-static" content="product">' : ''}
 <meta property="og:type" content="${type === 'Product' ? 'product' : 'article'}"><meta property="og:site_name" content="Aarogya Seva">
 <meta property="og:title" content="${escapeHtml(title)}"><meta property="og:description" content="${escapeHtml(description)}">
 <meta property="og:url" content="${url}"><meta property="og:image" content="${type === 'Product' ? (PRODUCT_IMAGES[productSlug] || LOGO) : LOGO}">
