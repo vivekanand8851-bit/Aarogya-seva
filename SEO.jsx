@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 
 const DEFAULTS = {
   siteName: 'Aarogya Seva Ayurveda',
-  siteUrl: 'https://aarogya-seva.vercel.app',
+  siteUrl: 'https://aarogyaseva.vercel.app',
   title: 'Aarogya Seva Ayurveda | Ayurvedic Wellness Products in India',
   description:
     'Aarogya Seva Ayurveda is the online home of Aarogya Seva Ayurvedic wellness products in India, including Ashwagandha, Shilajit, Giloy, Arjuna and digestive wellness products.',
@@ -56,7 +56,7 @@ export const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Aarogya Seva Ayurveda',
-  alternateName: ['Aarogya Seva Ayurvedic Wellness', 'Aarogya Seva', 'aarogya-seva.vercel.app'],
+  alternateName: ['Aarogya Seva Ayurvedic Wellness', 'Aarogya Seva', 'aarogyaseva.vercel.app'],
   url: DEFAULTS.siteUrl,
 };
 
