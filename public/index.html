@@ -52,7 +52,45 @@
             "sameAs": [
               "https://www.instagram.com/aarogya.sevaa",
               "https://www.facebook.com/profile.php?id=61574420841337"
-            ]
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Ground Floor, 77, Dadri",
+              "addressLocality": "Gautam Buddha Nagar",
+              "addressRegion": "Uttar Pradesh",
+              "postalCode": "203207",
+              "addressCountry": "IN"
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "@id": "https://aarogyaseva.vercel.app/#return-policy",
+              "applicableCountry": "IN",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 7
+            },
+            "hasShippingService": {
+              "@type": "ShippingService",
+              "@id": "https://aarogyaseva.vercel.app/#shipping-service",
+              "name": "Aarogya Seva Standard Shipping",
+              "description": "Pan-India shipping. Orders are dispatched within 24-48 hours and standard delivery takes 3-7 business days. Shipping is ₹49 below ₹499 order value and free at ₹499 or above.",
+              "fulfillmentType": "https://schema.org/FulfillmentTypeDelivery",
+              "shippingConditions": [
+                {
+                  "@type": "ShippingConditions",
+                  "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "IN"},
+                  "orderValue": {"@type": "MonetaryAmount", "minValue": 0, "maxValue": 498.99, "currency": "INR"},
+                  "shippingRate": {"@type": "MonetaryAmount", "value": 49, "currency": "INR"},
+                  "transitTime": {"@type": "ServicePeriod", "duration": {"@type": "QuantitativeValue", "minValue": 3, "maxValue": 7, "unitCode": "DAY"}}
+                },
+                {
+                  "@type": "ShippingConditions",
+                  "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "IN"},
+                  "orderValue": {"@type": "MonetaryAmount", "minValue": 499, "currency": "INR"},
+                  "shippingRate": {"@type": "MonetaryAmount", "value": 0, "currency": "INR"},
+                  "transitTime": {"@type": "ServicePeriod", "duration": {"@type": "QuantitativeValue", "minValue": 3, "maxValue": 7, "unitCode": "DAY"}}
+                }
+              ]
+            }
           },
           {
             "@type": "WebSite",
