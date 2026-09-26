@@ -95,6 +95,43 @@ export const websiteJsonLd = {
   },
 };
 
+const merchantReturnPolicyJsonLd = {
+  '@type': 'MerchantReturnPolicy',
+  '@id': `${DEFAULTS.siteUrl}#return-policy`,
+  applicableCountry: 'IN',
+  returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+  merchantReturnDays: 7,
+};
+
+const shippingServiceJsonLd = {
+  '@type': 'ShippingService',
+  '@id': `${DEFAULTS.siteUrl}#shipping-service`,
+  name: 'Aarogya Seva Standard Shipping',
+  description: 'Pan-India shipping. Orders are dispatched within 24-48 hours and standard delivery takes 3-7 business days. Shipping is ₹49 below ₹499 order value and free at ₹499 or above.',
+  shippingConditions: [
+    {
+      '@type': 'ShippingConditions',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
+      orderValue: { '@type': 'MonetaryAmount', maxValue: 498.99, currency: 'INR' },
+      shippingRate: { '@type': 'MonetaryAmount', value: 49, currency: 'INR' },
+      transitTime: {
+        '@type': 'ServicePeriod',
+        duration: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+      },
+    },
+    {
+      '@type': 'ShippingConditions',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'IN' },
+      orderValue: { '@type': 'MonetaryAmount', minValue: 499, currency: 'INR' },
+      shippingRate: { '@type': 'MonetaryAmount', value: 0, currency: 'INR' },
+      transitTime: {
+        '@type': 'ServicePeriod',
+        duration: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 7, unitCode: 'DAY' },
+      },
+    },
+  ],
+};
+
 export const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'OnlineStore',
@@ -126,6 +163,8 @@ export const organizationJsonLd = {
     'https://www.facebook.com/profile.php?id=61574420841337',
     'https://www.instagram.com/aarogya.sevaa',
   ],
+  hasMerchantReturnPolicy: merchantReturnPolicyJsonLd,
+  hasShippingService: shippingServiceJsonLd,
 };
 
 export const productJsonLd = (product, seoPath = getProductSeoPath(product.slug)) => {
@@ -148,6 +187,34 @@ export const productJsonLd = (product, seoPath = getProductSeoPath(product.slug)
       price: product.price,
       availability: product.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
       itemCondition: 'https://schema.org/NewCondition',
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: {
+          '@type': 'MonetaryAmount',
+          maxValue: 49,
+          currency: 'INR',
+        },
+        shippingDestination: {
+          '@type': 'DefinedRegion',
+          addressCountry: 'IN',
+        },
+        deliveryTime: {
+          '@type': 'ShippingDeliveryTime',
+          handlingTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 1,
+            maxValue: 2,
+            unitCode: 'DAY',
+          },
+          transitTime: {
+            '@type': 'QuantitativeValue',
+            minValue: 3,
+            maxValue: 7,
+            unitCode: 'DAY',
+          },
+        },
+      },
+      hasMerchantReturnPolicy: merchantReturnPolicyJsonLd,
     },
   };
 
