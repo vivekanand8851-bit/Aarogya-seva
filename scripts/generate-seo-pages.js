@@ -104,33 +104,28 @@ function writePage(route, title, description, type, heading, body) {
           price:product.price,
           availability:'https://schema.org/InStock',
           itemCondition:'https://schema.org/NewCondition',
-          shippingDetails:{
-            '@type':'OfferShippingDetails',
-            shippingRate:{
-              '@type':'MonetaryAmount',
-              maxValue:49,
-              currency:'INR'
+          shippingDetails:[
+            {
+              '@type':'OfferShippingDetails',
+              shippingRate:{'@type':'MonetaryAmount',value:49,currency:'INR'},
+              shippingDestination:{'@type':'DefinedRegion',addressCountry:'IN'},
+              deliveryTime:{
+                '@type':'ShippingDeliveryTime',
+                handlingTime:{'@type':'QuantitativeValue',minValue:1,maxValue:2,unitCode:'DAY'},
+                transitTime:{'@type':'QuantitativeValue',minValue:3,maxValue:7,unitCode:'DAY'}
+              }
             },
-            shippingDestination:{
-              '@type':'DefinedRegion',
-              addressCountry:'IN'
-            },
-            deliveryTime:{
-              '@type':'ShippingDeliveryTime',
-              handlingTime:{
-                '@type':'QuantitativeValue',
-                minValue:1,
-                maxValue:2,
-                unitCode:'DAY'
-              },
-              transitTime:{
-                '@type':'QuantitativeValue',
-                minValue:3,
-                maxValue:7,
-                unitCode:'DAY'
+            {
+              '@type':'OfferShippingDetails',
+              shippingRate:{'@type':'MonetaryAmount',value:0,currency:'INR'},
+              shippingDestination:{'@type':'DefinedRegion',addressCountry:'IN'},
+              deliveryTime:{
+                '@type':'ShippingDeliveryTime',
+                handlingTime:{'@type':'QuantitativeValue',minValue:1,maxValue:2,unitCode:'DAY'},
+                transitTime:{'@type':'QuantitativeValue',minValue:3,maxValue:7,unitCode:'DAY'}
               }
             }
-          },
+          ],
           hasMerchantReturnPolicy:{
             '@type':'MerchantReturnPolicy',
             applicableCountry:'IN',
