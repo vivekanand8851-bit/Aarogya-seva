@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Announcement from './components/Announcement';
@@ -14,8 +14,21 @@ import AdminPage from './pages/AdminPage';
 import { AboutPage, ContactPage, ConsultPage, LoginPage, AccountPage, TrackOrderPage, PoliciesPage } from './pages/StaticPages';
 import { BlogListPage, BlogDetailPage } from './pages/BlogPage';
 import HerbalLandingPage from './pages/HerbalLandingPage';
+import { getImageFallback } from './lib/imageUrl';
 
 export default function App() {
+  useEffect(() => {
+    const handleImageError = (event) => {
+      const img = event.target;
+      if (!(img instanceof HTMLImageElement)) return;
+      if (img.dataset.fallbackApplied === 'true') return;
+      img.dataset.fallbackApplied = 'true';
+      img.src = getImageFallback(img.alt || 'Aarogya Seva', img.alt?.toLowerCase().includes('logo') ? 'brand' : 'product');
+    };
+    window.addEventListener('error', handleImageError, true);
+    return () => window.removeEventListener('error', handleImageError, true);
+  }, []);
+
   return (
     <BrowserRouter>
       <AppProvider>
