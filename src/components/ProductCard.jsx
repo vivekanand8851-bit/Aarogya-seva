@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Heart, Star, ShoppingBag, Zap } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { toast } from '../hooks/use-toast';
-import { normalizeImageUrl } from '../lib/imageUrl';
+import { getProductImageFallback, normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeoPath } from '../data/productSeo';
 
 export default function ProductCard({ product }) {
@@ -47,6 +47,10 @@ export default function ProductCard({ product }) {
           alt={product.name}
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = getProductImageFallback(product.name);
+          }}
         />
         {product.badge && (
           <span className="absolute top-3 left-3 bg-[#c84a3f] text-white text-[10px] font-bold tracking-wider px-2.5 py-1 rounded">
