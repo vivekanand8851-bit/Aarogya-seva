@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../mock/mockData';
+import SafeImage from '../components/SafeImage';
 import { useParams } from 'react-router-dom';
 import { Calendar, Clock, User, ArrowLeft } from 'lucide-react';
 import SEO from '../components/SEO';
@@ -25,7 +26,7 @@ export function BlogListPage() {
           {BLOG_POSTS.map((post) => (
             <Link key={post.id} to={`/blog/${post.id}`} className="group bg-white rounded-xl overflow-hidden border border-[#ede4cf] hover:shadow-lg transition">
               <div className="aspect-[16/10] overflow-hidden">
-                <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                <SafeImage src={post.image} alt={post.title} fallbackLabel={post.title} fallbackType="photo" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
               </div>
               <div className="p-6">
                 <span className="text-[11px] font-semibold tracking-widest text-[#8a7a5a] uppercase">{post.category}</span>
@@ -82,7 +83,7 @@ export function BlogDetailPage() {
           <span className="flex items-center gap-1"><Calendar size={14} />{post.date}</span>
           <span className="flex items-center gap-1"><Clock size={14} />{post.readTime}</span>
         </div>
-        <img src={post.image} alt={post.title} className="w-full aspect-[16/9] object-cover rounded-2xl mt-8" />
+        <SafeImage src={post.image} alt={post.title} fallbackLabel={post.title} fallbackType="photo" className="w-full aspect-[16/9] object-cover rounded-2xl mt-8" />
         <div className="prose prose-lg max-w-none mt-8 text-[#3a3a3a] leading-relaxed space-y-6">
           <p className="text-xl text-[#0f3d2e] font-serif italic">{post.excerpt}</p>
           {(post.sections || []).map(([heading, text]) => (
