@@ -124,7 +124,7 @@ export default function HerbalLandingPage({ type }) {
           </Link>
         </div>
         <div className="bg-white rounded-2xl border border-[#ede4cf] p-8 flex items-center justify-center">
-          <img src={data.image} alt={type === 'ashwagandha' ? 'Ashwagandha wellness product' : type === 'shilajit' ? 'Shilajit and Ashwagandha wellness products' : 'Aarogya Seva Ayurvedic wellness products'} className="max-h-80 object-contain" />
+          <SafeImage src={data.image} alt={type === 'ashwagandha' ? 'Ashwagandha wellness product' : type === 'shilajit' ? 'Shilajit and Ashwagandha wellness products' : 'Aarogya Seva Ayurvedic wellness products'} fallbackLabel="Aarogya Seva Ayurvedic wellness products" className="max-h-80 object-contain" />
         </div>
       </header>
 
