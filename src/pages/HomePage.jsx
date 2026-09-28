@@ -14,6 +14,7 @@ import ProductCard from '../components/ProductCard';
 import SEO, { organizationJsonLd, websiteJsonLd } from '../components/SEO';
 import { useApp } from '../context/AppContext';
 import { CATEGORIES, FEATURES, BLOG_POSTS } from '../mock/mockData';
+import SafeImage from '../components/SafeImage';
 
 const ICONS = { Leaf, FlaskConical, Truck, ShieldCheck, BadgeIndianRupee, Undo2 };
 
@@ -68,9 +69,10 @@ export default function HomePage() {
             >
               <div className="aspect-square rounded-full overflow-hidden bg-white border-2 border-[#ede4cf] group-hover:border-[#e6b64c] transition p-1 shadow-sm">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-[#faf6ec] to-white flex items-center justify-center p-3">
-                  <img
+                  <SafeImage
                     src={c.image}
                     alt={c.name}
+                    fallbackLabel={c.name}
                     className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
@@ -204,9 +206,11 @@ export default function HomePage() {
               className="group bg-white rounded-xl overflow-hidden border border-[#ede4cf] hover:shadow-lg transition"
             >
               <div className="aspect-[16/10] overflow-hidden">
-                <img
+                <SafeImage
                   src={post.image}
                   alt={post.title}
+                  fallbackLabel={post.title}
+                  fallbackType="photo"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
