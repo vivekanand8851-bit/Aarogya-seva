@@ -17,6 +17,7 @@ import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
 import SEO, { breadcrumbJsonLd, faqJsonLd, organizationJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
+import SafeImage from '../components/SafeImage';
 import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
 import PRODUCT_EDUCATION from '../data/productEducation';
 import { toast } from '../hooks/use-toast';
@@ -110,9 +111,10 @@ export default function ProductDetailPage({ seoUrl = false }) {
         {/* Images */}
         <div>
           <div className="aspect-square bg-gradient-to-br from-white to-[#faf6ec] rounded-xl overflow-hidden border border-[#ede4cf] flex items-center justify-center p-8">
-            <img
-              src={normalizeImageUrl(product.images?.[imgIdx])}
+            <SafeImage
+              src={product.images?.[imgIdx]}
               alt={product.name}
+              fallbackLabel={product.name}
               className="w-full h-full object-contain"
             />
           </div>
@@ -123,7 +125,7 @@ export default function ProductDetailPage({ seoUrl = false }) {
                 onClick={() => setImgIdx(i)}
                 className={`w-20 h-20 rounded-lg overflow-hidden border-2 bg-white flex items-center justify-center p-1.5 ${imgIdx === i ? 'border-[#0f3d2e]' : 'border-[#ede4cf]'}`}
               >
-                <img src={normalizeImageUrl(img)} alt={`${product.name} image ${i + 1}`} className="w-full h-full object-contain" />
+                <SafeImage src={img} alt={`${product.name} image ${i + 1}`} fallbackLabel={product.name} className="w-full h-full object-contain" />
               </button>
             ))}
           </div>
