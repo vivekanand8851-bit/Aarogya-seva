@@ -247,7 +247,7 @@ function OrderDetailModal({ order, onClose, onStatusUpdate }) {
             <div className="space-y-2">
               {order.items?.map((it, i) => (
                 <div key={i} className="flex items-center gap-3 bg-[#faf6ec] rounded-lg p-3">
-                  {it.image && <img src={it.image} alt={it.name} className="w-12 h-12 object-contain bg-white rounded p-1" />}
+                  {it.image && <SafeImage src={it.image} alt={it.name} fallbackLabel={it.name} className="w-12 h-12 object-contain bg-white rounded p-1" />}
                   <div className="flex-1">
                     <div className="font-semibold text-[#0f3d2e] text-sm">{it.name}</div>
                     <div className="text-xs text-[#8a7a5a]">Qty: {it.qty} × ₹{it.price?.toLocaleString()}</div>
