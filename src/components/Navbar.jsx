@@ -4,6 +4,7 @@ import { ShoppingBag, Heart, User, Search, Menu, X } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { BRAND_LOGO } from '../mock/mockData';
 import { getProductSeoPath } from '../data/productSeo';
+import SafeImage from './SafeImage';
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -48,9 +49,11 @@ export default function Navbar() {
         </button>
 
         <Link to="/" className="flex items-center gap-3 group">
-          <img
+          <SafeImage
             src={BRAND_LOGO}
             alt="Aarogya Seva"
+            fallbackLabel="Aarogya Seva"
+            fallbackType="brand"
             className="w-12 h-12 md:w-14 md:h-14 object-contain group-hover:scale-105 transition-transform"
           />
           <div className="hidden sm:flex flex-col leading-tight">
@@ -138,7 +141,7 @@ export default function Navbar() {
                     className="flex items-center gap-3 p-3 hover:bg-[#faf6ec] border-b last:border-0 border-[#e8e0d1]"
                     onClick={() => setSearchOpen(false)}
                   >
-                    <img src={p.images[0]} alt={p.name} className="w-12 h-12 object-cover rounded" />
+                    <SafeImage src={p.images?.[0]} alt={p.name} fallbackLabel={p.name} className="w-12 h-12 object-cover rounded" />
                     <div className="flex-1">
                       <div className="text-sm font-medium text-[#0f3d2e]">{p.name}</div>
                       <div className="text-xs text-[#8a7a5a]">₹{p.price} · {p.discount}% off</div>
