@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { HERO_SLIDES } from '../mock/mockData';
+import SafeImage from './SafeImage';
 
 export default function Hero() {
   const [idx, setIdx] = useState(0);
@@ -21,9 +22,11 @@ export default function Hero() {
             key={s.id}
             className={`absolute inset-0 transition-opacity duration-1000 ${i === idx ? 'opacity-100' : 'opacity-0'}`}
           >
-            <img
+            <SafeImage
               src={s.image}
               alt={s.title}
+              fallbackLabel={s.title}
+              fallbackType="photo"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0b2a20]/85 via-[#0b2a20]/60 to-transparent" />
