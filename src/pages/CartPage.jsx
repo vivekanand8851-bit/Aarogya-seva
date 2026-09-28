@@ -4,6 +4,7 @@ import { Minus, Plus, Trash2, ShoppingBag, Tag, ArrowRight } from 'lucide-react'
 import { useApp } from '../context/AppContext';
 import SEO from '../components/SEO';
 import { getProductSeoPath } from '../data/productSeo';
+import { getProductImageFallback, normalizeImageUrl } from '../lib/imageUrl';
 
 export default function CartPage() {
   const { cartItems, cartSubtotal, cartMrpTotal, cartSavings, updateQty, removeFromCart } = useApp();
@@ -40,7 +41,15 @@ export default function CartPage() {
           <div className="space-y-4">
             {cartItems.map((item) => (
               <div key={item.id} className="bg-white border border-[#ede4cf] rounded-xl p-4 flex gap-4">
-                <img src={item.images[0]} alt={item.name} className="w-24 h-24 md:w-28 md:h-28 object-contain bg-gradient-to-br from-white to-[#faf6ec] rounded-lg flex-shrink-0 p-2" />
+                <img
+                  src={normalizeImageUrl(item.images?.[0])}
+                  alt={item.name}
+                  className="w-24 h-24 md:w-28 md:h-28 object-contain bg-gradient-to-br from-white to-[#faf6ec] rounded-lg flex-shrink-0 p-2"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = getProductImageFallback(item.name);
+                  }}
+                />
                 <div className="flex-1 min-w-0">
                   <Link to={getProductSeoPath(item.slug)} className="font-semibold text-[#0f3d2e] hover:text-[#1a5c40]">{item.name}</Link>
                   <p className="text-xs text-[#8a7a5a] mt-1 line-clamp-1">{item.shortDesc}</p>
