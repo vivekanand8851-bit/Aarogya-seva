@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { BRAND_LOGO } from '../mock/mockData';
+import SafeImage from './SafeImage';
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src={BRAND_LOGO} alt="Aarogya Seva" className="w-16 h-16 object-contain bg-white/95 rounded-full p-1" />
+              <SafeImage src={BRAND_LOGO} alt="Aarogya Seva" fallbackLabel="Aarogya Seva" fallbackType="brand" className="w-16 h-16 object-contain bg-white/95 rounded-full p-1" />
               <div>
                 <div className="font-serif text-lg text-white">Aarogya Seva</div>
                 <div className="text-[10px] tracking-[3px] text-[#e6b64c]">AAPKI SEHAT · HAMARI SEVA</div>
