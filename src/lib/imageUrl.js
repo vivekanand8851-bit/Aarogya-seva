@@ -32,6 +32,27 @@ export function normalizeImageUrls(values = []) {
 }
 
 
+export function getImageFallback(name = 'Aarogya Seva', type = 'product') {
+  const safeName = String(name || 'Aarogya Seva')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const isBrand = type === 'brand';
+  const isPhoto = type === 'photo';
+  const title = isBrand ? 'AAROGYA SEVA' : safeName;
+  const subtitle = isBrand ? 'AAPKI SEHAT · HAMARI SEVA' : (isPhoto ? 'Aarogya Seva Wellness' : 'Ayurvedic Wellness');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+    <rect width="800" height="520" rx="28" fill="#faf6ec"/>
+    <rect x="32" y="32" width="736" height="456" rx="24" fill="#ffffff" stroke="#e6b64c" stroke-width="3"/>
+    <circle cx="400" cy="190" r="92" fill="#f1ead8"/>
+    <rect x="340" y="125" width="120" height="150" rx="18" fill="#ffffff" stroke="#0f3d2e" stroke-width="4"/>
+    <rect x="355" y="106" width="90" height="34" rx="8" fill="#0f3d2e"/>
+    <rect x="357" y="165" width="86" height="60" rx="8" fill="#e6b64c"/>
+    <path d="M400 178c-25 20-25 34 0 47 25-13 25-27 0-47z" fill="#0f3d2e"/>
+    <text x="400" y="305" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#0f3d2e">${title}</text>
+    <text x="400" y="340" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#8a7a5a">${subtitle}</text>
+  </svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 export function getProductImageFallback(name = 'Ayurvedic Product') {
   const safeName = String(name || 'Ayurvedic Product')
     .replace(/&/g, '&amp;')
