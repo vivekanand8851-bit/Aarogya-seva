@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 import { toast } from '../hooks/use-toast';
 import { api } from '../lib/api';
 import SEO from '../components/SEO';
+import { getProductImageFallback, normalizeImageUrl } from '../lib/imageUrl';
 
 function loadRazorpayScript() {
   return new Promise((resolve) => {
@@ -253,7 +254,15 @@ export default function CheckoutPage() {
             <div className="space-y-3 max-h-56 overflow-auto pr-2">
               {cartItems.map((i) => (
                 <div key={i.id} className="flex gap-3 text-sm">
-                  <img src={i.images[0]} alt={i.name} className="w-12 h-12 object-contain bg-[#faf6ec] rounded p-1" />
+                  <img
+                    src={normalizeImageUrl(i.images?.[0])}
+                    alt={i.name}
+                    className="w-12 h-12 object-contain bg-[#faf6ec] rounded p-1"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = getProductImageFallback(i.name);
+                    }}
+                  />
                   <div className="flex-1 min-w-0">
                     <div className="text-[#0f3d2e] font-medium line-clamp-1">{i.name}</div>
                     <div className="text-xs text-[#8a7a5a]">Qty {i.qty}</div>
