@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
-import SEO, { breadcrumbJsonLd, faqJsonLd, productJsonLd, organizationJsonLd } from '../components/SEO';
+import SEO, { breadcrumbJsonLd, faqJsonLd, organizationJsonLd } from '../components/SEO';
 import { normalizeImageUrl } from '../lib/imageUrl';
 import { getProductSeo, PRODUCT_SEO_SLUGS, getProductSeoPath } from '../data/productSeo';
 import PRODUCT_EDUCATION from '../data/productEducation';
@@ -30,8 +30,6 @@ export default function ProductDetailPage({ seoUrl = false }) {
   const [qty, setQty] = useState(1);
   const [tab, setTab] = useState('description');
   const navigate = useNavigate();
-  const hasStaticProductSchema = typeof document !== 'undefined' &&
-    Boolean(document.querySelector('meta[name="aarogya-seo-static"][content="product"]'));
 
   if (product && !seoUrl) {
     return <Navigate to={getProductSeoPath(product.slug)} replace />;
@@ -95,7 +93,6 @@ export default function ProductDetailPage({ seoUrl = false }) {
         url={getProductSeoPath(product.slug)}
         jsonLd={[
           organizationJsonLd,
-          ...(!hasStaticProductSchema ? [productJsonLd(product, getProductSeoPath(product.slug))] : []),
           faqJsonLd(faqItems, getProductSeoPath(product.slug)),
           breadcrumbJsonLd([
             { name: 'Home', url: '/' },
