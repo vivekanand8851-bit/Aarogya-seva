@@ -53,14 +53,14 @@ const routeToProductSlug = {
 };
 
 const productCatalog = {
-  'arjuna-capsules-india': { name: 'Arjuna Capsules', price: 899 },
-  'shilajit-capsules-1000mg': { name: 'Shilajeet Capsules 1000mg', price: 1399 },
-  'ashwagandha-extract-capsules-india': { name: 'Ashwagandha Extract Capsules', price: 799 },
-  'giloy-extract-capsules-india': { name: 'Giloy Extract Capsules', price: 649 },
-  'dig-up-men-wellness-capsules': { name: 'DIG-UP Capsules', price: 849 },
-  'piles-norm-ayurvedic-capsules': { name: 'Piles Norm Capsules', price: 749 },
-  'shilajit-ashwagandha-combo': { name: 'Shilajeet + Ashwagandha Combo', price: 1899 },
-  'piles-norm-dig-up-combo': { name: 'Piles Norm + DIG-UP Combo', price: 1499 },
+  'arjuna-capsules-india': { name: 'Arjuna Capsules', price: 899, rating: 4.7, reviews: 1284 },
+  'shilajit-capsules-1000mg': { name: 'Shilajeet Capsules 1000mg', price: 1399, rating: 4.8, reviews: 2156 },
+  'ashwagandha-extract-capsules-india': { name: 'Ashwagandha Extract Capsules', price: 799, rating: 4.6, reviews: 1420 },
+  'giloy-extract-capsules-india': { name: 'Giloy Extract Capsules', price: 649, rating: 4.7, reviews: 986 },
+  'dig-up-men-wellness-capsules': { name: 'DIG-UP Capsules', price: 849, rating: 4.5, reviews: 634 },
+  'piles-norm-ayurvedic-capsules': { name: 'Piles Norm Capsules', price: 749, rating: 4.6, reviews: 512 },
+  'shilajit-ashwagandha-combo': { name: 'Shilajeet + Ashwagandha Combo', price: 1899, rating: 4.9, reviews: 428 },
+  'piles-norm-dig-up-combo': { name: 'Piles Norm + DIG-UP Combo', price: 1499, rating: 4.5, reviews: 218 },
   'cough-yog-capsules-india': { name: 'COUGH-YOG Capsules', price: 1200 },
   'gass-off-churan-100g': { name: 'GASS OFF Churan', price: 299 },
 };
@@ -97,6 +97,13 @@ function writePage(route, title, description, type, heading, body) {
         category: 'Ayurvedic Wellness Product',
         brand:{'@type':'Brand',name:'Aarogya Seva'},
         url,
+        aggregateRating:{
+          '@type':'AggregateRating',
+          ratingValue:product.rating,
+          reviewCount:product.reviews,
+          bestRating:5,
+          worstRating:1
+        },
         offers:{
           '@type':'Offer',
           url,
