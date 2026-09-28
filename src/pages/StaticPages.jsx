@@ -13,7 +13,7 @@ export function AboutPage() {
       <SEO title="About Aarogya Seva" description="Learn about Aarogya Seva, our Ayurvedic wellness approach, product transparency and customer support." url="/about" />
     <div className="bg-[#fbf7ec]">
       <section className="relative h-[380px] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1492552296703-4ec0a2fb3715?crop=entropy&cs=srgb&fm=jpg&w=1600&q=85" alt="herbs" className="absolute inset-0 w-full h-full object-cover" />
+        <SafeImage src="https://images.unsplash.com/photo-1492552296703-4ec0a2fb3715?crop=entropy&cs=srgb&fm=jpg&w=1600&q=85" alt="Ayurvedic herbs" fallbackLabel="Ayurvedic herbs" fallbackType="photo" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b2a20]/85 to-[#0b2a20]/50" />
         <div className="relative z-10 max-w-6xl mx-auto px-4 h-full flex items-center">
           <div>
