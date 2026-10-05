@@ -256,7 +256,7 @@ async def delete_product(pid: str, admin=Depends(get_admin)):
 
 
 # ============ ORDERS & PAYMENT ============
-async def _calc_totals(items: List[CartItem], points_redeemed: int = 0):
+async def _calc_totals(items: List[CartItem], points_redeemed: int = 0, coupon_code: str = "", user_id: Optional[str] = None):
     """Compute totals from DB prices (never trust client)."""
     if not items:
         raise HTTPException(status_code=400, detail='Cart is empty')
@@ -286,11 +286,24 @@ async def _calc_totals(items: List[CartItem], points_redeemed: int = 0):
         subtotal += p["price"] * c.qty
         mrp_total += p["mrp"] * c.qty
     shipping = 0 if subtotal >= 499 else 49
+    coupon = (coupon_code or "").strip().upper()
+    coupon_discount = 0
+    if coupon:
+        if coupon != "AAROGYA400":
+            raise HTTPException(status_code=400, detail="Invalid coupon code")
+        if subtotal < 999:
+            raise HTTPException(status_code=400, detail="AAROGYA400 requires a minimum order of ₹999")
+        if not user_id:
+            raise HTTPException(status_code=400, detail="Login required to use this offer")
+        previous_order = await db.orders.find_one({"userId": user_id}, {"_id": 1})
+        if previous_order:
+            raise HTTPException(status_code=400, detail="AAROGYA400 is valid on the first order only")
+        coupon_discount = 400
     # Redeem: 100 pts = ₹50, cap at 20% of subtotal
     max_redeem_value = int(subtotal * 0.2)
     redeem_value = min(int(points_redeemed / 2), max_redeem_value)
     points_used = redeem_value * 2
-    total = max(1, subtotal + shipping - redeem_value)
+    total = max(1, subtotal + shipping - redeem_value - coupon_discount)
     return {
         "items": line_items,
         "subtotal": subtotal,
@@ -299,6 +312,8 @@ async def _calc_totals(items: List[CartItem], points_redeemed: int = 0):
         "shipping": shipping,
         "pointsUsed": points_used,
         "redeemValue": redeem_value,
+        "couponCode": coupon if coupon_discount else "",
+        "couponDiscount": coupon_discount,
         "total": total,
     }
 
@@ -306,7 +321,7 @@ async def _calc_totals(items: List[CartItem], points_redeemed: int = 0):
 async def preview_order(body: OrderCreate, user=Depends(get_current_user)):
     if body.pointsRedeemed > user.get("rewardPoints", 0):
         raise HTTPException(status_code=400, detail="Insufficient reward points")
-    totals = await _calc_totals(body.items, body.pointsRedeemed)
+    totals = await _calc_totals(body.items, body.pointsRedeemed, body.couponCode, user["id"])
     return totals
 
 @api.post("/orders")
@@ -315,7 +330,7 @@ async def create_order(body: OrderCreate, user=Depends(get_current_user)):
         raise HTTPException(status_code=400, detail="Invalid payment method")
     if body.pointsRedeemed > user.get("rewardPoints", 0):
         raise HTTPException(status_code=400, detail="Insufficient reward points")
-    totals = await _calc_totals(body.items, body.pointsRedeemed)
+    totals = await _calc_totals(body.items, body.pointsRedeemed, body.couponCode, user["id"])
 
     order_id = "AS" + str(int(datetime.now().timestamp()))[-8:]
     order_doc = {
@@ -328,7 +343,9 @@ async def create_order(body: OrderCreate, user=Depends(get_current_user)):
         "shipping": totals["shipping"],
         "pointsUsed": totals["pointsUsed"],
         "redeemValue": totals["redeemValue"],
-        "savings": totals["savings"],
+        "couponCode": totals["couponCode"],
+        "couponDiscount": totals["couponDiscount"],
+        "savings": totals["savings"] + totals["couponDiscount"],
         "total": totals["total"],
         "address": body.address.dict(),
         "paymentMethod": body.paymentMethod,
