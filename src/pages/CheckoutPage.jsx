@@ -25,6 +25,8 @@ export default function CheckoutPage() {
   const [busy, setBusy] = useState(false);
   const [orderInfo, setOrderInfo] = useState(null);
   const [pointsToRedeem, setPointsToRedeem] = useState(0);
+  const [couponCode, setCouponCode] = useState('');
+  const [couponApplied, setCouponApplied] = useState(false);
   const [preview, setPreview] = useState(null);
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -36,7 +38,8 @@ export default function CheckoutPage() {
   const redeemValue = Math.floor(pointsToRedeem / 2);
   const maxRedeemValue = Math.floor(cartSubtotal * 0.2);
   const cappedRedeemValue = Math.min(redeemValue, maxRedeemValue);
-  const total = Math.max(1, cartSubtotal + shipping - cappedRedeemValue);
+  const couponDiscount = couponApplied && couponCode.trim().toUpperCase() === 'AAROGYA400' && cartSubtotal >= 999 ? 400 : 0;
+  const total = Math.max(1, cartSubtotal + shipping - cappedRedeemValue - couponDiscount);
   const pointsEarnable = Math.floor(cartSubtotal / 100) * 5;
 
   useEffect(() => {
@@ -54,6 +57,7 @@ export default function CheckoutPage() {
       items: cart,
       address: { name: '', phone: '', email: '', address: '', city: '', state: '', pincode: '' },
       paymentMethod: payment,
+      couponCode,
       pointsRedeemed: pointsToRedeem,
     }).then(setPreview).catch(() => {});
   }, [cart, pointsToRedeem, payment, user]);
@@ -70,6 +74,7 @@ export default function CheckoutPage() {
         items: cart,
         address: form,
         paymentMethod: payment,
+        couponCode: couponApplied ? couponCode.trim().toUpperCase() : '',
         pointsRedeemed: pointsToRedeem,
       });
       const order = res.order;
@@ -202,6 +207,46 @@ export default function CheckoutPage() {
 
             {step === 2 && (
               <div className="space-y-4">
+                <div className="bg-white border border-[#e6b64c]/60 rounded-xl p-5 shadow-sm">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <h3 className="font-semibold text-[#0f3d2e]">First Order Offer</h3>
+                      <p className="text-xs text-[#8a7a5a] mt-1">Get ₹400 OFF on orders of ₹999+ • First order only</p>
+                    </div>
+                    <span className="text-xs font-bold bg-[#faf1dc] text-[#0f3d2e] px-2 py-1 rounded">AAROGYA400</span>
+                  </div>
+                  <div className="flex gap-2 mt-3">
+                    <input
+                      value={couponCode}
+                      onChange={(e) => { setCouponCode(e.target.value.toUpperCase()); setCouponApplied(false); }}
+                      placeholder="Enter coupon code"
+                      className="flex-1 border border-[#ded1a8] rounded-lg px-3 py-2.5 outline-none focus:border-[#0f3d2e] bg-[#faf6ec] uppercase"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const code = couponCode.trim().toUpperCase();
+                        if (code !== 'AAROGYA400') {
+                          toast({ title: 'Invalid coupon', description: 'Please use AAROGYA400.' });
+                          setCouponApplied(false);
+                          return;
+                        }
+                        if (cartSubtotal < 999) {
+                          toast({ title: 'Minimum order ₹999', description: 'Add products worth ₹999 or more to use this offer.' });
+                          setCouponApplied(false);
+                          return;
+                        }
+                        setCouponApplied(true);
+                        toast({ title: '₹400 OFF applied', description: 'Your first-order discount is active.' });
+                      }}
+                      className="bg-[#0f3d2e] text-white font-semibold px-4 rounded-lg"
+                    >Apply</button>
+                  </div>
+                  {couponApplied && couponDiscount > 0 && (
+                    <p className="text-xs text-[#0a7a3f] font-semibold mt-2">✓ ₹400 first-order discount applied</p>
+                  )}
+                </div>
+
                 {/* Reward Points redemption */}
                 {user?.rewardPoints > 0 && (
                   <div className="bg-gradient-to-r from-[#faf1dc] to-[#f4e4b8] border border-[#e6b64c]/40 rounded-xl p-5">
@@ -275,6 +320,9 @@ export default function CheckoutPage() {
               <div className="flex justify-between"><span className="text-[#6a6a6a]">Subtotal</span><span>₹{cartSubtotal.toLocaleString()}</span></div>
               <div className="flex justify-between"><span className="text-[#6a6a6a]">Savings</span><span className="text-[#0a7a3f]">- ₹{cartSavings.toLocaleString()}</span></div>
               <div className="flex justify-between"><span className="text-[#6a6a6a]">Shipping</span><span>{shipping === 0 ? 'FREE' : `₹${shipping}`}</span></div>
+              {couponDiscount > 0 && (
+                <div className="flex justify-between"><span className="text-[#6a6a6a]">First Order Offer</span><span className="text-[#0a7a3f]">- ₹{couponDiscount}</span></div>
+              )}
               {cappedRedeemValue > 0 && (
                 <div className="flex justify-between"><span className="text-[#6a6a6a]">Points Discount</span><span className="text-[#0a7a3f]">- ₹{cappedRedeemValue}</span></div>
               )}
