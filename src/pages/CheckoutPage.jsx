@@ -60,7 +60,7 @@ export default function CheckoutPage() {
       couponCode,
       pointsRedeemed: pointsToRedeem,
     }).then(setPreview).catch(() => {});
-  }, [cart, pointsToRedeem, payment, user]);
+  }, [cart, pointsToRedeem, payment, user, couponCode]);
 
   const submitAddress = (e) => {
     e.preventDefault();
