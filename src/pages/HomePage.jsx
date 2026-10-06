@@ -8,6 +8,10 @@ import {
   BadgeIndianRupee,
   Undo2,
   ArrowRight,
+  Star,
+  BadgeCheck,
+  HeartPulse,
+  Stethoscope,
 } from 'lucide-react';
 import Hero from '../components/Hero';
 import ProductCard from '../components/ProductCard';
@@ -31,6 +35,11 @@ export default function HomePage() {
         url="/"
         jsonLd={[organizationJsonLd, websiteJsonLd]}
       />
+      <div className="bg-[#0f3d2e] text-white text-xs md:text-sm">
+        <div className="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-center">
+          <span className="font-semibold">FIRST ORDER: ₹400 OFF</span><span className="text-[#e6b64c] font-mono">AAROGYA400</span><span className="text-[#c4e0ce]">On orders ₹999+</span><span className="text-[#c4e0ce]">Free shipping ₹499+</span>
+        </div>
+      </div>
       <Hero />
 
       {/* Features strip */}
@@ -97,6 +106,22 @@ export default function HomePage() {
             <Link to="/ayurvedic/shilajit" className="text-sm font-semibold text-[#0f3d2e] underline">Shilajit guide</Link>
             <Link to="/shop" className="text-sm font-semibold text-[#0f3d2e] underline">Ayurvedic products</Link>
           </div>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 py-10">
+        <div className="text-center mb-8"><span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Find Your Wellness Focus</span><h2 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-2">Shop by Wellness Need</h2><p className="text-sm text-[#6a6a6a] mt-2">Start with what you want to support, then choose the right product.</p></div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+          {[['Stress & Sleep','Ashwagandha','/ayurvedic/ashwagandha'],['Daily Vitality','Shilajit','/ayurvedic/shilajit'],['Immunity Support','Giloy','/shop?category=immunity'],['Heart Wellness','Arjuna','/shop?category=heart'],['Digestive Wellness','Digestion','/shop?category=digestive'],['Piles Care','Piles Norm','/shop?category=piles']].map(([need,label,to]) => (
+            <Link key={need} to={to} className="group bg-white border border-[#ede4cf] rounded-xl p-4 hover:border-[#e6b64c] hover:shadow-md transition"><div className="w-10 h-10 rounded-full bg-[#faf1dc] flex items-center justify-center text-[#0f3d2e] mb-3"><HeartPulse size={19}/></div><div className="text-xs text-[#8a7a5a]">{need}</div><div className="font-semibold text-[#0f3d2e] mt-1">{label}</div><div className="text-xs text-[#0f3d2e] mt-2 group-hover:underline">Explore →</div></Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 py-8">
+        <div className="bg-[#fffaf0] border border-[#e6d8b9] rounded-2xl p-6 md:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6"><div><span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Limited-time value</span><h2 className="font-serif text-3xl text-[#0f3d2e] mt-1">Today's Wellness Picks</h2></div><Link to="/shop" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0f3d2e]">View all offers <ArrowRight size={16}/></Link></div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">{products.filter((p) => p.discount || p.isBestseller).slice(0, 4).map((p) => <ProductCard key={`deal-${p.id}`} product={p}/>)}</div>
         </div>
       </section>
 
@@ -233,7 +258,7 @@ export default function HomePage() {
       <section className="max-w-4xl mx-auto px-4 pb-16">
         <div className="bg-white border border-[#ede4cf] rounded-2xl p-8 md:p-12 text-center">
           <h3 className="font-serif text-2xl md:text-3xl text-[#0f3d2e]">Join the Aarogya Family</h3>
-          <p className="text-sm text-[#6a6a6a] mt-2">Get wellness tips, exclusive offers & ₹200 off on your next order.</p>
+          <p className="text-sm text-[#6a6a6a] mt-2">Get practical wellness tips and exclusive Aarogya Seva offers.</p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
