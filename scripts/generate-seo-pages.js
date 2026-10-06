@@ -37,6 +37,11 @@ const guidePages = [
   ['aarogya-seva-ayurveda','Aarogya Seva Ayurveda | Ayurvedic Wellness Products in India','Explore the Aarogya Seva Ayurveda catalogue, product information, wellness guides and transparent supplement buying information.'],
   ['ayurvedic/ashwagandha','Ashwagandha: Traditional Ayurvedic Context & Buying Guide','Learn about Ashwagandha, common supplement formats, label checks and practical questions to consider before buying.'],
   ['ayurvedic/shilajit','Shilajit: Quality Checks & Buying Guide','Learn what Shilajit is, how traditional use differs from modern marketing and what to check on a supplement label.'],
+  ['ayurvedic/giloy','Giloy Capsules India | Guduchi Extract & Buying Guide','Explore Giloy (Guduchi) extract capsules in India, ingredient details, traditional Ayurvedic context, serving information and practical buying guidance.'],
+  ['ayurvedic/digestion','Digestive Wellness Products India | Churan & Herbal Products','Explore digestive wellness products from Aarogya Seva, including GASS OFF Churan and practical information for comparing ingredients, labels and serving directions.'],
+  ['ayurvedic/mens-wellness',"Men's Wellness Products India | Shilajit, Ashwagandha & Herbal Blends","Explore Aarogya Seva men's wellness products including Shilajeet, Ashwagandha and DIG-UP. Compare ingredients, traditional context, serving information and product labels."],
+  ['ayurvedic-products-india','Ayurvedic Products Online in India | Aarogya Seva','Shop Aarogya Seva Ayurvedic wellness products online in India. Explore Ashwagandha, Shilajit, Giloy, Arjuna, digestive wellness products and combos.'],
+  ['offers','Aarogya Seva Offers | ₹400 First Order Discount on ₹999+','Shop current Aarogya Seva wellness offers. Get ₹400 off your first eligible order of ₹999 or more with code AAROGYA400.'],
 ];
 
 const routeToProductSlug = {
