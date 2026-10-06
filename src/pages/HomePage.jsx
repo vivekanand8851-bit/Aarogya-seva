@@ -112,7 +112,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="text-center mb-8"><span className="text-xs tracking-[4px] text-[#8a7a5a] uppercase">Find Your Wellness Focus</span><h2 className="font-serif text-3xl md:text-4xl text-[#0f3d2e] mt-2">Shop by Wellness Need</h2><p className="text-sm text-[#6a6a6a] mt-2">Start with what you want to support, then choose the right product.</p></div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {[['Stress & Sleep','Ashwagandha','/ayurvedic/ashwagandha'],['Daily Vitality','Shilajit','/ayurvedic/shilajit'],['Immunity Support','Giloy','/shop?category=immunity'],['Heart Wellness','Arjuna','/shop?category=heart'],['Digestive Wellness','Digestion','/shop?category=digestive'],['Piles Care','Piles Norm','/shop?category=piles']].map(([need,label,to]) => (
+          {[['Stress & Sleep','Ashwagandha','/ayurvedic/ashwagandha'],['Daily Vitality','Shilajit','/ayurvedic/shilajit'],['Immunity Support','Giloy','/shop?category=immunity'],['Heart Wellness','Arjuna','/shop?category=heart-health'],['Digestive Wellness','Digestion','/shop?category=digestion'],['Piles Care','Piles Norm','/shop?category=specialty']].map(([need,label,to]) => (
             <Link key={need} to={to} className="group bg-white border border-[#ede4cf] rounded-xl p-4 hover:border-[#e6b64c] hover:shadow-md transition"><div className="w-10 h-10 rounded-full bg-[#faf1dc] flex items-center justify-center text-[#0f3d2e] mb-3"><HeartPulse size={19}/></div><div className="text-xs text-[#8a7a5a]">{need}</div><div className="font-semibold text-[#0f3d2e] mt-1">{label}</div><div className="text-xs text-[#0f3d2e] mt-2 group-hover:underline">Explore →</div></Link>
           ))}
         </div>
@@ -188,6 +188,19 @@ export default function HomePage() {
       )}
 
       {/* Verified customer reviews can be added here when review data is connected. */}
+
+      <section className="max-w-7xl mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div className="lg:col-span-2 bg-white border border-[#ede4cf] rounded-2xl p-7">
+            <div className="flex items-center gap-3"><BadgeCheck className="text-[#0f3d2e]" size={28}/><div><div className="text-xs tracking-[3px] text-[#8a7a5a] uppercase">Why buy from Aarogya Seva</div><h2 className="font-serif text-2xl md:text-3xl text-[#0f3d2e] mt-1">Clear products. Honest information. Easy ordering.</h2></div></div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+              {[['Ingredient clarity','Know what you are buying before checkout.'],['Secure checkout','COD and online payment options.'],['Order support','Help available when you need it.']].map(([title,desc]) => <div key={title} className="border-t border-[#ede4cf] pt-4"><div className="font-semibold text-[#0f3d2e]">{title}</div><p className="text-xs text-[#6a6a6a] mt-1 leading-relaxed">{desc}</p></div>)}
+            </div>
+            <div className="flex items-center gap-1.5 mt-6 text-sm text-[#0f3d2e]"><Star size={16} fill="currentColor"/> Explore products and customer feedback before you decide.</div>
+          </div>
+          <div className="bg-[#0f3d2e] rounded-2xl p-7 text-white flex flex-col justify-between"><div><Stethoscope size={30} className="text-[#e6b64c]"/><div className="text-xs tracking-[3px] text-[#c4e0ce] uppercase mt-5">Need help choosing?</div><h3 className="font-serif text-2xl mt-2">Start with our wellness guides.</h3><p className="text-sm text-[#c4e0ce] mt-3 leading-relaxed">Learn what to look for in Ashwagandha and Shilajit before buying.</p></div><Link to="/ayurvedic/ashwagandha" className="inline-flex items-center justify-center gap-2 bg-[#e6b64c] text-[#0f3d2e] font-semibold px-5 py-3 rounded-lg mt-6">Read a guide <ArrowRight size={16}/></Link></div>
+        </div>
+      </section>
 
       {/* Herbal guides */}
       <section className="max-w-7xl mx-auto px-4 py-12">
