@@ -14,6 +14,7 @@ import AdminPage from './pages/AdminPage';
 import { AboutPage, ContactPage, ConsultPage, LoginPage, AccountPage, TrackOrderPage, PoliciesPage } from './pages/StaticPages';
 import { BlogListPage, BlogDetailPage } from './pages/BlogPage';
 import HerbalLandingPage from './pages/HerbalLandingPage';
+import CommercialLandingPage from './pages/CommercialLandingPage';
 import { getImageFallback } from './lib/imageUrl';
 
 export default function App() {
@@ -42,6 +43,11 @@ export default function App() {
             <Route path="/aarogya-seva-ayurveda" element={<HerbalLandingPage type="brand" />} />
             <Route path="/ayurvedic/ashwagandha" element={<HerbalLandingPage type="ashwagandha" />} />
             <Route path="/ayurvedic/shilajit" element={<HerbalLandingPage type="shilajit" />} />
+            <Route path="/ayurvedic/giloy" element={<CommercialLandingPage type="giloy" />} />
+            <Route path="/ayurvedic/digestion" element={<CommercialLandingPage type="digestion" />} />
+            <Route path="/ayurvedic/mens-wellness" element={<CommercialLandingPage type="mens-wellness" />} />
+            <Route path="/ayurvedic-products-india" element={<CommercialLandingPage type="ayurvedic-products-india" />} />
+            <Route path="/offers" element={<CommercialLandingPage type="offers" />} />
             <Route path="/product/:slug" element={<ProductDetailPage />} />
             <Route path="/ayurvedic-products/:seoSlug" element={<ProductDetailPage seoUrl />} />
             <Route path="/cart" element={<CartPage />} />
