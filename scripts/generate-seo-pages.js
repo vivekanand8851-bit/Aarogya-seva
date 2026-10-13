@@ -10,11 +10,11 @@ const PRODUCT_IMAGES = {
   'arjuna-capsules-india': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/9nl7yn4a_Arjuna.png',
   'shilajit-capsules-1000mg': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
   'ashwagandha-extract-capsules-india': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
-  'giloy-extract-capsules-india': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png',
-  'dig-up-men-wellness-capsules': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png',
+  'giloy-extract-capsules-india': LOGO,
+  'dig-up-men-wellness-capsules': LOGO,
   'piles-norm-ayurvedic-capsules': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/0z5z0vli_Piles%20Norm.png',
   'shilajit-ashwagandha-combo': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/mvgj6it7_Shilajeet%20%2BAshwagandha.png',
-  'piles-norm-dig-up-combo': 'https://customer-assets-lqy194kg.emergentagent.net/job_wellness-india-4/artifacts/pqxkdic1_Piles%20Norm%20%2B%20Dig%20Up.png',
+  'piles-norm-dig-up-combo': LOGO,
   'cough-yog-capsules-india': LOGO,
   'gass-off-churan-100g': LOGO
 };
@@ -41,7 +41,7 @@ const guidePages = [
   ['ayurvedic/digestion','Digestive Wellness Products India | Churan & Herbal Products','Explore digestive wellness products from Aarogya Seva, including GASS OFF Churan and practical information for comparing ingredients, labels and serving directions.'],
   ['ayurvedic/mens-wellness',"Men's Wellness Products India | Shilajit, Ashwagandha & Herbal Blends","Explore Aarogya Seva men's wellness products including Shilajeet, Ashwagandha and DIG-UP. Compare ingredients, traditional context, serving information and product labels."],
   ['ayurvedic-products-india','Ayurvedic Products Online in India | Aarogya Seva','Shop Aarogya Seva Ayurvedic wellness products online in India. Explore Ashwagandha, Shilajit, Giloy, Arjuna, digestive wellness products and combos.'],
-  ['offers','Aarogya Seva Offers | ₹400 First Order Discount on ₹999+','Shop current Aarogya Seva wellness offers. Get ₹400 off your first eligible order of ₹999 or more with code AAROGYA400.'],
+  ['offers','Aarogya Seva Offers | Current Ayurvedic Product Deals','Explore current Aarogya Seva offers on Ayurvedic wellness products. Review product details, eligibility, delivery charges and final checkout price before ordering.'],
 ];
 
 const routeToProductSlug = {
@@ -102,13 +102,6 @@ function writePage(route, title, description, type, heading, body) {
         category: 'Ayurvedic Wellness Product',
         brand:{'@type':'Brand',name:'Aarogya Seva'},
         url,
-        aggregateRating:{
-          '@type':'AggregateRating',
-          ratingValue:product.rating,
-          reviewCount:product.reviews,
-          bestRating:5,
-          worstRating:1
-        },
         offers:{
           '@type':'Offer',
           url,
@@ -200,13 +193,72 @@ for (const [slug,title,description] of productPages) {
   writePage(`ayurvedic-products/${slug}`,title,description,'Product',product.name,body);
 }
 
+const commercialGuideContent = {
+  'ayurvedic/giloy': {
+    intro: 'Giloy, also called Guduchi (Tinospora cordifolia), has a place in traditional Ayurvedic practice. Customers comparing Giloy products should start with the exact plant part, extract form, ingredient quantity, serving directions and cautions printed on the pack. Traditional use does not guarantee a specific outcome from every modern product.',
+    sections: [
+      ['What to check before buying Giloy capsules', 'Read the complete ingredient panel and confirm the botanical name, plant part, extract quantity, excipients, net quantity, manufacturer details, batch information and expiry date. Do not rely on a product title alone to judge strength or quality.'],
+      ['Traditional context and responsible use', 'Giloy is discussed in Ayurvedic traditions, but it should not be presented as a guaranteed treatment or a replacement for diagnosis or prescribed care. People with existing conditions, those taking medicines, and pregnant or breastfeeding people should seek advice from a qualified healthcare professional before use.'],
+      ['Explore Aarogya Seva products', 'Review the Giloy Extract Capsules product page for available label details and current price. Compare the actual pack information with your needs before adding it to your cart.']
+    ],
+    links: [['Giloy Extract Capsules','/ayurvedic-products/giloy-extract-capsules-india'],['All products','/shop'],['Product policies','/policies']]
+  },
+  'ayurvedic/digestion': {
+    intro: 'Aarogya Seva’s digestive wellness range includes GASS OFF Churan. If you are comparing digestive products online in India, use the ingredient list, serving directions, pack size, price per pack, storage instructions and manufacturer information—not broad promises—to decide what fits your preferences.',
+    sections: [
+      ['How to compare digestive churan', 'Check the complete ingredient panel, net weight, recommended serving, warnings, batch number and expiry date. Follow the label and do not exceed its directions. If digestive symptoms are severe, persistent, recurrent, or accompanied by blood, fever, dehydration or unexplained weight loss, seek medical care rather than relying on a supplement.'],
+      ['Everyday digestive habits', 'Regular meals, adequate fluids, appropriate fibre, movement and noticing food triggers can support general digestive wellbeing. Individual needs vary; a product is not a substitute for evaluating persistent symptoms.'],
+      ['Shop GASS OFF Churan', 'Review the GASS OFF Churan 100 g product page for current product and label details. Check the final cart total, shipping charge and available payment method before confirming an order.']
+    ],
+    links: [['GASS OFF Churan 100 g','/ayurvedic-products/gass-off-churan-100g'],['All products','/shop'],['Shipping and policies','/policies']]
+  },
+  'ayurvedic/mens-wellness': {
+    intro: 'Explore Aarogya Seva products commonly considered within men’s general wellness routines, including Shilajeet Capsules, Ashwagandha Extract Capsules and DIG-UP Capsules. Products differ in ingredients and label directions; compare the pack information rather than assuming that all herbal blends have the same purpose or effect.',
+    sections: [
+      ['Compare ingredients and labels', 'Check the botanical names, ingredient quantities, serving instructions, warnings, manufacturer details and batch/expiry information. For Shilajit products, prioritise clear information on purification and quality testing where available. Do not assume a product is tested or standardised unless the brand provides evidence.'],
+      ['Set realistic expectations', 'Sleep, nutrition, physical activity, stress management and medical assessment can all matter to wellbeing. No supplement should be marketed as a guaranteed way to increase testosterone, cure sexual dysfunction or treat an underlying condition. Seek professional advice for persistent fatigue, sexual-health concerns or symptoms that are new or worsening.'],
+      ['Explore related products', 'Read the individual product pages before choosing a single product or combination. Review the ingredient overlap and ask a qualified clinician or pharmacist about possible interactions if you take medicines or have a health condition.']
+    ],
+    links: [['Shilajeet Capsules','/ayurvedic-products/shilajit-capsules-1000mg'],['Ashwagandha Capsules','/ayurvedic-products/ashwagandha-extract-capsules-india'],['DIG-UP Capsules','/ayurvedic-products/dig-up-men-wellness-capsules'],['All products','/shop']]
+  },
+  'ayurvedic-products-india': {
+    intro: 'Shop Aarogya Seva Ayurvedic wellness products online in India. The catalogue includes Ashwagandha, Shilajeet, Giloy, Arjuna, digestive churan, other herbal products and selected combinations. Use each product page to review available ingredients, pack details, directions, price and relevant precautions before purchasing.',
+    sections: [
+      ['How to choose an Ayurvedic wellness product', 'Start with your intended general-wellness use, then compare the full ingredient list, botanical identity, ingredient quantity, serving directions, manufacturer details, batch and expiry. Prefer claims that are specific and supported by transparent product information.'],
+      ['Price, delivery and payment', 'Check the current listed price and your cart total before checkout. Delivery fees, offers and payment methods may depend on order details. Only treat a discount as active when the checkout accepts it and shows the reduced total before payment.'],
+      ['Responsible product information', 'Traditional Ayurvedic context and a product’s modern formulation are not the same thing. Products are not substitutes for diagnosis or prescribed treatment. If you are pregnant, breastfeeding, taking medicines or managing a health condition, seek qualified advice before use.']
+    ],
+    links: [['Shop all products','/shop'],['Ashwagandha Capsules','/ayurvedic-products/ashwagandha-extract-capsules-india'],['Shilajeet Capsules','/ayurvedic-products/shilajit-capsules-1000mg'],['GASS OFF Churan','/ayurvedic-products/gass-off-churan-100g'],['Contact Aarogya Seva','/contact']]
+  },
+  'offers': {
+    intro: 'Browse current Aarogya Seva offers and product combinations. Offers, coupon eligibility, delivery charges and availability can change, so check the final cart and checkout summary before placing an order. A promotion should only be considered applied when the checkout displays the reduced total.',
+    sections: [
+      ['How to use an offer', 'Open the relevant product page, confirm the pack size and price, add the item to your cart, and review any offer instructions shown on the website. Enter a coupon only if it is currently advertised as available. Confirm that the discount appears in the order summary before paying.'],
+      ['Compare value, not only the discount', 'Consider the quantity, ingredients, serving directions, delivery fee and whether the product suits your needs. A higher crossed-out price is not a substitute for clear product information.'],
+      ['Need help before ordering?', 'Review the policies and contact information if you need clarification about an offer, delivery or an order. Do not complete payment if the checkout total or payment status is unclear.']
+    ],
+    links: [['Shop all products','/shop'],['Product policies','/policies'],['Contact Aarogya Seva','/contact']]
+  }
+};
+
 for (const [route,title,description] of guidePages) {
   const key = route.endsWith('ashwagandha') ? 'ashwagandha-extract-capsules' : route.endsWith('shilajit') ? 'shilajeet-capsules' : null;
   const education = key ? PRODUCT_EDUCATION[key] || {} : {};
-  const parts = [education.intro, education.ingredients, education.classical, education.properties, education.why, education.how, education.quality, education.routine].filter(Boolean);
-  const labels = ['परिचय','मुख्य सामग्री','आयुर्वेदिक संदर्भ','पारंपरिक उपयोग','क्यों उपयोग किया जाता है','उपयोग की विधि','गुणवत्ता पर ध्यान','दैनिक दिनचर्या'];
-  const body = parts.map((p,i)=>'<section><h2>'+escapeHtml(labels[i])+'</h2><p>'+escapeHtml(p)+'</p></section>').join('');
-  writePage(route,title,description,'WebPage',title,body+'<p><a href="/shop">Aarogya Seva के उत्पाद देखें</a> · <a href="/blog">Ayurveda Articles पढ़ें</a></p>');
+  const commercial = commercialGuideContent[route];
+  const sections = commercial
+    ? commercial.sections.map(([heading,content]) => '<section><h2>'+escapeHtml(heading)+'</h2><p>'+escapeHtml(content)+'</p></section>').join('')
+    : [
+        ['परिचय',education.intro],['मुख्य सामग्री',education.ingredients],['आयुर्वेदिक संदर्भ',education.classical],
+        ['पारंपरिक उपयोग',education.properties],['क्यों उपयोग किया जाता है',education.why],
+        ['उपयोग की विधि',education.how],['गुणवत्ता पर ध्यान',education.quality],['दैनिक दिनचर्या',education.routine]
+      ].filter(([,p])=>p).map(([heading,p])=>'<section><h2>'+escapeHtml(heading)+'</h2><p>'+escapeHtml(p)+'</p></section>').join('');
+  const links = commercial
+    ? commercial.links.map(([label,href])=>'<li><a href="'+href+'">'+escapeHtml(label)+'</a></li>').join('')
+    : '<li><a href="/shop">Aarogya Seva के उत्पाद देखें</a></li><li><a href="/blog">Ayurveda Articles पढ़ें</a></li>';
+  const safety = '<section><h2>महत्वपूर्ण जानकारी</h2><p>यह सामग्री सामान्य जानकारी के लिए है, व्यक्तिगत चिकित्सकीय सलाह का विकल्प नहीं। उत्पाद के लेबल का पालन करें और किसी बीमारी के निदान या उपचार के लिए योग्य स्वास्थ्य-विशेषज्ञ से सलाह लें।</p></section>';
+  writePage(route,title,description,'WebPage',title,
+    '<p>'+escapeHtml(commercial ? commercial.intro : description)+'</p>'+sections+safety+
+    '<section><h2>संबंधित उत्पाद और जानकारी</h2><ul>'+links+'</ul></section>');
 }
 
 for (const [slug,title,description] of articlePages) {
